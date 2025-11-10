@@ -1,0 +1,126 @@
+table tbl_status_historico_entregas
+	lineageTag: 27f2090b-b459-425d-8e26-af779d097c82
+
+	column Chave
+		dataType: string
+		lineageTag: 8b0e2d98-8238-4409-8915-a97ecadd31f3
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current status?'
+		dataType: string
+		lineageTag: ebe0facf-b2a2-420c-a71a-2665e6f1b8e2
+		summarizeBy: none
+		sourceColumn: Current status?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status end'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: db2f8ab5-3133-454e-914d-dda846141b75
+		summarizeBy: none
+		sourceColumn: Status end
+
+		variation Variation
+			isDefault
+			relationship: 93a269f0-4ff6-496f-932a-376b24f33948
+			defaultHierarchy: LocalDateTable_837d8da9-3371-424f-a624-7be7264d43a8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status sequence'
+		dataType: double
+		lineageTag: 7715fbc7-46cf-45fd-b781-be56ca01561f
+		summarizeBy: sum
+		sourceColumn: Status sequence
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Status start'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: be8bef30-427f-46bb-85b6-5ababaa74860
+		summarizeBy: none
+		sourceColumn: Status start
+
+		variation Variation
+			isDefault
+			relationship: 43727d3c-8a81-4e9f-969c-ad45a5c548d6
+			defaultHierarchy: LocalDateTable_c18739ec-54da-4259-a766-e1294dafd93a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status with sequence'
+		dataType: string
+		lineageTag: 45c33d92-195f-4835-b57f-bc9f6f737894
+		summarizeBy: none
+		sourceColumn: Status with sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Time in status (business days)'
+		dataType: double
+		lineageTag: d0165e85-0d18-4d95-ba72-c04086a485c9
+		summarizeBy: sum
+		sourceColumn: Time in status (business days)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Time in status (business hrs)'
+		dataType: double
+		lineageTag: 19d76625-4d47-4ca8-b2a2-ceaae8ce837f
+		summarizeBy: sum
+		sourceColumn: Time in status (business hrs)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Time in status (days)'
+		dataType: double
+		lineageTag: d9c15091-eb9e-4b5d-b0df-97d44ec46299
+		summarizeBy: sum
+		sourceColumn: Time in status (days)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Time in status (hrs)'
+		dataType: double
+		lineageTag: a4a58f79-41eb-4ab9-914c-cf06cfbca1c6
+		summarizeBy: sum
+		sourceColumn: Time in status (hrs)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'History Status'
+		dataType: string
+		lineageTag: 1d781cf2-f86a-40db-a072-03d36405ab3b
+		summarizeBy: none
+		sourceColumn: History Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_status_historico_entregas = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/NTE0OTk4ZDItNjk5YS00NzU2LThiZTMtMDQzMzdmNmY2", null, [Implementation="2.0"]),
+				    History_table1 = Fonte{[Name="History",Signature="table"]}[Data]
+				in
+				    History_table1
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,199 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSectionc0d1e832630890b0023d",
+  "displayName": "Manutenção",
+  "displayOption": "ActualSize",
+  "height": 1100,
+  "width": 1440,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a0fd96ecb003005933b0",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Start_Stop"
+              }
+            },
+            "Property": "dataInicial"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "fApontamento_Start_Stop",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "f"
+                        }
+                      },
+                      "Property": "dataInicial"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -6,
+                          "TimeUnit": 2
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282B35'"
+                  }
+                }
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "d5ed6989e65dd595e987",
+      "target": "25bf310686040006b230",
+      "type": "DataFilter"
+    },
+    {
+      "source": "736706126b37cc5ceb2b",
+      "target": "25bf310686040006b230",
+      "type": "DataFilter"
+    },
+    {
+      "source": "acf5f6f63d6f520501d9",
+      "target": "25bf310686040006b230",
+      "type": "DataFilter"
+    },
+    {
+      "source": "736706126b37cc5ceb2b",
+      "target": "acf5f6f63d6f520501d9",
+      "type": "DataFilter"
+    },
+    {
+      "source": "25bf310686040006b230",
+      "target": "acf5f6f63d6f520501d9",
+      "type": "DataFilter"
+    },
+    {
+      "source": "73e6e0c1dafaa6bee1c2",
+      "target": "acf5f6f63d6f520501d9",
+      "type": "DataFilter"
+    },
+    {
+      "source": "73e6e0c1dafaa6bee1c2",
+      "target": "25bf310686040006b230",
+      "type": "DataFilter"
+    },
+    {
+      "source": "25bf310686040006b230",
+      "target": "73e6e0c1dafaa6bee1c2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "acf5f6f63d6f520501d9",
+      "target": "73e6e0c1dafaa6bee1c2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "eb8ef47788373336b0e2",
+      "target": "6389393782e84c32aa1e",
+      "type": "DataFilter"
+    }
+  ]
+}

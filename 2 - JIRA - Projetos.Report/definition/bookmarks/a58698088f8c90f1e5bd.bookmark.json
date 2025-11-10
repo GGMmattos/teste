@@ -1,0 +1,1036 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Manutenção-Fechar Menu",
+  "name": "a58698088f8c90f1e5bd",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ReportSectionc0d1e832630890b0023d",
+    "sections": {
+      "ReportSectionc0d1e832630890b0023d": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "Filter405ec024ba8e67ea0900",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "f",
+                    "Entity": "fConsolidado",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "f"
+                                }
+                              },
+                              "Property": "Categoria Projeto"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Processo'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fConsolidado"
+                    }
+                  },
+                  "Property": "Categoria Projeto"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "5c5bfc4c7d6254d3a4d7": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "5ad75e60bc7010bdcd6c": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "4d7dab573144b9080db2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e44c2803faf319dcc7a7",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "f"
+                                      }
+                                    },
+                                    "Property": "tblStory.Responsável"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Responsável"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Responsável"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "736706126b37cc5ceb2b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filterf7392cecc9703feb93d0",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "f"
+                                      }
+                                    },
+                                    "Property": "tblStory.Key"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Key"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "Filterc7cddc9e0dd1b4bc3007",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Summary"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "Filtere342b639ac99ed516dd0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "papelFuncional"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "Filterd567e51b0229d590454b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fApontamento"
+                            }
+                          },
+                          "Property": "hrRealizada"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "Filterb5193734801dfb4c8944",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "f"
+                                    }
+                                  },
+                                  "Property": "tblStory.Tipo_Nome"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Manutenção'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'NC - Qualidade'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Tipo_Nome"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Key"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "6389393782e84c32aa1e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ff9277da8c4af6137872",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Soma Manutenção"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1986e2f1f8ce9806b050",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Hr Realizadas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "gauge",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Soma Manutenção"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "a0b067906bc73606ab36": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "36b9be10cdbbfd207ede",
+                  "type": "Advanced",
+                  "expression": {
+                    "Arithmetic": {
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "fConsolidado"
+                                }
+                              },
+                              "Property": "Meta 10%"
+                            }
+                          },
+                          "Function": 3
+                        }
+                      },
+                      "Right": {
+                        "ScopedEval": {
+                          "Expression": {
+                            "Aggregation": {
+                              "Expression": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "fConsolidado"
+                                    }
+                                  },
+                                  "Property": "Meta 10%"
+                                }
+                              },
+                              "Function": 3
+                            }
+                          },
+                          "Scope": []
+                        }
+                      },
+                      "Operator": 3
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "64483598e7aed36bcfcf",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Soma de Key para Manutenção"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0325a844feddeac15ff5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fConsolidado"
+                            }
+                          },
+                          "Property": "Key"
+                        }
+                      },
+                      "Function": 5
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "gauge",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Soma de Key para Manutenção"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "25bf310686040006b230": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5db8a4c7b1e5a1524729",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f1",
+                        "Entity": "fApontamento",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "f",
+                        "Entity": "fApontamento_Start_Stop",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "Média Manutenção %"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0.0001D"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Start_Stop"
+                        }
+                      },
+                      "Property": "Média Manutenção %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "00f7c21d7ff42a9737fd",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "datainicial"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7633a8775cd6e7f548f9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "datainicial"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "columnChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "datainicial"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "datainicial"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d5ed6989e65dd595e987": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter9ab7e714cb1595dec441",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Hr Realizadas"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "Filterca61d47d2658605509a7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "papelFuncional"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "Filter05ba2ae085651b032be5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Start_Stop"
+                        }
+                      },
+                      "Property": "Média Manutenção %"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "Filter3e0d5826a01622044ec0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Soma Manutenção"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Start_Stop"
+                        }
+                      },
+                      "Property": "Média Manutenção %"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "94a227b5da1558d34307": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "1c477488b790cc60db30": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "acf5f6f63d6f520501d9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "14f7a379398f5aca1654",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "Filtro Soma Manutenção"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Soma Manutenção"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d5053ab0d5979ea3ac70",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Projeto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7cded539a75db5454d3c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Hr Realizadas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Hr Realizadas"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Projeto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7594633eb27b11184760": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "73e6e0c1dafaa6bee1c2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "85a2c359e1cb23251996",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "Filtro Soma Manutenção"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Soma Manutenção"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "13e68192f8437f4963f1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Hr Realizadas"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4efe99de8c91785c81aa",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Team_Title"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Hr Realizadas"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Team_Title"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d5b118b01f2db1fd250e": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "d0583baa83a3b6e51787": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

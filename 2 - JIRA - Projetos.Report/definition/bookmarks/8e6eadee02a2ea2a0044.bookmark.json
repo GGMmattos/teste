@@ -1,0 +1,1778 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "fechar_menu_gantt",
+  "name": "8e6eadee02a2ea2a0044",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "f237db7bbd902a30320b",
+    "sections": {
+      "f237db7bbd902a30320b": {
+        "visualContainers": {
+          "fc4534d1219836b01800": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "32ce3d92c8ca3a6c4a5e": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "868d9bb260d69619e50d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "cbfc155ec0a05780ab39": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "0efc4d46d6a05c508d17": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "8debdb27dd803b308b28": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "09bfe266eee3e45d8b34",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "1ac0dc30d90e2cbca504": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9933dffd04503c9d82d6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "hrs_previstas_fApontamento_Extrato"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "hrs_previstas_fApontamento_Extrato"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "55b267c570260e019021": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "780835f18d8c9a6e9961",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "Hrs. Orçadas com tratamento"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "Hrs. Orçadas com tratamento"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "386f3c4c233956ab1c53": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c8bc4712c92a69612c5b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Hr Projetada (fApontamento_Extrato)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Hr Projetada (fApontamento_Extrato)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "9e88bfd18c09c1c0ab8c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "99e1efc8dcb7cb57312c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "% Consumido (Tela Desvios)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "% Consumido (Tela Desvios)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "9e58ad4c030560557aa6": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9489c9d2e217017a5333",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "% Conclusão (Tela Desvios)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "% Conclusão (Tela Desvios)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "efd2b4208709b456bab7": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cfe15abfdb585591e3b8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Hrs_restante"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Hrs_restante"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "32fc1ddb027d64be6606": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6de19d77599c1d1393e8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Desvio Real (Atual)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Desvio Real (Atual)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "52d5a27007305ba06a04": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "adf7817a9bbd8efd647b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Desvio projetado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Desvio projetado"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "075b847cd0e9a2595ce5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "affdf477c46df5cb676b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Hrs Adicionais"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Hrs Adicionais"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "0737f2b8c766cbd479a9": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "9179f4068e9c01cde8a4": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "bad1d8395024024eb897": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "215be259ebced2400229": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "084fdc1a3235242e3464": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "6aca6e5203d005d93248": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "d187ddd085c88bad9bd0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e7e7234b9caa3c574c67",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Chave_titulo_entregas_jira"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "dbd876616f064237a4d4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Chave_titulo_tarefas_jira"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Chave_titulo_entregas_jira"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Chave_titulo_entregas_jira"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "5552223f0120a19a0c50": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "08f74341afc350a43865",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Situacao"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Situacao"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "a5bc9b5459a698205317": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cba374e7ad79c3723252",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Project Category"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "t",
+                                "Entity": "tbl_entregas_jira",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "t"
+                                            }
+                                          },
+                                          "Property": "Project Category"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'Projetos Implantação'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'Projetos Inovação'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'Projetos Retenção'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Project Category"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d65188020785571730b5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8db6537d1545aabcb370",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Project Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "t",
+                                "Entity": "tbl_entregas_jira",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "t"
+                                            }
+                                          },
+                                          "Property": "Project Name"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'Darom Móveis'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Project Name"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "73ced7e238196502c93e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "537d41d745995a6ee334",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "t1",
+                        "Entity": "tbl_tarefas_jira",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Aggregation": {
+                                    "Expression": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Source": "t1"
+                                          }
+                                        },
+                                        "Property": "Parent Issue Key"
+                                      }
+                                    },
+                                    "Function": 3
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "tbl_tarefas_jira"
+                            }
+                          },
+                          "Property": "Parent Issue Key"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "64dae3a156b9333e203e",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "t",
+                        "Entity": "tbl_entregas_jira",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "t"
+                                      }
+                                    },
+                                    "Property": "Exibir_chave_hierarquia_entrega_tarefa_projetos"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_chave_hierarquia_entrega_tarefa_projetos"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4f820c5181f137813aac",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "%_tarefa_concluido"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fdf24691104df0584dd1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "hrs_previstas_fApontamento_Extrato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5065f25a2bd3dee4e501",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8e6315e9a305f524febc",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "% Consumido (Tela Desvios)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "746f8bf61c3565cd8f9e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Parent Issue Summary"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c77f3a81401e20e9ce31",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Resumo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ad17fd7d0f1426ecdf66",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_situacao_hierarquia_entrega_tarefa_projetos"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "55c36dcc5218d0bf7d89",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_data_inicio_hierarquia_entrega_tarefa_projetos"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "02950f0bddc6cf52a34e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_data_limite_hierarquia_entrega_tarefa_projetos"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3b13faa717a475679dd0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_prazos_hierarquia_entrega_tarefa_projetos"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "260f58827f8e6f09ac1a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Nome Cliente (Contr_ Horas)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c9831d3252733c3b2cb5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_data_solucao_hierarquia_entrega_tarefa_projetos"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "121e22febcb3e046526e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Real_inicio_apontamento"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Nome Cliente (Contr_ Horas)"
+                    }
+                  }
+                },
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Parent Issue Summary"
+                    }
+                  }
+                },
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Resumo"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Nome Cliente (Contr_ Horas)"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Rows"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "tbl_tarefas_jira.Nome Cliente (Contr_ Horas)"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "tbl_tarefas_jira"
+                              }
+                            },
+                            "Property": "Nome Cliente (Contr_ Horas)"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "tbl_tarefas_jira.Parent Issue Summary"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "tbl_tarefas_jira"
+                              }
+                            },
+                            "Property": "Parent Issue Summary"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "tbl_tarefas_jira.Resumo"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null
+                  }
+                }
+              ]
+            }
+          },
+          "3bc345d530d05a2a53b2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f845956b0340fbb83e9b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Data da Última Atualização"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5d69a8025a35b21bc267",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Usuário Logado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Usuário Logado"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "44da2fcf029bc2009d2b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "96d7949dd1a15519b5c1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_todas_issues_jira"
+                        }
+                      },
+                      "Property": "Resumo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e2b66c3455d87f663d7d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Resumo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9ec26f0a569fe6ab6fb5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Start date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fa1fe809f629f3294ec0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Data limite"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3e286567281962307318",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Duracao_Real"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "15fa868ace9edc12b16d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Duracao_Prevista_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "66e500e87496ec135eab",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "tbl_tarefas_jira"
+                            }
+                          },
+                          "Property": "Situacao"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "GanttChart4C3653EFFFEB4E7DA5A699CE198391E2",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_todas_issues_jira"
+                        }
+                      },
+                      "Property": "Resumo"
+                    }
+                  }
+                },
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Resumo"
+                    }
+                  }
+                }
+              ],
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "86bfe876082a175aa069": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6c7bef0c9ca122b858f4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Resumo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cffb11135feae705fbdb",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Data limite"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fa043a8af021179b2f56",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Parent Issue Summary"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d45009cbb87548a30f96",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Start date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4d53e71c87ff70df8a2f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Chave"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "812fb700e5334f3ed126",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Situacao"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "16f45f74e2c5bf8f9afa",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Data solução"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2e735b5e6f84b3e41e07",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Duracao_Real"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a6fbb352c6eb9a1ad121",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "tbl_tarefas_jira"
+                            }
+                          },
+                          "Property": "Duracao_Prevista_tarefa"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "10cb35a7b3f2dea160c4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "tbl_apontamento_extrato_relacionado_jira"
+                            }
+                          },
+                          "Property": "Horas Previstas"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "25ad0d6c21003cd115f5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "tbl_apontamento_extrato_relacionado_jira"
+                            }
+                          },
+                          "Property": "Horas Realizadas"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "powerGANTTchart76BDD9F52FA14ADEB68823A07759D182",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Parent Issue Summary"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "d2a13d46d5465228b799": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "59c029cfd35a1734a05b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Status_tarefas_com_ou_sem_prazo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Status_tarefas_com_ou_sem_prazo"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

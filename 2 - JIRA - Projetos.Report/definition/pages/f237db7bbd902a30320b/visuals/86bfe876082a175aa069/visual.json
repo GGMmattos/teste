@@ -1,0 +1,1606 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "86bfe876082a175aa069",
+  "position": {
+    "x": 3.0679327976625275,
+    "y": 303.7253469685902,
+    "z": 15000,
+    "height": 671.87728268809349,
+    "width": 2096.9320672023377,
+    "tabOrder": 27000
+  },
+  "visual": {
+    "visualType": "powerGANTTchart76BDD9F52FA14ADEB68823A07759D182",
+    "query": {
+      "queryState": {
+        "name": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Resumo"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Resumo",
+              "nativeQueryRef": "Resumo Tarefa",
+              "displayName": "Resumo Tarefa"
+            }
+          ]
+        },
+        "endDate": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Data limite"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Data limite",
+              "nativeQueryRef": "Prev. Conclusão",
+              "displayName": "Prev. Conclusão"
+            }
+          ]
+        },
+        "parent": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Parent Issue Summary"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Parent Issue Summary",
+              "nativeQueryRef": "Entrega Entrega",
+              "displayName": "Entrega Entrega"
+            }
+          ]
+        },
+        "startDate": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Start date"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Start date",
+              "nativeQueryRef": "Prev. Início",
+              "displayName": "Prev. Início"
+            }
+          ]
+        },
+        "item": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Chave"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Chave",
+              "nativeQueryRef": "Chave"
+            }
+          ]
+        },
+        "legend": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Situacao"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Situacao",
+              "nativeQueryRef": "Situação:",
+              "displayName": "Situação:"
+            }
+          ]
+        },
+        "columns": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_apontamento_extrato_relacionado_jira"
+                        }
+                      },
+                      "Property": "Horas Previstas"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(tbl_apontamento_extrato_relacionado_jira.Horas Previstas)",
+              "nativeQueryRef": "Hrs. Prev.",
+              "displayName": "Hrs. Prev."
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_apontamento_extrato_relacionado_jira"
+                        }
+                      },
+                      "Property": "Horas Realizadas"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(tbl_apontamento_extrato_relacionado_jira.Horas Realizadas)",
+              "nativeQueryRef": "Hrs. Real",
+              "displayName": "Hrs. Real"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Start date"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Start date",
+              "nativeQueryRef": "Prev. Início",
+              "displayName": "Prev. Início"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Real_inicio_apontamento"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Real_inicio_apontamento",
+              "nativeQueryRef": "Real. Início",
+              "displayName": "Real. Início"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Data limite"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Data limite",
+              "nativeQueryRef": "Prev. Conclusão",
+              "displayName": "Prev. Conclusão"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Data solução"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Data solução",
+              "nativeQueryRef": "Real Conclusão",
+              "displayName": "Real Conclusão"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Duracao_Prevista_tarefa"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(tbl_tarefas_jira.Duracao_Prevista_tarefa)",
+              "nativeQueryRef": "Duração Prev. (dias)",
+              "displayName": "Duração Prev. (dias)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Duracao_Real"
+                }
+              },
+              "queryRef": "Sum(tbl_tarefas_jira.Duracao_Real)",
+              "nativeQueryRef": "Duração Real (dias)",
+              "displayName": "Duração Real (dias)"
+            }
+          ]
+        },
+        "label": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Status_tarefas_com_ou_sem_prazo_novo"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Status_tarefas_com_ou_sem_prazo_novo",
+              "nativeQueryRef": "Status Prazo",
+              "displayName": "Status Prazo"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "tbl_tarefas_jira"
+                  }
+                },
+                "Property": "Parent Issue Summary"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "tbl_todas_issues_jira"
+                          }
+                        },
+                        "Property": "Current Status"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Aberto'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "tbl_todas_issues_jira"
+                          }
+                        },
+                        "Property": "Current Status"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Em andamento'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "tbl_tarefas_jira"
+                          }
+                        },
+                        "Property": "Situacao"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Em andamento'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "tbl_tarefas_jira"
+                          }
+                        },
+                        "Property": "Situacao"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Concluído'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "tbl_tarefas_jira"
+                          }
+                        },
+                        "Property": "Situacao"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Aberto'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "tbl_tarefas_jira"
+                          }
+                        },
+                        "Property": "Situacao"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'Cancelada'"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "persisted": [
+        {
+          "properties": {
+            "firstUseDate": {
+              "expr": {
+                "Literal": {
+                  "Value": "'09-Oct-2025'"
+                }
+              }
+            },
+            "columnSizes": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"item\":351,\"column0\":83,\"column1\":85,\"column2\":99,\"column3\":97,\"column4\":128,\"column5\":117,\"column6\":119,\"column7\":115}'"
+                }
+              }
+            },
+            "itemColors": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\"Aberto\":{\"color\":\"#287E8F\",\"property\":\"fill0\"},\"Concluído\":{\"color\":\"#15CAB6\",\"property\":\"fill1\"},\"Em andamento\":{\"color\":\"#F6B53D\",\"property\":\"fill2\"},\"Ag. aprovação orçamento\":{\"color\":\"#EF8A5A\",\"property\":\"fill3\"},\"Aguardando cliente\":{\"color\":\"#E85E76\",\"property\":\"fill4\"},\"Aguardando interno\":{\"color\":\"#696CB5\",\"property\":\"fill5\"},\"Aguardando retorno\":{\"color\":\"#0F488C\",\"property\":\"fill6\"},\"Aguardando versão\":{\"color\":\"#323447\",\"property\":\"fill7\"},\"Aguardando versão (teste)\":{\"color\":\"#3599B8\",\"property\":\"fill8\"},\"Backlog\":{\"color\":\"#DFBFBF\",\"property\":\"fill9\"},\"Cancelada\":{\"color\":\"#4AC5BB\",\"property\":\"fill10\"},\"Em avaliação/Diagnóstico\":{\"color\":\"#5F6B6D\",\"property\":\"fill11\"},\"Em programação\":{\"color\":\"#FB8281\",\"property\":\"fill12\"},\"Em revisão da qualidade\":{\"color\":\"#F4D25A\",\"property\":\"fill13\"},\"Em teste\":{\"color\":\"#7F898A\",\"property\":\"fill14\"},\"Para Programação\":{\"color\":\"#A4DDEE\",\"property\":\"fill15\"},\"Para avaliação\":{\"color\":\"#FDAB89\",\"property\":\"fill16\"},\"Para code review\":{\"color\":\"#B687AC\",\"property\":\"fill17\"},\"Para execução\":{\"color\":\"#28738A\",\"property\":\"fill18\"},\"Para teste\":{\"color\":\"#A78F8F\",\"property\":\"fill19\"},\"Versão Homologação Interna\":{\"color\":\"#168980\",\"property\":\"fill20\"},\"Aprovar documento\":{\"color\":\"#293537\",\"property\":\"fill21\"},\"Aguardando Previsão Orçamentária\":{\"color\":\"#BB4A4A\",\"property\":\"fill22\"},\"Aguardando Resposta\":{\"color\":\"#B59525\",\"property\":\"fill23\"},\"Aprovação do Líder\":{\"color\":\"#475052\",\"property\":\"fill24\"},\"Codificando\":{\"color\":\"#6A9FB0\",\"property\":\"fill25\"},\"Em code review\":{\"color\":\"#BD7150\",\"property\":\"fill26\"}}'"
+                }
+              }
+            },
+            "milestoneColors": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{}'"
+                }
+              }
+            },
+            "milestoneShapes": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{}'"
+                }
+              }
+            },
+            "expandedItems": {
+              "expr": {
+                "Literal": {
+                  "Value": "'[]'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columns": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "applyToHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "headerTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Resumo'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            },
+            "textWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showNullAs": {
+              "expr": {
+                "Literal": {
+                  "Value": "'--'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "tbl_tarefas_jira.Resumo"
+          }
+        },
+        {
+          "properties": {
+            "showNullAs": {
+              "expr": {
+                "Literal": {
+                  "Value": "'--'"
+                }
+              }
+            },
+            "textWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontUnderline": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontItalic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "applyToHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(tbl_tarefas_jira.Duracao_Real)"
+          }
+        },
+        {
+          "properties": {
+            "showNullAs": {
+              "expr": {
+                "Literal": {
+                  "Value": "'0'"
+                }
+              }
+            },
+            "fontBold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "backgroundTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(tbl_apontamento_extrato_relacionado_jira.Horas Previstas)"
+          }
+        }
+      ],
+      "itemColors": [
+        {
+          "properties": {
+            "tableMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'group'"
+                }
+              }
+            },
+            "itemsColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 7,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "showMultipleItems": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "showIncompleteItems": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "multipleItemsTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill1": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00FF0D'"
+                    }
+                  }
+                }
+              }
+            },
+            "fill0": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "fill2": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fill10": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FF0051'"
+                    }
+                  }
+                }
+              }
+            },
+            "fill18": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 7,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "tbl_tarefas_jira.Situacao"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.1
+                    }
+                  }
+                }
+              }
+            },
+            "textWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "outline": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            },
+            "fontItalic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "overflowText": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showNullAs": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "scale": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "overflowText": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "todayLineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "todayLineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            },
+            "todayLineWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            },
+            "start": {
+              "expr": {
+                "Literal": {
+                  "Value": "'01/01/2026'"
+                }
+              }
+            },
+            "monthOffset": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Y-ISO-W'"
+                }
+              }
+            },
+            "fontItalic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "fontUnderline": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            },
+            "gridVerticalShowOnDateScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridVerticalLineStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'dashed'"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            },
+            "rowHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "outlineWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "zoomSlider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "predecessorLines": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 6,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "progress": [
+        {
+          "properties": {
+            "showAsColumn": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 7,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "license": [
+        {
+          "properties": {
+            "licenseName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sabium Sistemas TRIAL | license valid until 2025-11-15 | 00001000'"
+                }
+              }
+            },
+            "licenseKey": {
+              "expr": {
+                "Literal": {
+                  "Value": "'VSH1LjGl2XpiumfQqFXrTNDQUOcgq8yVGYKTx5804ID2R7L5ccC8dJop/xvJFwOnsafkNfvSuDyvL13AMWrvQ3bLnZ7QsT0JJTh7PlEYUos='"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Gantt'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3D3E48'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAF7'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'CenterLeft'"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "70L"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "180L"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "titleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#262735'"
+                    }
+                  }
+                }
+              }
+            },
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#323447'"
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAF7'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FDFCFC'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeaderTooltip": [
+        {
+          "properties": {
+            "titleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#262735'"
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAF7'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FDFCFC'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

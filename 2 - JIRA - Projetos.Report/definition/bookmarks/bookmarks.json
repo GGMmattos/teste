@@ -1,0 +1,325 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "eaf8b4dfbd314e8ea1fd",
+      "displayName": "Tela Tempo por Status",
+      "children": [
+        "670ca2466bdbefd264d9",
+        "e5ee1671398678d06cb0"
+      ]
+    },
+    {
+      "name": "de7002495828f65447e6",
+      "displayName": "Tela Sprint",
+      "children": [
+        "287d0b35cc4927a7785f",
+        "591255d88e283ffc8f28"
+      ]
+    },
+    {
+      "name": "583d200aba1487248c96",
+      "displayName": "Tela Versão e Release",
+      "children": [
+        "8c907f248e72889e49f6",
+        "0ad4e8c08d42df0a2bf7"
+      ]
+    },
+    {
+      "name": "383152ba4303c6ae0b92",
+      "displayName": "Tela Analit. Atend. ",
+      "children": [
+        "6582a4482c991d9ab7b8",
+        "0d246b29eb157a68e532"
+      ]
+    },
+    {
+      "name": "bc51852605b0526da626",
+      "displayName": "Tela Manutenção",
+      "children": [
+        "376f9054188ad8497645",
+        "a58698088f8c90f1e5bd"
+      ]
+    },
+    {
+      "name": "5fd88d101eaf9efbb53a",
+      "displayName": "Tela Retrabalho",
+      "children": [
+        "e7324fc14f763c9fd223",
+        "f16d0b1f829841e53ea7"
+      ]
+    },
+    {
+      "name": "79b929da5aca0c5ef557",
+      "displayName": "Tela Analit. Produção",
+      "children": [
+        "29efc74b04199fdb3ae4",
+        "df2d5a9406ad9ffac4f3"
+      ]
+    },
+    {
+      "name": "3354a96b8f5fc0c763b7",
+      "displayName": "Tela Falha Funcional",
+      "children": [
+        "887d8bfc1e2479250a96",
+        "5194aef05525bc08c7db"
+      ]
+    },
+    {
+      "name": "c11d2cb7c678b96b03ff",
+      "displayName": "Tela Resumo",
+      "children": [
+        "31c38d91b0eed69221c3",
+        "ddf80f5bacf6ab895e50"
+      ]
+    },
+    {
+      "name": "a863bcfee913ea9d9f7d",
+      "displayName": "Tela Desvios",
+      "children": [
+        "fec5309047554962cf79",
+        "50dd68a3fa1a16214564"
+      ]
+    },
+    {
+      "name": "dae3b990c62e5d565c5c",
+      "displayName": "Tela Esforço",
+      "children": [
+        "8cb017a9eca3faae8a92",
+        "be0037d98634f8d6f803"
+      ]
+    },
+    {
+      "name": "60dcd0f4f2036256425b",
+      "displayName": "Tela Entrega Suporte",
+      "children": [
+        "ff6f37d8ecc85d9c4e94",
+        "66732bd8ce868cd7eb12"
+      ]
+    },
+    {
+      "name": "bc50cd807a694083c0a8",
+      "displayName": "Tela Entrega Manutenção",
+      "children": [
+        "9ac30942f2088f45cb67",
+        "6704e7174d41b9751c53"
+      ]
+    },
+    {
+      "name": "e76680c7fa061d33cf57",
+      "displayName": "Tela Prazos",
+      "children": [
+        "7bd3abb0a931ff27b1f2",
+        "a9a9c5c4fb8ab4290f1b"
+      ]
+    },
+    {
+      "name": "1d8b37a40073f9bba9d4",
+      "displayName": "Tela Analítica",
+      "children": [
+        "bbeb1e7b3864960ea438",
+        "e6ac7cdb94effe35d7f0"
+      ]
+    },
+    {
+      "name": "be36e9f296f4ecec9670",
+      "displayName": "Tela Pós Implantação",
+      "children": [
+        "934e186147b0843260d2",
+        "52bff4763f550b8389b1"
+      ]
+    },
+    {
+      "name": "f081c4226621c1f86b10",
+      "displayName": "Tela Entrega Custo.Serviços e Analises",
+      "children": [
+        "92dea518ea728c91242f",
+        "6419ea000c1b5b5f3c06"
+      ]
+    },
+    {
+      "name": "3b3486340ef9342cccb0",
+      "displayName": "Tela Mapa Consultoria ",
+      "children": [
+        "42eb48a063ddb73eacd2",
+        "3373a76007d625d638e4"
+      ]
+    },
+    {
+      "name": "68a7215e638b73ede374",
+      "displayName": "Tela Consultoria Técnica",
+      "children": [
+        "3a0d4a80fe9d277fb431",
+        "aab71f41ea7577bc4c34"
+      ]
+    },
+    {
+      "name": "7cde367d92720192c3b3",
+      "displayName": "Tela Entrega Consultoria",
+      "children": [
+        "ca9a0717ca53428021a4",
+        "76122e51cc6211eb2a97"
+      ]
+    },
+    {
+      "name": "d36cb8eeee038d0b99aa",
+      "displayName": "Tela Metas Consultoria",
+      "children": [
+        "ceb5ce563788c8e3e790",
+        "5dd16247571ea0445d43"
+      ]
+    },
+    {
+      "name": "4fbe6a850e4208519970",
+      "displayName": "Tela Criado x Fechado SA",
+      "children": [
+        "20160f355854631e5403",
+        "0bdb4b3e600dc4c4a337"
+      ]
+    },
+    {
+      "name": "7a95dde907a455fe4789",
+      "displayName": "Tela Comitê Produto",
+      "children": [
+        "c4cefdb22de29119546d",
+        "4bacc84bb26328b32c3d"
+      ]
+    },
+    {
+      "name": "32218ff4a4d47505b963",
+      "displayName": "Tela Comitê Execução",
+      "children": [
+        "e4d36740481e0300a8ed",
+        "038ab5156dc7f8764d63"
+      ]
+    },
+    {
+      "name": "b05eacab66346925dae2",
+      "displayName": "Tela Tempo Médio Entrega SA",
+      "children": [
+        "8bb07524397f306fe69e",
+        "c4ab6bebdd0f5df93734"
+      ]
+    },
+    {
+      "name": "f2833958adca118fd03a",
+      "displayName": "Tela Homologações e Revisões",
+      "children": [
+        "ba5fa5e28871e1942b0b",
+        "be5cd2bc31dac9a5d427"
+      ]
+    },
+    {
+      "name": "743be64c33d7181d0d6b",
+      "displayName": "Tela Versionamento",
+      "children": [
+        "e0bdbbd1ccf1d5633296",
+        "1ed991034c5ebf5cb25f"
+      ]
+    },
+    {
+      "name": "c822d1a898ac09369f80",
+      "displayName": "Tela Revisão Qualidade",
+      "children": [
+        "fb20b2b601256c08d60d",
+        "7a79b15e4bb2113eda2b"
+      ]
+    },
+    {
+      "name": "79654f44e6b099d08a8f",
+      "displayName": "Tela Infra",
+      "children": [
+        "3d38e7f4f8d1cb2b16f6",
+        "379708a43247f51be054"
+      ]
+    },
+    {
+      "name": "ebc8d2dc0db927a1095f",
+      "displayName": "Tela Prioridade Atendimento",
+      "children": [
+        "814e269b146bfe5c1562",
+        "2b01eb0bfcf956231b53"
+      ]
+    },
+    {
+      "name": "a0b123be1f2a755ec2c1",
+      "displayName": "Tela Desvio Gerencial",
+      "children": [
+        "339d1a60d545a0ab2870",
+        "6468eecb33f2b7477fd5"
+      ]
+    },
+    {
+      "name": "b2b0d8d7e140e7d8d05a",
+      "displayName": "Tela OKR",
+      "children": [
+        "fb21544adc7ec4e11ad3",
+        "970b7f059b09c8a291bc"
+      ]
+    },
+    {
+      "name": "f1d2cb407b4dcc319123",
+      "displayName": "Tela Esforço Fábrica",
+      "children": [
+        "73c90cb548657c97210c",
+        "69fbf5acca49da27c16d"
+      ]
+    },
+    {
+      "name": "9dd8be17db1d09b67d36",
+      "displayName": "Tela NPS",
+      "children": [
+        "f398c1151737b50d49bc",
+        "c18b03fade10999248e7"
+      ]
+    },
+    {
+      "name": "0bc14bfa9cc311f21a1f",
+      "displayName": "Tela Custos PRC",
+      "children": [
+        "70118ce78255bb00e4d3",
+        "2f7801e12ad02708936c"
+      ]
+    },
+    {
+      "name": "d718ee05aa9d4ee5f597",
+      "displayName": "Tela Diagnóstico PRC",
+      "children": [
+        "99214686037b36a703ac",
+        "6708e57e77bfed6fdc6c"
+      ]
+    },
+    {
+      "name": "65458fad526539e05007",
+      "displayName": "Tela Inovação",
+      "children": [
+        "517458b092c09d5baf04",
+        "a69b56ba846bbb8a6a9f"
+      ]
+    },
+    {
+      "name": "571f5773888e4aa03957",
+      "displayName": "Tela Resumo Consultoria",
+      "children": [
+        "63cc5c777e454bb09350",
+        "11878c047c43675e1590"
+      ]
+    },
+    {
+      "name": "3e0de897c10bbb0eb1ba",
+      "displayName": "Tela Gantt",
+      "children": [
+        "9109ccc3005b013a02c1",
+        "8e6eadee02a2ea2a0044"
+      ]
+    },
+    {
+      "name": "0a85035a18eb5342bcd7",
+      "displayName": "Tela Processos",
+      "children": [
+        "354f3caf7b36ca804dd6",
+        "ce9abf839e04f1a1c05a"
+      ]
+    }
+  ]
+}

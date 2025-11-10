@@ -1,0 +1,33 @@
+table Calendario_automatico_novo
+	lineageTag: 178e0b24-63ed-4e83-888f-4c4313f6a8a1
+
+	measure Qtd_tarefa_concluida_via_relacionamento_novo = ```
+			
+			// medida para pegar as tarefas concluídas, relacionando com a data de calendario automático na tabela nova do Jira
+			                                    CALCULATE(
+			                                    'tbl_tarefas_jira'[Qtd_tarefas_concluidas_e_canceladas], 
+			                                   USERELATIONSHIP('Calendario_automatico_novo'[Date], tbl_tarefas_jira[Data solução])) + 0
+			```
+		formatString: 0
+		lineageTag: 4eca3c0d-cfd2-4a97-bb8c-b22026f998f3
+
+	column Date
+		formatString: Short Date
+		lineageTag: ea21497b-b5f1-4056-af74-98c23e2c770d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: bdb67c38-e787-4573-9e2e-12206fd69dd4
+			defaultHierarchy: LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendario_automatico_novo = calculated
+		mode: import
+		source = CALENDAR(DATE(2025,01,01),TODAY())
+
+	annotation PBI_Id = 207ebd22d2b94c03abacb63f4bf0616c
+

@@ -1,0 +1,613 @@
+relationship 1edec8b7-b129-4989-9dc5-8f65c7d0e030
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fApontamento_Extrato_Subtask.chave
+	toColumn: fApontamento_Extrato.chave
+
+relationship 98509219-dc85-48e2-9063-75502c538e7f
+	fromColumn: fPonto_CLT.matricula
+	toColumn: fUsuários.matricula
+
+relationship AutoDetected_d9078559-9675-4882-ba20-ef86e6370c46
+	crossFilteringBehavior: bothDirections
+	fromColumn: tblApontamento_Time.'membros.email'
+	toColumn: fUsuários.email
+
+relationship a51e68a3-4f62-3a75-564b-223d99f439c1
+	fromColumn: fApontamento_Start_Stop.executorEmail
+	toColumn: fUsuários.email
+
+relationship 4ff664c7-f8ce-3b71-b65a-6d877e2c1f44
+	fromColumn: fPonto_Cooperado.matricula
+	toColumn: fUsuários.matricula
+
+relationship ad2340cd-2758-9dfd-a673-e89ec4c5cd8f
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: tblAdministração.'membros.papel.id'
+	toColumn: fOrçamento.'horas.papel.id'
+
+relationship 98f1ac62-cc38-42b3-b6d7-5fab16bedd9e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fApontamento_Start_Stop.dataInicial
+	toColumn: LocalDateTable_94263455-b2e2-4376-b863-38347233dd89.Date
+
+relationship c294af9f-4d9d-4f53-b54a-e16b56867591
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fApontamento_Start_Stop.dataFinal
+	toColumn: LocalDateTable_7149c91a-a061-48e8-9d0a-ad7cae872a7a.Date
+
+relationship 1fc12575-84c9-41ab-940e-686ba4dd1d8f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Data/Hora Atualização'.'Data da Última Atualização'
+	toColumn: LocalDateTable_3b10c37d-2884-49e8-be7d-201454ffea5d.Date
+
+relationship 19b8ea5c-b469-4787-b93e-17e4d98c7df0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fOrçamento.'issueJira.previsaoEntrega'
+	toColumn: LocalDateTable_07ec6f75-d49c-451e-aeb9-ee6f466f4a53.Date
+
+relationship 61eb2ac7-a4db-44de-ab03-2115c11ab43f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Data/Hora Atualização'.'Data da Última Atualização (Sem Tratamento)'
+	toColumn: LocalDateTable_053f928a-42a6-49c2-ae14-6749bef29780.Date
+
+relationship 3a1a3827-1f60-33a8-d918-7c1271c1776f
+	crossFilteringBehavior: bothDirections
+	fromColumn: tblAdministração.'membros.papel.id'
+	toColumn: Papel_Funcional_e_Custos.id
+
+relationship 0b916c6a-44cf-8789-f11e-88850ad69c60
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: tblAdministração.'membros.papel.id'
+	toColumn: fApontamento_Start_Stop.idPapelFuncional
+
+relationship a86cd4b9-45de-514e-671e-11ca7948a453
+	isActive: false
+	fromColumn: tblAdministração.'membros.email'
+	toColumn: fUsuários.email
+
+relationship 5a26aac4-074c-fe1d-2d4f-d0c057775ee1
+	isActive: false
+	fromColumn: fOrçamento.'horas.papel.papel'
+	toColumn: Papel_Funcional_e_Custos.papel
+
+relationship 5f02ab68-79f4-1334-0fae-1c580ede1ea7
+	isActive: false
+	fromColumn: fOrçamento.'issueJira.filhos.key'
+	toColumn: fApontamento_Extrato.chave
+
+relationship 598f0f54-3305-4044-8475-e635eb031ffa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario_dias_uteis.Date
+	toColumn: LocalDateTable_d40a6f08-5d11-434b-9511-5332cdf41c9f.Date
+
+relationship c8ce97a4-661c-d04a-eabd-43d018c6f1b7
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: tblApontamento_Orçamento_Estimativa.papelId
+	toColumn: Papel_Funcional_e_Custos.id
+
+relationship 525e4f89-c5d7-57f4-aa63-e4ce1489f7dd
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: tblApontamento_Orçamento_Estimativa.papelId
+	toColumn: tblAdministração.'membros.papel.id'
+
+relationship 84bae5d7-c7c0-4fce-dbdb-4220680e1cfb
+	crossFilteringBehavior: bothDirections
+	fromColumn: tblApontamento_Orçamento_Estimativa.chave
+	toColumn: fApontamento_Extrato.chave
+
+relationship ddb041f2-0195-a0a7-a833-85e1fdcfa188
+	isActive: false
+	fromColumn: tblApontamento_Orçamento_Estimativa.chave
+	toColumn: fApontamento_Extrato_Subtask.chave
+
+relationship c7cba96a-d6e4-4935-ab96-790554f9a95d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Calendário Automático'.Date
+	toColumn: LocalDateTable_70da4f72-e317-44d5-94e2-bed3502b79bb.Date
+
+relationship e9f36c87-e2e9-42cc-b86d-cf081614bba9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fProdução_Dashboard.Date
+	toColumn: LocalDateTable_b351892b-b639-4114-b593-b648b3268452.Date
+
+relationship d5a80c8a-549a-496c-8f0b-3049bf475a74
+	toCardinality: many
+	fromColumn: fPonto_Cooperado.data
+	toColumn: fProdução_Dashboard.Date
+
+relationship 55f0992a-0dbc-fbe6-8891-63b986c18c1a
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: fApontamento_Start_Stop.'data I'
+	toColumn: fProdução_Dashboard.Date
+
+relationship 93fd82bb-c0f3-c78a-a99d-e0a1935dea66
+	toCardinality: many
+	fromColumn: fPonto_CLT.data
+	toColumn: fProdução_Dashboard.Date
+
+relationship bdb67c38-e787-4573-9e2e-12206fd69dd4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendario_automatico_novo.Date
+	toColumn: LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c.Date
+
+relationship a90aba44-cfda-4e9d-850a-cbd12bac9314
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Calendário SA (criado x fechado)'.Date
+	toColumn: LocalDateTable_d22424fb-9bc3-4033-ac32-cc6dda22efa9.Date
+
+relationship 97a3e854-998c-4bad-b7bf-18b587ef4f97
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fApontamento_Start_Stop.Data_inicial_sem_horas
+	toColumn: LocalDateTable_cb7ebe46-724f-4580-ac97-0620082b224f.Date
+
+relationship 1f8d8b04-34e2-47e5-9248-42d3eeac1e45
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_entregas_jira.'Start date'
+	toColumn: LocalDateTable_df108026-0ab2-4f14-9a4f-02e63d8009ba.Date
+
+relationship 47aa949b-694e-4ea9-b9f8-e32230a666a7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_entregas_jira.'Data Lançamento (virada)'
+	toColumn: LocalDateTable_0e5afab1-abe2-4a06-b4db-ffd039403bb5.Date
+
+relationship 04f18d2b-ad6f-465d-9f25-3e7bd7f64894
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_entregas_jira.Atualizado(a)
+	toColumn: LocalDateTable_1cc35e5a-69fb-4530-a24d-7d5f6b43c585.Date
+
+relationship 3764372b-d370-4356-8670-afa14d734031
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_entregas_jira.'Data limite'
+	toColumn: LocalDateTable_3f86fc33-bd6b-4ffb-9cef-52064f204916.Date
+
+relationship 08652401-424b-4091-ba3f-a4f2d07c5782
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.'Start date'
+	toColumn: LocalDateTable_999ead64-c35e-423d-8773-d4efd7787195.Date
+
+relationship 5eac34db-1031-4ba5-8c32-314ad20127f5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.'Data Lançamento (virada)'
+	toColumn: LocalDateTable_9f43cb66-34e9-4fdc-a985-b5165ae4a4db.Date
+
+relationship bc6c03d8-9d16-4422-8ffb-367347b65155
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.Atualizado(a)
+	toColumn: LocalDateTable_7f9792b8-f8b1-4b4b-8d5f-23f13baacfc9.Date
+
+relationship 26a0897b-e4a8-4abc-baaa-b49cdc3c7679
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.'Data limite'
+	toColumn: LocalDateTable_b2d56b3b-6471-4817-97ca-ece50ee2613b.Date
+
+relationship c78e034f-aa48-42f3-9b86-ecb18288d921
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.'Current Sprint Complete Date'
+	toColumn: LocalDateTable_d2d42354-75dc-42df-b068-5e611c882664.Date
+
+relationship b584c80c-a57f-44a9-972d-94d9018d147f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.'Current Sprint End Date'
+	toColumn: LocalDateTable_1944483b-73b1-4bea-ae0c-d0185f2a1b3a.Date
+
+relationship cccd69bf-213d-4f19-a943-30ab02835ae2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.'Current Sprint Start Date'
+	toColumn: LocalDateTable_6e181cc4-aafa-4040-93a6-4d59149ddd6d.Date
+
+relationship 375ba378-fcdc-10b4-ccd9-5b9df539b9a1
+	fromColumn: tbl_tarefas_jira.Criado
+	toColumn: Calendario_automatico_novo.Date
+
+relationship 3ec58fab-1a15-df48-05b5-7cb8d7b5bbb3
+	isActive: false
+	fromColumn: tbl_tarefas_jira.'Data solução'
+	toColumn: Calendario_automatico_novo.Date
+
+relationship c2cbeb8a-99fd-bc4b-a71d-f1ef93407738
+	isActive: false
+	fromColumn: fApontamento_Start_Stop.nomeTarefa
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship ad82ca62-6bb0-2657-0820-0b452134c233
+	fromColumn: tbl_entregas_jira.Criado
+	toColumn: 'Calendário SA (criado x fechado)'.Date
+
+relationship c240383e-bb07-df6b-d736-e4fd87e68411
+	isActive: false
+	fromColumn: tbl_entregas_jira.'Data solução'
+	toColumn: 'Calendário SA (criado x fechado)'.Date
+
+relationship 16730621-50b8-15ae-c587-334e60549a5d
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: fApontamento_Extrato.chave
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship a423d47a-1db4-448f-88fe-96e8e9086db1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_entregas_jira.'Current Sprint Complete Date'
+	toColumn: LocalDateTable_43a5b04e-2033-4c46-aca8-73acf4eb2e80.Date
+
+relationship bfbf9748-093f-4189-a730-e1dd7ddb4c0d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_entregas_jira.'Current Sprint End Date'
+	toColumn: LocalDateTable_d3c317ca-6b47-40c9-aac1-6a3800db4724.Date
+
+relationship 1be0c5b9-0670-41b1-bec2-f246055d2be5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_entregas_jira.'Current Sprint Start Date'
+	toColumn: LocalDateTable_0058b030-d089-4bfc-9a28-2a30bbf14b15.Date
+
+relationship ae2263a7-994d-4152-926e-889a864ff84d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_versao_corrigidas_jira.'Fix Version Release Date'
+	toColumn: LocalDateTable_2484aa64-2d67-4f11-84d3-6a5808a1868c.Date
+
+relationship 05c2cff2-27f1-43ed-be63-9fa05de6942b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_versao_corrigidas_jira.'Fix Version Start Date'
+	toColumn: LocalDateTable_187aeecf-ad70-42d5-b3d2-1beebb664862.Date
+
+relationship AutoDetected_fd22c579-8b0f-4a1b-8bc6-1d5892be02cc
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_versao_corrigidas_jira.Chave
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship f60c4b4a-8f9b-7e7e-4362-56fe970ca34d
+	fromColumn: tbl_tarefas_jira.'Responsável Tecnico:  Name'
+	toColumn: fUsuários.nome
+
+relationship d716c772-f5a5-4cf4-b958-aacb78751f3d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_subtarefas_jira.'Start date'
+	toColumn: LocalDateTable_3adeafa9-f93d-40d6-81f6-5d5ad0f5fdd9.Date
+
+relationship a1e932c8-5e9d-435f-aac6-5a7bb800db4d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_subtarefas_jira.'Data solução'
+	toColumn: LocalDateTable_b92d1702-a0f2-4b80-9aff-fd4c25d9497b.Date
+
+relationship 7e992798-c534-4140-badb-1e7d0b6178d4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_subtarefas_jira.'Data Lançamento (virada)'
+	toColumn: LocalDateTable_8b67b8fd-29de-4bad-9755-5523a7bc58f5.Date
+
+relationship 85ffa216-92c9-483f-a1d9-c9011e431e85
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_subtarefas_jira.Atualizado(a)
+	toColumn: LocalDateTable_c8d0019a-c42c-476a-95eb-8bd9a4232275.Date
+
+relationship 33936007-ab4e-485e-9fdb-3a723942a330
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_subtarefas_jira.'Data limite'
+	toColumn: LocalDateTable_8f7d1737-ec78-418a-9096-d5203f001bd4.Date
+
+relationship d39ddd61-a062-40bb-8d48-9df11a1ef48b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_subtarefas_jira.Criado
+	toColumn: LocalDateTable_02d70998-901c-4819-aaa9-b5ff14a0aeac.Date
+
+relationship c541ec3e-f1d9-bc4b-7b5c-b98dc783dcc1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: tbl_subtarefas_jira.Chave
+	toColumn: fApontamento_Extrato_Subtask.chave
+
+relationship 41149510-978f-5791-d43a-315483c5bd34
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_subtarefas_jira.'Parent Issue Key'
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship 26b87e2f-fc83-4d42-8467-2fb3e84aeea3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.'End date'
+	toColumn: LocalDateTable_0962a4a4-c5ce-4f6e-bf85-145855f212fc.Date
+
+relationship 47e6f486-5c11-4f4c-a42e-14386c26dc69
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_historico_jira_tarefas.'History New Value Start'
+	toColumn: LocalDateTable_092a4827-5e5a-4eea-b3fd-385f7d009079.Date
+
+relationship d31c335f-ed13-4713-8033-5c37462dc782
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_historico_jira_tarefas.'History Old Value Start'
+	toColumn: LocalDateTable_d003a1fc-0a99-4ea0-b34d-51c397578fd9.Date
+
+relationship 90ab41f4-9d8d-480b-88dc-95bcf8e3113d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_historico_jira_tarefas.'History New Value'
+	toColumn: LocalDateTable_3ac0c127-9e02-4603-b842-be758fad968f.Date
+
+relationship c1a581a0-ae13-480b-bec5-106f3329109c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_historico_jira_tarefas.'History Old Value'
+	toColumn: LocalDateTable_7ac9a711-2c70-4ac8-b9c5-41e921ba8996.Date
+
+relationship e10fc2e4-34ce-2a1f-0dd3-7bf07279c0ad
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_historico_jira_tarefas.Chave
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship 45e35517-de2a-bc25-2bab-2be497cb9d35
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_tarefas_jira.'Parent Issue Key'
+	toColumn: tbl_entregas_jira.Chave
+
+relationship d6cd3409-8d35-58fd-4e2a-2a7b0aed6412
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_produtos_tarefas_jira.Chave
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship 64ff6759-7c4d-963e-8dae-7ab56a03fa9b
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_componentes_tarefas_jira.Chave
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship f5cf5b10-4441-60b0-df57-898d3bb9d09e
+	fromColumn: tbl_vinculados_tarefas_jira.'Linked Issues: Key'
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship AutoDetected_29c9dad5-6ca2-44e6-97aa-35fab3369c91
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: tbl_impedimento_tarefas.Chave
+	toColumn: fApontamento_Extrato.chave
+
+relationship a6c714b9-36fa-182d-2947-35896555305e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: tbl_impedimento_tarefas.Chave
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship 3b7b7eb0-1a92-496f-7fdb-d94aa22a219c
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: fOrçamento.'issueJira.key'
+	toColumn: tbl_tarefas_jira.'Parent Issue Key'
+
+relationship 443028bc-9c3c-e0cd-b8bb-9e0acf57bad6
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: tbl_relacionado_administracao.'ID Projeto'
+	toColumn: tbl_tarefas_jira.'Project Id'
+
+relationship 93a269f0-4ff6-496f-932a-376b24f33948
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_status_historico_entregas.'Status end'
+	toColumn: LocalDateTable_837d8da9-3371-424f-a624-7be7264d43a8.Date
+
+relationship 43727d3c-8a81-4e9f-969c-ad45a5c548d6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_status_historico_entregas.'Status start'
+	toColumn: LocalDateTable_c18739ec-54da-4259-a766-e1294dafd93a.Date
+
+relationship AutoDetected_d1af42cb-a28f-4650-b81a-822b867c4fac
+	fromColumn: tbl_status_historico_entregas.Chave
+	toColumn: tbl_entregas_jira.Chave
+
+relationship b66a1631-2e45-44ff-5e77-acb16ca9f909
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_orçamento_horas.tarefaNome
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship 022b6293-eec2-480d-8306-ad532892045b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_pesquisa_satisfacao.dataInicio
+	toColumn: LocalDateTable_78b4ca8b-ec2e-4b26-a40e-6d96bd98b3b3.Date
+
+relationship 38ff7df1-b7ef-4ed7-98b0-7f7d94a7e250
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_pesquisa_satisfacao.dataConclusao
+	toColumn: LocalDateTable_06d7f769-d80a-403e-ab9b-8e6986f64c40.Date
+
+relationship ad3bf558-f0f2-1057-3bdd-ea400f1bb42e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: tbl_pesquisa_satisfacao.ticket
+	toColumn: tbl_entregas_jira.Chave
+
+relationship AutoDetected_9fa75c3f-d000-468d-a539-12fdfe04642d
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_tag_cp_entrega.Chave
+	toColumn: tbl_entregas_jira.Chave
+
+relationship f715aee7-a321-49a3-875f-a00b07c2a0cd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_todas_issues_jira.'Start date'
+	toColumn: LocalDateTable_6e75b193-4e8c-480a-bafc-63bb48293e28.Date
+
+relationship 053667ac-a9c7-43ff-8f4d-5db2ae368d13
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_todas_issues_jira.'Data solução'
+	toColumn: LocalDateTable_67032e32-46aa-4504-a767-a20c2e533c87.Date
+
+relationship 94584bd1-677f-4c4d-b893-e8388445fdcd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_todas_issues_jira.'Data limite'
+	toColumn: LocalDateTable_3eaaa71a-ff86-4bcd-bd7b-b88c5dca4901.Date
+
+relationship AutoDetected_48795b90-d9c4-4a15-a4ff-bb3d68bd9c40
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: tbl_todas_issues_jira.Chave
+	toColumn: tbl_entregas_jira.Chave
+
+relationship 160593da-3820-4307-ce0a-6bdbd65bda7a
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_vinculados_subtarefas_jira.Chave
+	toColumn: tbl_subtarefas_jira.Chave
+
+relationship d0e38bf5-a9a5-fdc2-a6df-e04bf8fc80d2
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_vinculados_entregas_jira.'Linked Issues: Key'
+	toColumn: tbl_entregas_jira.Chave
+
+relationship 887c1d43-43d6-bd31-a2de-ce3a019025f3
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_vinculados_subtarefas_jira.'Linked Issues: Key'
+	toColumn: tbl_entregas_jira.Chave
+
+relationship 9168fda3-7823-4cd8-bf08-fa3c8dde161a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Top10_Tarefas_Horas_INFRA.Criado
+	toColumn: LocalDateTable_4cbed395-699a-4b9d-bd58-4406e9b26600.Date
+
+relationship 7988cb66-d17a-4d4f-8601-de635adfc341
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_todas_issues_jira.Criado
+	toColumn: LocalDateTable_0bd1bda8-d892-4b9f-b2e9-48562b34f260.Date
+
+relationship 1162a462-efb6-42a5-857b-e72c089aed2e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_todas_issues_jira.Atualizado(a)
+	toColumn: LocalDateTable_b6a17910-f333-4535-84a4-c2edbd9b0a43.Date
+
+relationship c4d5ee3a-137d-d9ff-e36b-478705ce324c
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_start_stop_relacionado.Chave
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship 8d349c49-7182-47b8-8f83-c857bdddc4e1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_start_stop_relacionado.'Data Inicial'
+	toColumn: LocalDateTable_28a80a40-5708-43c3-9950-e4d9bd32910a.Date
+
+relationship 9c68aeb6-9049-4859-b4db-ed89c8253e55
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_start_stop_relacionado.'Data Final'
+	toColumn: LocalDateTable_12038bf6-7f9f-4e9c-8b2c-226f917e9933.Date
+
+relationship ba2b3f95-192b-4573-bc2f-33991b9f51a3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_start_stop_relacionado_todas_issues.'Data Inicial'
+	toColumn: LocalDateTable_27809bd4-e5bf-4b01-9f78-2fe0c8c233d7.Date
+
+relationship c753327a-da6d-4be8-abe7-7df3f010b8e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_start_stop_relacionado_todas_issues.'Data Final'
+	toColumn: LocalDateTable_cc8fd24f-a12a-45e5-9e0a-05570fa290ae.Date
+
+relationship c6fc2e25-7ce9-7993-9443-4473278b3bb5
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_todas_issues_jira.Chave
+	toColumn: Tbl_todas_issues_jira_subtarefa.Chave
+
+relationship 20edfbbf-7c5e-1141-7bec-753237e77e17
+	crossFilteringBehavior: bothDirections
+	fromColumn: tbl_vinculados_todas_issues.'Linked Issues: Key'
+	toColumn: Tbl_todas_issues_jira_subtarefa.Chave
+
+relationship e57fbdf7-2c5f-456e-8808-f17e61710757
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_subtarefa.'Data limite'
+	toColumn: LocalDateTable_e4746b55-86b5-4775-89b2-0b171b1872a1.Date
+
+relationship fb929dcc-8387-4df9-9e55-01306fc65345
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_subtarefa.Criado
+	toColumn: LocalDateTable_8d7770e1-cbac-4732-acc1-679ca5db9073.Date
+
+relationship 7b92ae30-02e1-4463-8544-795fc557b20c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_subtarefa.Atualizado(a)
+	toColumn: LocalDateTable_52c4bab1-b2d3-4d3a-adb8-6557ab106965.Date
+
+relationship 82f27869-ae00-4818-a906-cfa4d7e79660
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_subtarefa.'Data solução'
+	toColumn: LocalDateTable_cb9f73da-6465-4ed4-8717-5b0eba485f71.Date
+
+relationship 0df51ed4-8e92-45d4-84cb-8094da9f8d4d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_subtarefa.'Start date'
+	toColumn: LocalDateTable_f36ad0ee-bc3b-4ce1-9faf-0885184fff3d.Date
+
+relationship 95fad3a0-a83b-46c5-b406-218cc80bb345
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_tarefa.Criado
+	toColumn: LocalDateTable_76d81cce-b02c-4064-9517-3f0f1b4ba9ba.Date
+
+relationship fb167b62-440a-427a-9cd2-0e1562d272f0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_tarefa.'Data solução'
+	toColumn: LocalDateTable_0dd06c72-6a53-4f19-8929-52a3f871cd29.Date
+
+relationship bab16aec-371b-4cb1-834c-9d3b4189d121
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_tarefa.'Data limite'
+	toColumn: LocalDateTable_b39ea846-d795-43a3-ada9-bd34ef72f6e2.Date
+
+relationship 97bc1e9a-3556-45bf-9758-1758d110fda1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_tarefa.'Start date'
+	toColumn: LocalDateTable_36c6d644-e92d-47b9-a195-8194c26ee374.Date
+
+relationship 7187c332-3132-4dcb-92f2-a9a371d5bd4d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_todas_issues_jira_tarefa.Atualizado(a)
+	toColumn: LocalDateTable_cf6b130f-f3d7-4963-bbf9-e88b74939bd4.Date
+
+relationship f7c4e25f-cf0b-13ad-7bcf-d7130a1822f5
+	crossFilteringBehavior: bothDirections
+	fromColumn: Tbl_todas_issues_jira_subtarefa.'Parent Issue Key'
+	toColumn: Tbl_todas_issues_jira_tarefa.Chave
+
+relationship e10051ad-997a-5148-965f-7e34c6c588e0
+	crossFilteringBehavior: bothDirections
+	fromColumn: Tbl_relacionados.Chave
+	toColumn: Tbl_todas_issues_jira_subtarefa.Chave
+
+relationship 45234b9e-47d6-bc33-9742-916edde3cbe2
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: Tbl_relacionados.Chave
+	toColumn: Tbl_todas_issues_jira_tarefa.Chave
+
+relationship 02c4ff75-773f-406f-8698-8cb251aae690
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_relacionados.Criado_linked
+	toColumn: LocalDateTable_362ffc57-b2a1-409a-a6d4-2441ce2932e9.Date
+
+relationship da324b9c-4ebc-4120-bb08-a56fc4a78cfb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_relacionados.Data_limite_Linked
+	toColumn: LocalDateTable_47202cc4-5fba-4bca-b6ad-67d9348735e4.Date
+
+relationship 500c8242-49fe-47e9-98ec-1aff64b832a5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_relacionados.Atualizado_linked
+	toColumn: LocalDateTable_39444497-1c00-4159-a1f3-d755406296a7.Date
+
+relationship 0de33b2e-ba5e-4a70-b038-342f01fc1b8e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_relacionados.Concluído_linked
+	toColumn: LocalDateTable_9f200e76-cdbd-48a5-b4e3-c0b846ec9b3a.Date
+
+relationship 080881a6-b8cd-45a2-8e67-0dc2c6a63a6f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Tbl_relacionados.Start_date_linked
+	toColumn: LocalDateTable_675ad473-a9a0-4b44-9946-0f7a67ce886c.Date
+
+relationship adb683df-65a5-6b54-7063-4ce2cb8f631f
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: tbl_apontamento_extrato_relacionado_jira.chave
+	toColumn: tbl_tarefas_jira.Chave
+
+relationship 5d82073b-fd78-48e7-ac7c-90e835739944
+	joinOnDateBehavior: datePartOnly
+	fromColumn: tbl_tarefas_jira.'Data solução - Copiar'
+	toColumn: LocalDateTable_6f611c81-4db3-4fa9-8be4-d89c04978125.Date
+

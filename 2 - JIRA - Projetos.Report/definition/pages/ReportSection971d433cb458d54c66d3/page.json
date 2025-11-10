@@ -1,0 +1,180 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSection971d433cb458d54c66d3",
+  "displayName": "Retrabalho",
+  "displayOption": "ActualSize",
+  "height": 1100,
+  "width": 1440,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "265L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "584d60f0dba0eb0d2e50",
+      "target": "603375ababc0c4d4592a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "603375ababc0c4d4592a",
+      "target": "a9141f88c12618accafe",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a9141f88c12618accafe",
+      "target": "603375ababc0c4d4592a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "584d60f0dba0eb0d2e50",
+      "target": "a9141f88c12618accafe",
+      "type": "DataFilter"
+    },
+    {
+      "source": "9765bcdf576c7c79f497",
+      "target": "a9141f88c12618accafe",
+      "type": "DataFilter"
+    },
+    {
+      "source": "9765bcdf576c7c79f497",
+      "target": "603375ababc0c4d4592a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4018b024bd59a8a3db4d",
+      "target": "603375ababc0c4d4592a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4018b024bd59a8a3db4d",
+      "target": "a9141f88c12618accafe",
+      "type": "DataFilter"
+    },
+    {
+      "source": "603375ababc0c4d4592a",
+      "target": "4018b024bd59a8a3db4d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a9141f88c12618accafe",
+      "target": "4018b024bd59a8a3db4d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "9765bcdf576c7c79f497",
+      "target": "4018b024bd59a8a3db4d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "584d60f0dba0eb0d2e50",
+      "target": "4018b024bd59a8a3db4d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4ad0dcc91956a3d07694",
+      "target": "603375ababc0c4d4592a",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f8868d15b50c74d02010",
+      "target": "4ad0dcc91956a3d07694",
+      "type": "DataFilter"
+    }
+  ]
+}

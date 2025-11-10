@@ -1,0 +1,43 @@
+table tbl_impedimento_tarefas
+	lineageTag: 7db89a8d-2ced-4ebd-afce-67d0b500b24a
+
+	column Chave
+		dataType: string
+		lineageTag: 2285131b-c9a2-4606-9438-0c59c06779de
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column Marcação
+		dataType: string
+		lineageTag: 81437880-a0d0-45b1-89ef-53556295ae31
+		summarizeBy: none
+		sourceColumn: Marcação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filtro_marcação = ```
+			
+			        IF(tbl_impedimento_tarefas[Marcação] = "Impedimento", "Marcado", "Sem Marcação")
+			```
+		lineageTag: 27507e56-fb40-4f16-93ef-0a579699e739
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_impedimento_tarefas = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/ODgzNDlhMWUtMDdkMS00OGQyLTg2MDktZTkyMTZhMWZj", null, [Implementation="2.0"]),
+				    Flagged_table1 = Fonte{[Name="Flagged",Signature="table"]}[Data],
+				    #"Valor Substituído" = Table.ReplaceValue(Flagged_table1,"Impediment","Impedimento",Replacer.ReplaceText,{"Flagged"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Valor Substituído",{{"Flagged", "Marcação"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

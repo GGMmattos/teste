@@ -1,0 +1,902 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Entrega Suporte-Fechar Menu",
+  "name": "66732bd8ce868cd7eb12",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ReportSection2127f1dac0300000057b",
+    "sections": {
+      "ReportSection2127f1dac0300000057b": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "Filter5f77f0200c803301b3c2",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "f",
+                    "Entity": "fConsolidado",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "f"
+                                }
+                              },
+                              "Property": "Categoria Projeto"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Processo'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fConsolidado"
+                    }
+                  },
+                  "Property": "Categoria Projeto"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "51b49e1d07d0072dc721": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "c0e0e9422573a06b2e87": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "2ecc94b1db07e598e463": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "98524169004b00e6d155": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "b4e466e75c9d0d05dd62": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "accb3a342eb7ad6b0669",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão de Dias (Entrega Suporte)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1393f09bc27a43d2f186",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Soma de Key para Entrega Suporte"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão de Dias (Entrega Suporte)"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão de Dias (Entrega Suporte)"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ee7e8c60771d83d919cc": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter165c350a45084d201c04",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Key"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "Filter1d854a3e3a3b92a21211",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "f"
+                                    }
+                                  },
+                                  "Property": "tblStory.Tipo_Nome"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Suporte Contratual'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Tipo_Nome"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "0ca81ad9f6107df19858",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Comparação de Data Solução"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "40913b4608bb145294e5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.CreatedIssue"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6ffcb2ca3e4f56a7cbbd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Prazo Entrega Suporte"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9f7d7ba5fcbf2fe7d09b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Status_Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "83ff0bbb6eb419f27ff3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Summary"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "787a0c191e548c2ab6cf",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Último Atendimento"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6d4afbe8dc26d3823318",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Flag Marcação (Tarefas)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Comparação de Data Solução"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f7cdb9059019b80dd01b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2b594bb3dc4329befd52",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Soma de Key para Entrega Suporte"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2a8630cf00a0d76976e7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Prazo Entrega Suporte"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Soma de Key para Entrega Suporte"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Prazo Entrega Suporte"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "99ef932f63abbdcf44a5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter998113ad86bf375624f2",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "f"
+                                    }
+                                  },
+                                  "Property": "tblStory.Tipo_Nome"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Suporte Contratual'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Tipo_Nome"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "01b11a4574ff0f30374c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Projeto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c32eaa4dcce9f3d7629f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fConsolidado"
+                            }
+                          },
+                          "Property": "tblStory.Key"
+                        }
+                      },
+                      "Function": 2
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b6a771de10440074a0b4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Prazo Entrega Suporte"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fConsolidado"
+                            }
+                          },
+                          "Property": "tblStory.Key"
+                        }
+                      },
+                      "Function": 2
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Projeto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "dd0b084dd6ea8331a520": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "03b6248cbab197ea47db",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Média Entrega Suporte Realizado (%)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Média Entrega Suporte Realizado (%)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "187c596091c05ea368ad": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "b7d1769af0ced2097c22": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter998113ad86bf375624f2",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "f"
+                                    }
+                                  },
+                                  "Property": "tblStory.Tipo_Nome"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Suporte Contratual'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Tipo_Nome"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "3da5a24e49e4c85f6805",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fConsolidado"
+                            }
+                          },
+                          "Property": "tblStory.Key"
+                        }
+                      },
+                      "Function": 2
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "360e7a1d1a81d403a332",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Prazo Entrega Suporte"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f7f3a955869c468dc2a3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Team_Title"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fConsolidado"
+                            }
+                          },
+                          "Property": "tblStory.Key"
+                        }
+                      },
+                      "Function": 2
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Team_Title"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "98ad3165e032bcc91d29": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2e09c269a192e8be0733",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Flag Marcação (Tarefas)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "dateRange": [
+                    {
+                      "properties": {
+                        "includeToday": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Flag Marcação (Tarefas)"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "77cc9bb286ad85c3a5b6": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "ea2cf569705601057603": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "1f9ad1412b9a4788c8c5": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

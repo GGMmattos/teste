@@ -1,0 +1,489 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Metas.Consultoria-Fechar Menu",
+  "name": "5dd16247571ea0445d43",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.11",
+    "activeSection": "82c98218fb26f86ad907",
+    "sections": {
+      "82c98218fb26f86ad907": {
+        "visualContainers": {
+          "cd4eb0c7cf9a3804c25c": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "85f98073c9a6f2975bad": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "b7bf9a7c5597d44b0f45": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "a50e2c647fcf4575189c": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "85c1185f6934e6db8c34": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "92cec6322dcf01163150": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "f71bc4432270eda72870": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "48f0e2557cc0748c0f20": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "0d52b48935d66f952da1",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f1",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f1"
+                                  }
+                                },
+                                "Property": "Hrs Metas Consultorias || Diagnóstico"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Diagnóstico"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d68ae2ae69e940955d7c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Nome_Cliente_Control_Hrs"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e6ee18f3faaeebd08254",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Dúvida"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6f4eb426703e4d04685c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Internos"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7b841850068778a5674a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Serviço Extracontratual"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Diagnóstico"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Nome_Cliente_Control_Hrs"
+                    }
+                  }
+                ]
+              },
+              "projections": {
+                "Y": [
+                  {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Diagnóstico"
+                    }
+                  },
+                  {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Dúvida"
+                    }
+                  },
+                  {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Internos"
+                    }
+                  },
+                  {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hrs Metas Consultorias || Serviço Extracontratual"
+                    }
+                  }
+                ],
+                "Category": [
+                  {
+                    "Literal": {
+                      "Value": "null"
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "Y": [
+                  {
+                    "expr": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Parâmetro Hrs Realizadas Consultoria"
+                          }
+                        },
+                        "Property": "Parâmetro Hrs Realizadas Consultoria"
+                      }
+                    },
+                    "index": 0,
+                    "length": 4
+                  }
+                ]
+              }
+            }
+          },
+          "093f8e0ec952ce26cad2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "12410c32f57c4f6fb741",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Parâmetro Tarefas Consultoria Técnica"
+                        }
+                      },
+                      "Property": "Parâmetro"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Parâmetro Tarefas Consultoria Técnica"
+                        }
+                      },
+                      "Property": "Parâmetro"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "0ff342a4530c2b07295d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2c8fdb6cc360b9374920",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Nome_Cliente_Control_Hrs"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Nome_Cliente_Control_Hrs"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "f3345dc89507a590e861": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "75b43ef4089d81120181",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Responsável"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "tblStory.Responsável"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

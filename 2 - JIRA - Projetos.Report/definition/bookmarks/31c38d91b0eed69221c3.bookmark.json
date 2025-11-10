@@ -1,0 +1,1657 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Resumo-Abrir Menu",
+  "name": "31c38d91b0eed69221c3",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ReportSection",
+    "sections": {
+      "ReportSection": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "Filter5abdf5445d3246340500",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "f",
+                    "Entity": "fConsolidado",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "f"
+                                    }
+                                  },
+                                  "Property": "Categoria Projeto"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Processo'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Projetos concluídos'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Objetivos Estratégicos'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fConsolidado"
+                    }
+                  },
+                  "Property": "Categoria Projeto"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "a2e1963d4ee9aecdca85": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c691b5b93b4eab6def48",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Projeto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f0b8e6f21c3539ea6713",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Tempo projeto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Tempo projeto"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Projeto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "76a4534be0e4c8b940bb": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c2cbf20ac1bcf994872c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Estimativa_antigo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d8f89c3bf8247b7142d2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Tarefas/Subtarefas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Tarefas/Subtarefas"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Filtro Estimativa_antigo"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "766cfc7c9ccc71c77c53": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dc23071f1d0b66d82e86",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Prazo Tarefas_old"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5c725b088cbfab02d6f6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Tarefas/Subtarefas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Tarefas/Subtarefas"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Prazo Tarefas_old"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6dea95697cbbf3702199": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9c68879158be77208880",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Responsável"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "25a04fc9cb3d974e7609",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Tarefas/Subtarefas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Tarefas/Subtarefas"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Visão Responsável"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "e09a9c83520646f01d8e": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "daaf0d9ec9ab62db0b00": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "9046c1842e084618420c": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {}
+            }
+          },
+          "8705b5e13be0cca99c9c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "eb83244df47836a46cea",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Categoria Projeto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Categoria Projeto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "74e1d9b0b253733b3713": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "cbc9d7a257e513792451": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "aded8c9dd0fb463e6d69": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "03ae055ea8bf2ed5a7aa": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "111734238d97a3e7ca44",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "hrs_previstas_fApontamento_Extrato"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "hrs_previstas_fApontamento_Extrato"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "1908dfdc8d19f78b1377": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter8089aa4cab90bc8373c4",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "f"
+                                      }
+                                    },
+                                    "Property": "Issue_Id"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Issue_Id"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "61fee0773e2bb00322ca",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Hr Realizadas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Hr Realizadas"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "5695e9fa3c55b6badf51": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a17da2e83ee76c0ec14d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "% Consumido"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "% Consumido"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "006a0b6dda1fafad6cc7": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "0ccc7c85103ad1b8f647",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "% Concluído | Tela Analítico | Tarefas (Corrigido)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "% Concluído | Tela Analítico | Tarefas (Corrigido)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "147780b91b4e132be582": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filtera629b586290e4ee940d1",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Column": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "f"
+                                      }
+                                    },
+                                    "Property": "Issue_Id"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Issue_Id"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "5fa26ae80b3e8b6a5b4a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Desvio real (Tela Desvios)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento"
+                        }
+                      },
+                      "Property": "Desvio real (Tela Desvios)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "95ab2486649164f85792": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3f772b3b6add37abb45e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Desvio projetado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Desvio projetado"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "2d2f3fb2bff04e477b23": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "8ba929218beaade7b597": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter465448b20ea20b0cc625",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Issue_Id"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "8c1c27e2bedbca6803bc",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Med. Prev. Conclusão"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Tarefas"
+                        }
+                      },
+                      "Property": "Med Prev. Término"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "61b89c66349e1ac07d59": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5c00cf9a822e6119269e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Desvio_de_prazo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Desvio_de_prazo"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "4d4b8bec96f3a72a90bf": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter791c790b265ad571d953",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Issue_Id"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "c18b0dc9ffb811bd2edb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Med. Prev. Conclusão"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Med. Prev. Conclusão"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "fcb4693727ae5013a110": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "3b4985c82acca7405c3b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9228fdb5016596bd508f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Entregas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Entregas"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "df4ce9362e4f3df78e7a": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "85832c30ffb1f796e271": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filtere644791e5fe1efc7184a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Key"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "cdf66ea0c0ab0a2a0192",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Subtração Entregas"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "92266f1128dc79fd9dbb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Finalizados (Entregas)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Finalizados (Entregas)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f2e5adce2b3cb42c083e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "83889f1c1acf34346381",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "%_entrega_concluido"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "%_entrega_concluido"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "876f79d91c1af83a01a3": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "cc1920a728200c0c1be1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3234967ad1640c52b08f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd tarefas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd tarefas"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "70c8e9df92edb6334e21": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "69c8f5f7d6100a96b782",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Subtração Tarefas"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "d3a3d4be67e537adce83",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Finalizados (Tarefas)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Finalizados (Tarefas)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ab8891ea08192bba31a8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "7eeb6151731a883bdfd4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "% Entrega Story"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "% Entrega Story"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "88995c1130cab42ece02": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "48333714da2ea5906232": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "67978044e0261578c3d5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd subtarefas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd subtarefas"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "2f337bd58fed2c019cca": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b93938dad09b3d3e611d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Subtração Subtarefas"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "f7f434589e4c9e0b86d9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Finalizados (Subtarefas)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd Finalizados (Subtarefas)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "502d38f21f303110dae2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b15a5012221e3880f369",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_subtarefas_jira"
+                        }
+                      },
+                      "Property": "%_subtarefa_concluida"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_subtarefas_jira"
+                        }
+                      },
+                      "Property": "%_subtarefa_concluida"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "cb8bdc010488e08d5dda": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f57e96941b580d679bf9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "Soma Horas Orçadas (Max.)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "Soma Horas Orçadas (Max.)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f327cc4062a1e6d7b674": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d54fa81e419bb40066a0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd tarefas/subtarefas (em aberto)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "35cf357521271f78d167",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd tarefas/subtarefa (finalizadas)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Qtd tarefas/subtarefas (em aberto)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "11af0392270baba0050c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "Filter465448b20ea20b0cc625",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Issue_Id"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "d5c1d4bf3cbcc91ec329",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fConsolidado"
+                            }
+                          },
+                          "Property": "Data de Lançamento (Virada)"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fConsolidado"
+                            }
+                          },
+                          "Property": "Data de Lançamento (Virada)"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "4de4b87fa5743b7aaabf": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a89b563dc6436082f67c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Hr Projetada (fApontamento_Extrato)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Hr Projetada (fApontamento_Extrato)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "278e78d351c125656c86": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "6c415d077ffef0bc9203": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "91bf1f6c0f22dbea4445": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

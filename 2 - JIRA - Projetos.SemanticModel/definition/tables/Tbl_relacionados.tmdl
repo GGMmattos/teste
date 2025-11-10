@@ -1,0 +1,664 @@
+table Tbl_relacionados
+	lineageTag: 967207e0-7863-416a-952e-3767573476fc
+
+	measure Dias_excedidos_label = ```
+			
+			VAR DataLimite = MIN(Tbl_relacionados[Data_limite_Linked])           -- ajuste a coluna/tabela se necessário
+			VAR DataSolucao = MIN(Tbl_relacionados[Concluído_linked])       -- pode ser em branco
+			VAR DataFinal = COALESCE(DataSolucao, TODAY())
+			VAR Diff = 
+			    IF(
+			        ISBLANK(DataLimite),
+			        BLANK(),
+			        DATEDIFF(DataFinal, DataLimite, DAY)   -- Diff > 0 => ainda falta (adiantado) ; Diff < 0 => passou (atrasado)
+			    )
+			VAR AbsDiff = IF(ISBLANK(Diff), BLANK(), ABS(Diff))
+			RETURN
+			IF(
+			    ISBLANK(Diff),
+			    BLANK(),
+			    (IF(Diff > 0, "+", IF(Diff < 0, "-", ""))) &
+			    FORMAT(AbsDiff, "0") &
+			    " dia" & IF(AbsDiff <> 1, "s", "")
+			)
+			
+			```
+		lineageTag: e25c74de-bdc0-43d6-ad86-1cdf8122289d
+
+	measure Relacionado_Qtd_entrega_status_concluido = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Concluído",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 23552a7f-7619-4de4-b95a-79282415dee3
+
+	measure Relacionado_Qtd_entrega_status_aberto = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Aberto",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 4e782d1b-52d3-48f7-9434-4d9c304159aa
+
+	measure Relacionado_Qtd_entrega_status_triagem = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Triagem",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 915512d1-8851-4424-aaa9-2a9d24933568
+
+	measure Relacionado_Qtd_entrega_status_Avaliacao_consultoria = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Avaliação Consultoria",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: e9243317-1f93-48c5-adb5-c462f40dbc8a
+
+	measure Relacionado_Qtd_entrega_status_backlog_distribuidora = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Backlog Distribuidora",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: dde9ff81-ed69-4b90-aeed-f6dfbdcba30b
+
+	measure Relacionado_Qtd_entrega_status_backlog_cp = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Backlog CP",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: b4a8081f-542c-4541-92cd-35823df0934c
+
+	measure Relacionado_Qtd_entrega_status_em_andamento_cp = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Em andamento CP",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 6abd7bc1-50e9-492d-a9c9-9574b2b9e780
+
+	measure Relacionado_Qtd_entrega_status_backlog_evolucao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Backlog Evolução",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: adc94ff1-844d-4e8b-a27d-95801153cec4
+
+	measure Relacionado_Qtd_entrega_status_backlog_aceite = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Backlog aceite",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: f54c0548-63ac-4320-8078-b92372c342e6
+
+	measure Relacionado_Qtd_entrega_status_orcamento_analise = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Orçamento Análise",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: eff9e043-862d-46db-a7e3-062f08ad00a4
+
+	measure Relacionado_Qtd_entrega_status_autenticacao_comercial_analise = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Autenticação Comercial (Análise)",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: e810d5a3-ad42-4f5c-8966-627a87cae21e
+
+	measure Relacionado_Qtd_entrega_status_aprovar_orcamento_analise = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Aprovar Orçamento (Análise)",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: cdac2918-2a70-4284-8cf1-83b6be58cfa9
+
+	measure Relacionado_Qtd_entrega_status_em_analise = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Em Análise",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: c162ece2-8b95-4c28-a6b2-b428efc96da6
+
+	measure Relacionado_Qtd_entrega_status_aprovar_documento = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Aprovar Documento",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 7cbe78e9-4f95-431e-abc5-c6b7eb0d1547
+
+	measure Relacionado_Qtd_entrega_status_orcamento_execucao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Orçamento (Execução)",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 105a4184-8ab9-4c97-90e9-8ec34c20913b
+
+	measure Relacionado_Qtd_entrega_status_autenticacao_tecnica = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Autenticação Técnica",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: a63401fd-291a-47d2-8055-bebd89eb2963
+
+	measure Relacionado_Qtd_entrega_status_autenticacao_comercial_execucao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Autenticação Comercial (Execução)",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 211b450b-8ef6-4658-ab5c-37268e6be243
+
+	measure Relacionado_Qtd_entrega_status_aprovar_orcamento_execucao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Aprovar Orçamento (Execução)",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 8802e4e9-f5ff-417f-bea9-5241d021d8ab
+
+	measure Relacionado_Qtd_entrega_status_aguardando_solucao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Aguardando Solução",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 6ac85f86-5ca6-4c7e-b32e-b74848fe9163
+
+	measure Relacionado_Qtd_entrega_status_desenvolvimento = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Desenvolvimento",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: a7769ff8-ee8f-46df-8eca-4a77136cf211
+
+	measure Relacionado_Qtd_entrega_status_infraestrutura = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Infraestrutura",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 1d48a529-4777-4d30-a71a-90de3e102d62
+
+	measure Relacionado_Qtd_entrega_status_servicos_extra = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Serviços Extracontratuais",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 10983995-743e-428d-a8ad-5927393937fa
+
+	measure Relacionado_Qtd_entrega_status_suporte/manutencao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Suporte/Manutenção",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 77473e5a-2376-4017-9a18-17bc41a5ae3f
+
+	measure Relacionado_Qtd_entrega_status_ag_cliente_interno =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			    Tbl_relacionados[Agrupamento_status] IN {
+			        "Aguardando cliente",
+			        "Aguardando interno",
+			        "Autorizar acesso a base de terceiros"
+			    },
+			    Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 95a2b233-e6b8-485a-bf66-7c438ff6b539
+
+	measure Relacionado_Qtd_entrega_status_validacao_cliente = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Validação Cliente",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 73e93039-67ae-44e2-8a97-1ea0b7337518
+
+	measure Relacionado_Qtd_entrega_status_nao_conformidade = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Em Avaliação de NC",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 64db2d13-7986-4b61-906b-6ba6f7a1c10c
+
+	measure Relacionado_Qtd_entrega_status_cancelada = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Chave]),
+			            Tbl_relacionados[Agrupamento_status] = "Cancelada",
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 2eb90fd6-1694-4f42-99c1-e951dde241c7
+
+	measure Relacionado_Qtd_entrega_total = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(Tbl_relacionados[Linked Issues Key]),
+			            Tbl_todas_issues_jira_subtarefa[Project Name] = "PRC - Programa de Relacionamento com o Cliente") + 0
+			```
+		formatString: 0
+		displayFolder: Tela PRC Diagnóstico
+		lineageTag: 8c20fbbf-35d0-4c06-aa6a-d4288deed75d
+
+	column Chave
+		lineageTag: d063fdcf-54c1-44de-bb3e-23fe5e1af095
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues Key'
+		lineageTag: 55976710-86c8-4c39-835c-0f8ff6832cab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Linked Issues Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resumo_Linked
+		lineageTag: b6061169-c548-4d66-a20a-7d6256b8eba1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Resumo_Linked]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link Type'
+		lineageTag: 93b7b4ef-03db-4077-851f-bf4db200eea9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Link Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Direction
+		lineageTag: 7ccdaf88-c86f-4edc-9ff2-721f21ae24ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Direction]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado_linked
+		formatString: General Date
+		lineageTag: 0e6aa38f-667e-4035-8162-7d8a338cd99a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Criado_linked]
+
+		variation Variation
+			isDefault
+			relationship: 02c4ff75-773f-406f-8698-8cb251aae690
+			defaultHierarchy: LocalDateTable_362ffc57-b2a1-409a-a6d4-2441ce2932e9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situação_Linked
+		lineageTag: dd0ee02c-cb32-47fd-9671-4e0230d248f0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Situação_Linked]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Responsável_Linked
+		lineageTag: ba38c73b-8356-413f-a8fd-1af863398e7e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Responsável_Linked]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time_linked
+		lineageTag: 747cd9d4-b396-4525-93aa-8726c18a3a96
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Time_linked]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Projeto
+		lineageTag: ce5fe554-7e28-4651-8762-0c61be45e14c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Projeto]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_limite_Linked
+		formatString: General Date
+		lineageTag: 11e3d55a-2dc3-43b2-8cbe-1aa2d277693f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Data_limite_Linked]
+
+		variation Variation
+			isDefault
+			relationship: da324b9c-4ebc-4120-bb08-a56fc4a78cfb
+			defaultHierarchy: LocalDateTable_47202cc4-5fba-4bca-b6ad-67d9348735e4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link_chave_linked =
+			
+			"https://sabium.atlassian.net/browse/" & 'Tbl_relacionados'[Chave]
+		lineageTag: 86b5db55-07df-49c2-8ea2-e8a82cdee371
+		dataCategory: WebUrl
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Atualizado_linked
+		formatString: Long Date
+		lineageTag: 20bf0eca-7d13-4d3e-8bc9-c8ffaf681dc8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Atualizado_linked]
+
+		variation Variation
+			isDefault
+			relationship: 500c8242-49fe-47e9-98ec-1aff64b832a5
+			defaultHierarchy: LocalDateTable_39444497-1c00-4159-a1f3-d755406296a7.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Concluído_linked
+		formatString: General Date
+		lineageTag: 40f4ce2f-2471-435e-ad7f-49046ee59c53
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Concluído_linked]
+
+		variation Variation
+			isDefault
+			relationship: 0de33b2e-ba5e-4a70-b038-342f01fc1b8e
+			defaultHierarchy: LocalDateTable_9f200e76-cdbd-48a5-b4e3-c0b846ec9b3a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cliente_Linked
+		lineageTag: 7b3fc8df-2d65-4c24-9d7d-6c0b66de0c89
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Cliente_Linked]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias_corridos_linked
+		formatString: 0
+		lineageTag: 601a695c-ac4a-4a2b-beed-475378493780
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dias_corridos_linked]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias_em_atraso
+		formatString: 0
+		lineageTag: 2cd1ce16-0c74-4b04-bd61-58c73deca766
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dias_em_atraso]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prioridade_linked
+		lineageTag: 71a66426-dce9-48a1-978a-1246d5f19b65
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Prioridade_linked]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Start_date_linked
+		formatString: Long Date
+		lineageTag: d16e5c39-0c16-4a7f-8248-e877b6a12670
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Start_date_linked]
+
+		variation Variation
+			isDefault
+			relationship: 080881a6-b8cd-45a2-8e67-0dc2c6a63a6f
+			defaultHierarchy: LocalDateTable_675ad473-a9a0-4b44-9946-0f7a67ce886c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Agrupamento_status
+		lineageTag: 4314bbf8-74ff-4330-882f-349093624813
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Agrupamento_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link_chave_linked_chave_relacionado =
+			
+			"https://sabium.atlassian.net/browse/" & 'Tbl_relacionados'[Linked Issues Key]
+		lineageTag: caebbb20-09c5-452a-9bdb-8018993901b6
+		dataCategory: WebUrl
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Tbl_relacionados = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS (                                      // Projeta/seleciona apenas colunas específicas para a tabela final
+				    ADDCOLUMNS (                                     // Adiciona colunas calculadas à tabela base 'tbl_vinculados_todas_issues'
+				        'tbl_vinculados_todas_issues',               // Tabela base contendo os vínculos (chave e tipo/direção do link)
+				        "Resumo_Linked",                             // ---- A partir daqui, criamos cada coluna *Linked* via LOOKUPVALUE
+				            LOOKUPVALUE (                            // Busca o Resumo da issue vinculada na tabela de subtarefas
+				                'tbl_todas_issues_jira_subtarefa'[Resumo],           // Coluna de retorno (valor que queremos)
+				                'tbl_todas_issues_jira_subtarefa'[Chave],            // Coluna de busca na tabela de referência
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]    // Valor da chave vinculada na tabela base
+				            ),
+				        "Criado_linked",                             // Data de criação da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Criado],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Situação_linked",                           // Status atual da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Current Status],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Responsavel_linked",                        // Responsável atual da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Current Assignee:  Name],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Time_linked",                               // Time associado à issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Team],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Projeto_linked",                            // Projeto da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Project Name],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Data_limite_linked",                        // Due date da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Data limite],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Data_atualização_linked",                   // Data de última atualização da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Atualizado(a)],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Data_conclusão_linked",                     // Data de conclusão/solução da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Data solução],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Cliente_linked",                            // Cliente associado à issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Nome Cliente (Contr_ Horas)],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Dias_corridos_linked",                      // Métrica de dias corridos na issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Dias_corridos_todas_issues_subtarefa],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Dias_em_atraso_linked",                     // Métrica de dias em atraso da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Dias_em_atrasos],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Prioridade_linked",                         // Prioridade da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Prioridade],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Data_inicio_linked",                        // Data de início da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Start date],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            ),
+				        "Agrupamento_status_linked",                 // Agrupamento de status customizado da issue vinculada
+				            LOOKUPVALUE (
+				                'Tbl_todas_issues_jira_subtarefa'[Relacionado_agrupamento_status_sa_entrega],
+				                'tbl_todas_issues_jira_subtarefa'[Chave],
+				                'tbl_vinculados_todas_issues'[Linked Issues: Key]
+				            )
+				    ),
+				    "Chave", 'tbl_vinculados_todas_issues'[Chave],                           // Chave da issue original (não a vinculada)
+				    "Linked Issues Key", 'tbl_vinculados_todas_issues'[Linked Issues: Key],  // Chave da issue vinculada (usada nas buscas)
+				    "Resumo_Linked", [Resumo_Linked],                                         // Projeta a coluna calculada correspondente
+				    "Cliente_Linked", [Cliente_linked],                                       // —
+				    "Situação_Linked", [Situação_linked],                                     // —
+				    "Data_limite_Linked", [Data_limite_linked],                               // —
+				    "Responsável_Linked", [Responsavel_linked],                               // —
+				    "Criado_linked", [Criado_linked],                                         // —
+				    "Atualizado_linked", [Data_atualização_linked],                           // —
+				    "Concluído_linked", [Data_conclusão_linked],                              // —
+				    "Time_linked", [Time_linked],                                             // —
+				    "Projeto", [Projeto_linked],                                              // Nome do projeto da issue vinculada
+				    "Dias_em_atraso", [Dias_em_atraso_linked],                                // —
+				    "Dias_corridos_linked", [Dias_corridos_linked],                           // —
+				    "Prioridade_linked", [Prioridade_linked],                                 // —
+				    "Start_date_linked", [Data_inicio_linked],                                // —
+				    "Agrupamento_status", [Agrupamento_status_linked],                        // —
+				    "Link Type", 'tbl_vinculados_todas_issues'[Linked Issues: Link Type],     // Tipo do vínculo (e.g., "blocks", "relates to", etc.)
+				    "Direction", 'tbl_vinculados_todas_issues'[Linked Issues: Link Direction] // Direção do vínculo (in/out)
+				)
+
+	annotation PBI_Id = b40cbf043abe48bfbdf6c18d34b8d00a
+

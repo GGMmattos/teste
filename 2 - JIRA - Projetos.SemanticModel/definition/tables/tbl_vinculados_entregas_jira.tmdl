@@ -1,0 +1,71 @@
+table tbl_vinculados_entregas_jira
+	lineageTag: 878725fd-ac14-40dd-ae14-297952a267d4
+
+	column Chave
+		dataType: string
+		lineageTag: 967df457-2fb0-423b-b3b9-743081749b4f
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Key'
+		dataType: string
+		lineageTag: e0011a0c-f8d7-4ada-b1c1-5452d2ac625b
+		summarizeBy: none
+		sourceColumn: Linked Issues: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Link Direction'
+		dataType: string
+		lineageTag: b242b3dd-4038-4d9d-b014-d4bdff14e84c
+		summarizeBy: none
+		sourceColumn: Linked Issues: Link Direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Link Type'
+		dataType: string
+		lineageTag: 0b42d89c-6a96-4379-9aac-3142d4f4adab
+		summarizeBy: none
+		sourceColumn: Linked Issues: Link Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Key - sem numeros'
+		dataType: string
+		lineageTag: 38071ff7-246b-482f-bcc1-54ed053aa8ce
+		summarizeBy: none
+		sourceColumn: Linked Issues: Key - sem numeros
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resumo_Issue = ```
+			
+			LOOKUPVALUE(
+			    'tbl_entregas_jira'[Resumo],               -- valor que quero trazer
+			    'tbl_entregas_jira'[Chave],                -- onde procurar
+			    'tbl_vinculados_entregas_jira'[Chave]   -- valor que estou procurando
+			)
+			
+			```
+		lineageTag: 7a4a3dce-a7de-4e7d-b3ca-68c9a70b38c0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_vinculados_entregas_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/NTE0OTk4ZDItNjk5YS00NzU2LThiZTMtMDQzMzdmNmY2", null, [Implementation="2.0"]),
+				    #"Linked Issues_table1" = Fonte{[Name="Linked Issues",Signature="table"]}[Data],
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Linked Issues_table1", "Linked Issues: Key", "Linked Issues: Key - sem numeros")
+				in
+				    #"Coluna Duplicada"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

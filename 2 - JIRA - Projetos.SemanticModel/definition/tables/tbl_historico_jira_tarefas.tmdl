@@ -1,0 +1,128 @@
+table tbl_historico_jira_tarefas
+	lineageTag: beaf5b85-6dc0-4557-b64d-476a9ef0b561
+
+	measure Replanejamento_data_limite = ```
+			
+			//Contar a quantidade de replanejamento que houve em uma tarefa, olhando o campo "data limite"
+			        COALESCE( 
+			        CALCULATE(        
+			        COUNT(tbl_historico_jira_tarefas[Chave]),
+			        FILTER(tbl_historico_jira_tarefas, tbl_historico_jira_tarefas[History Field] = "duedate"),
+			        tbl_historico_jira_tarefas[History Old Value] <> BLANK()),0)
+			```
+		formatString: 0
+		lineageTag: e06dd1ab-8c33-4b6f-9159-35384cbd8b53
+
+	column Chave
+		dataType: string
+		lineageTag: 2527974e-c280-42f5-ba21-8b83596823d2
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'History Field'
+		dataType: string
+		lineageTag: 1528106d-56e1-4598-9c61-3cb1529bb2ad
+		summarizeBy: none
+		sourceColumn: History Field
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'History New Value'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7731d101-9711-4f4a-92ac-d7dfa2b587e1
+		summarizeBy: none
+		sourceColumn: History New Value
+
+		variation Variation
+			isDefault
+			relationship: 90ab41f4-9d8d-480b-88dc-95bcf8e3113d
+			defaultHierarchy: LocalDateTable_3ac0c127-9e02-4603-b842-be758fad968f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'History Old Value'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 38077fff-e528-4c99-b22d-009fa639393d
+		summarizeBy: none
+		sourceColumn: History Old Value
+
+		variation Variation
+			isDefault
+			relationship: c1a581a0-ae13-480b-bec5-106f3329109c
+			defaultHierarchy: LocalDateTable_7ac9a711-2c70-4ac8-b9c5-41e921ba8996.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'History Field Id'
+		dataType: string
+		lineageTag: 181df87f-6b61-4def-aa5b-df12f196ba76
+		summarizeBy: none
+		sourceColumn: History Field Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'History New Value Start'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: cd942cef-cbda-4dca-bfe8-136c6ec2dd15
+		summarizeBy: none
+		sourceColumn: History New Value Start
+
+		variation Variation
+			isDefault
+			relationship: 47e6f486-5c11-4f4c-a42e-14386c26dc69
+			defaultHierarchy: LocalDateTable_092a4827-5e5a-4eea-b3fd-385f7d009079.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'History Old Value Start'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 74faac5e-d90c-4f12-9449-e1d49bb236b0
+		summarizeBy: none
+		sourceColumn: History Old Value Start
+
+		variation Variation
+			isDefault
+			relationship: d31c335f-ed13-4713-8033-5c37462dc782
+			defaultHierarchy: LocalDateTable_d003a1fc-0a99-4ea0-b34d-51c397578fd9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Filtro_replanejamento =
+			
+			SWITCH(
+			    TRUE(),
+			    'tbl_historico_jira_tarefas'[Replanejamento_data_limite] = 0, "Não", "Sim")
+		lineageTag: 3227e8b4-cca2-45a9-abe6-0a6a17841d76
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_historico_jira_tarefas = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/ODgzNDlhMWUtMDdkMS00OGQyLTg2MDktZTkyMTZhMWZj", null, [Implementation="2.0"]),
+				    History_table1 = Fonte{[Name="History",Signature="table"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(History_table1,{{"History New Value", type datetime}, {"History Old Value", type datetime}, {"History New Value Start", type date}, {"History Old Value Start", type date}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Tipo Alterado",{{"History New Value", type date}, {"History Old Value", type date}})
+				in
+				    #"Tipo Alterado1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

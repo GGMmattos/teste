@@ -1,0 +1,192 @@
+table Tbl_todas_issues_jira_tarefa
+	lineageTag: 6b41e0f5-2724-4c32-b276-cc5b32bb5b16
+
+	column Chave
+		lineageTag: e8df6101-bf3c-4a8e-9ffe-63f18a2c8b8e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		formatString: Short Date
+		lineageTag: 12522bda-2c76-4f20-b65b-5c052baf0a48
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Criado]
+
+		variation Variation
+			isDefault
+			relationship: 95fad3a0-a83b-46c5-b406-218cc80bb345
+			defaultHierarchy: LocalDateTable_76d81cce-b02c-4064-9517-3f0f1b4ba9ba.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data solução'
+		formatString: Short Date
+		lineageTag: 9431eb39-e5f3-4f8d-9c91-5cbefabf7f58
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Data solução]
+
+		variation Variation
+			isDefault
+			relationship: fb167b62-440a-427a-9cd2-0e1562d272f0
+			defaultHierarchy: LocalDateTable_0dd06c72-6a53-4f19-8929-52a3f871cd29.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Current Assignee:  Name'
+		lineageTag: 05d6cba8-bc56-46c8-9c9e-6e187d3ae603
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Current Assignee:  Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Status'
+		lineageTag: 4a78f786-757f-4f0d-9240-7c3de5736282
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Current Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data limite'
+		formatString: General Date
+		lineageTag: 9ea40231-7dc9-494f-ade7-ffbcaa1d40fd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Data limite]
+
+		variation Variation
+			isDefault
+			relationship: bab16aec-371b-4cb1-834c-9d3b4189d121
+			defaultHierarchy: LocalDateTable_b39ea846-d795-43a3-ada9-bd34ef72f6e2.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start date'
+		formatString: General Date
+		lineageTag: b8b5d552-bf02-4525-92dc-30668706633e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Start date]
+
+		variation Variation
+			isDefault
+			relationship: 97bc1e9a-3556-45bf-9758-1758d110fda1
+			defaultHierarchy: LocalDateTable_36c6d644-e92d-47b9-a195-8194c26ee374.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Cliente (Contr_ Horas)'
+		lineageTag: 901bcb49-abf9-42dd-b8f3-26a149ac1a29
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Nome Cliente (Contr_ Horas)]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		lineageTag: a5afa8c9-1f4e-4416-92c6-5e0f991759cd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Project Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Key'
+		lineageTag: 74a03c7b-d866-4b06-a7e8-56c19cf171bf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Parent Issue Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Summary'
+		lineageTag: 6bd15931-4ab2-40ea-a19d-690fd1c1ee78
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Parent Issue Summary]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resumo
+		lineageTag: f9e8ec90-a9a5-4a94-88b9-9d916a8ae7eb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Resumo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		lineageTag: 61787fd8-d732-4ef6-ac63-757a0b900a0f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Team]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prioridade
+		lineageTag: 66e16e63-c866-487c-b488-6f8f6e20c809
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Prioridade]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Atualizado(a)
+		formatString: Short Date
+		lineageTag: 77653728-8c91-434e-978b-4f5f52ffb2b2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Atualizado(a)]
+
+		variation Variation
+			isDefault
+			relationship: 7187c332-3132-4dcb-92f2-a9a371d5bd4d
+			defaultHierarchy: LocalDateTable_cf6b130f-f3d7-4963-bbf9-e88b74939bd4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Tbl_todas_issues_jira_tarefa = calculated
+		mode: import
+		source = ```
+				
+				
+				    SUMMARIZE(
+				        FILTER(
+				            'tbl_todas_issues_jira',
+				            NOT'tbl_todas_issues_jira'[Tipo de item] IN {"Subtarefa", "Bug Qualidade", "Bug Análise", "Bug Review", "Bug OKR", "Bug Teste", "Entrega"}
+				        ),
+				        'tbl_todas_issues_jira'[Chave],
+				        'tbl_todas_issues_jira'[Criado],
+				        'tbl_todas_issues_jira'[Data solução],
+				        'tbl_todas_issues_jira'[Current Assignee:  Name],
+				        'tbl_todas_issues_jira'[Current Status],
+				        'tbl_todas_issues_jira'[Data limite],
+				        'tbl_todas_issues_jira'[Start date],
+				        'tbl_todas_issues_jira'[Nome Cliente (Contr_ Horas)],
+				        --'tbl_todas_issues_jira'[Tipo de Despesa],
+				        --'tbl_todas_issues_jira'[Setor],
+				        'tbl_todas_issues_jira'[Project Name],
+				        'tbl_todas_issues_jira'[Parent Issue Key],
+				        'tbl_todas_issues_jira'[Parent Issue Summary],
+				        'tbl_todas_issues_jira'[Resumo],
+				        --'tbl_todas_issues_jira'[Custo (R$)],
+				        'tbl_todas_issues_jira'[Team],
+				        'tbl_todas_issues_jira'[Prioridade],
+				        'tbl_todas_issues_jira'[Atualizado(a)]
+				    )
+				```
+
+	annotation PBI_Id = d62b7665531f4f80be42014cc300e367
+

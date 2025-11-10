@@ -1,0 +1,296 @@
+table Tbl_todas_issues_jira_subtarefa
+	lineageTag: bc773437-f21a-4e3d-b5bd-7a2a6df92e76
+
+	measure Real_inicio_apontamento_diagnostico_prc =
+			
+			-- Pegando o primeiro apontamento da tarefa
+			COALESCE(
+			    MIN(tbl_start_stop_relacionado_todas_issues[Data Inicial]),
+			    BLANK()
+			)
+		formatString: Short Date
+		lineageTag: 5fca9376-272d-4226-a92d-812c37a5e4b6
+
+	column Chave
+		lineageTag: 9b97fab6-4ce6-4363-809d-6fc18ec378c6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		lineageTag: 1a6933f1-2887-4d71-b8ef-f095016daa55
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Project Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resumo
+		lineageTag: 5f7448c0-6e77-4912-952d-259a482c7bf1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Resumo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custo (R$)'
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: ed32a185-76d4-4978-9473-773dc8ca47dd
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Custo (R$)]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Parent Issue Summary'
+		lineageTag: 187ee5a3-739b-4c8f-bb65-be287d678e88
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Parent Issue Summary]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Despesa'
+		lineageTag: 865e9b67-e5b4-44e9-97a1-88ade092dda8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Tipo de Despesa]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Setor
+		lineageTag: 68cc4200-619d-4716-a020-bb8556fda901
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Setor]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Cliente (Contr_ Horas)'
+		lineageTag: 519f8c8b-4fb8-48bf-949c-a3e74dbf6906
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Nome Cliente (Contr_ Horas)]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Status'
+		lineageTag: 276359e2-401d-4c3d-8b95-065f0b4f57b7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Current Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data limite'
+		formatString: General Date
+		lineageTag: 686e5175-7ea5-4912-998e-bae67c2764ab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Data limite]
+
+		variation Variation
+			isDefault
+			relationship: e57fbdf7-2c5f-456e-8808-f17e61710757
+			defaultHierarchy: LocalDateTable_e4746b55-86b5-4775-89b2-0b171b1872a1.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		formatString: Short Date
+		lineageTag: a0f28d8d-707b-4ca1-ab81-8e43e1540958
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Criado]
+
+		variation Variation
+			isDefault
+			relationship: fb929dcc-8387-4df9-9e55-01306fc65345
+			defaultHierarchy: LocalDateTable_8d7770e1-cbac-4732-acc1-679ca5db9073.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Current Assignee:  Name'
+		lineageTag: 1b629a1f-4842-47bc-823b-d9fde59cb17c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Current Assignee:  Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		lineageTag: d0346ffe-46ee-479d-ae69-86313c3e99d8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Team]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Atualizado(a)
+		formatString: General Date
+		lineageTag: 0fef04b6-2350-48dd-9449-38d9b4ec196f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Atualizado(a)]
+
+		variation Variation
+			isDefault
+			relationship: 7b92ae30-02e1-4463-8544-795fc557b20c
+			defaultHierarchy: LocalDateTable_52c4bab1-b2d3-4d3a-adb8-6557ab106965.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data solução'
+		formatString: General Date
+		lineageTag: 8f740268-31f2-4206-a1fa-707bd290a531
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Data solução]
+
+		variation Variation
+			isDefault
+			relationship: 82f27869-ae00-4818-a906-cfa4d7e79660
+			defaultHierarchy: LocalDateTable_cb9f73da-6465-4ed4-8717-5b0eba485f71.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link_todas_issues_subtarefa_jira =
+			
+			"https://sabium.atlassian.net/browse/" & 'Tbl_todas_issues_jira_subtarefa'[Chave]
+		lineageTag: 383f28db-faf5-46a9-bb7e-3f4cb867252d
+		dataCategory: WebUrl
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias_corridos_todas_issues_subtarefa = ```
+			
+			    DATEDIFF(
+			    Tbl_todas_issues_jira_subtarefa[Criado],
+			    COALESCE(Tbl_todas_issues_jira_subtarefa[Data solução], TODAY() ),DAY) + 0
+			```
+		formatString: 0
+		lineageTag: 614c47f4-064a-4dbb-bc36-9492503a576a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias_em_atrasos = ```
+			
+			    DATEDIFF(
+			    Tbl_todas_issues_jira_subtarefa[Data limite],
+			    COALESCE(Tbl_todas_issues_jira_subtarefa[Data solução], TODAY() ),DAY) + 0
+			```
+		formatString: 0
+		lineageTag: 11b84c0f-7803-4ffd-b95e-7fb42c1a51a0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prioridade
+		lineageTag: 069c89bc-de19-4dd7-927d-e79bd2fe2b58
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Prioridade]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start date'
+		formatString: General Date
+		lineageTag: e57ab909-c85f-42d7-bb5c-903f82db2a09
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Start date]
+
+		variation Variation
+			isDefault
+			relationship: 0df51ed4-8e92-45d4-84cb-8094da9f8d4d
+			defaultHierarchy: LocalDateTable_f36ad0ee-bc3b-4ce1-9faf-0885184fff3d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relacionado_agrupamento_status_sa_entrega = ```
+			
+			            SWITCH(
+			                TRUE(),
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Aberto"}, "Aberto",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Backlog aceite"}, "Backlog aceite",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Backlog Comitê Produto"}, "Backlog CP",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] = "Backlog Evolução", "Backlog Evolução",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Backlog Distribuidora"}, "Backlog Distribuidora",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Em andamento CP"}, "Em andamento CP",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Em triagem"}, "Triagem",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Em Avaliação", "Em avaliação/Diagnóstico"}, "Avaliação Consultoria",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Em orçamento (Análise)"}, "Orçamento Análise",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Aprovar Orçamento Análise"}, "Aprovar Orçamento (Análise)",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Em análise de requisitos"}, "Em Análise",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Aprovar documento"}, "Aprovar Documento",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Em orçamento (Execução)"}, "Orçamento (Execução)",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] = "Autenticação Técnica", "Autenticação Técnica",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] = "Autenticação Comercial (Execução)", "Autenticação Comercial (Execução)",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] = "Autenticação Comercial (Análise)", "Autenticação Comercial (Análise)",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Aprovar Orçamento Execução"}, "Aprovar Orçamento (Execução)",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Aguardando solução"}, "Aguardando Solução",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] = "Desenvolvimento", "Desenvolvimento",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] = "Suporte/Manutenção", "Suporte/Manutenção",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] = "Infraestrutura", "Infraestrutura",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] = "Serviços Extracontratuais", "Serviços Extracontratuais",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Para entrega"}, "Para Entrega",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Aguardando validação cliente"}, "Validação Cliente",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Em avaliação de NC"}, "Em Avaliação de NC",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] IN {"Aguardando cliente", "Aguardando interno", "Autorizar acesso a base de terceiros"}, "Aguardando Interno",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] =  "Cancelada",  "Cancelada",
+			                    Tbl_todas_issues_jira_subtarefa[Current Status] =  "Concluído", "Concluído")
+			```
+		lineageTag: 8557080a-1989-4d9c-9386-db83849e3783
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Key'
+		lineageTag: cb427dba-542f-4ac2-a2ea-05aeabf6ab6b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_todas_issues_jira[Parent Issue Key]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Tbl_todas_issues_jira_subtarefa = calculated
+		mode: import
+		source = ```
+				
+				
+				    SUMMARIZE(
+				        FILTER(
+				            'tbl_todas_issues_jira',
+				            'tbl_todas_issues_jira'[Tipo de item] IN {"Subtarefa", "Bug Qualidade", "Bug Análise", "Bug Review", "Bug OKR", "Bug Teste", "Entrega"}
+				        ),
+				        'tbl_todas_issues_jira'[Chave],
+				        'tbl_todas_issues_jira'[Criado],
+				        'tbl_todas_issues_jira'[Data solução],
+				        'tbl_todas_issues_jira'[Current Assignee:  Name],
+				        'tbl_todas_issues_jira'[Current Status],
+				        'tbl_todas_issues_jira'[Data limite],
+				        'tbl_todas_issues_jira'[Start date],
+				        'tbl_todas_issues_jira'[Nome Cliente (Contr_ Horas)],
+				        'tbl_todas_issues_jira'[Tipo de Despesa],
+				        'tbl_todas_issues_jira'[Setor],
+				        'tbl_todas_issues_jira'[Project Name],
+				        'tbl_todas_issues_jira'[Parent Issue Summary],
+				        'tbl_todas_issues_jira'[Resumo],
+				        'tbl_todas_issues_jira'[Custo (R$)],
+				        'tbl_todas_issues_jira'[Team],
+				        'tbl_todas_issues_jira'[Prioridade],
+				        'tbl_todas_issues_jira'[Parent Issue Key],
+				        'tbl_todas_issues_jira'[Atualizado(a)]
+				    )
+				```
+
+	annotation PBI_Id = 024686ad6a10486b9e604242bc220810
+

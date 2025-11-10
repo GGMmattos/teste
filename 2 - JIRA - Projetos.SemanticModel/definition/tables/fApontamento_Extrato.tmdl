@@ -1,0 +1,273 @@
+table fApontamento_Extrato
+	lineageTag: c197f43e-540f-42b8-b56b-0f75d9b9514d
+
+	measure hrs_previstas_fApontamento_Extrato =
+			
+			SUM(FApontamento_Extrato[hrsPrevistas]) + 0
+		formatString: #,0.00
+		lineageTag: c4317fc1-897f-4ce7-ae7b-b43df3b58176
+
+		changedProperty = IsHidden
+
+	measure 'Hr Projetada (fApontamento_Extrato)' = ```
+			
+			    COALESCE(
+			        CALCULATE(
+			            SWITCH(
+			                TRUE(),
+			                SUM(fApontamento_Extrato[hrRealizada]) = 0, SUM(fApontamento_Extrato[hrsPrevistas]),
+			                COALESCE(CALCULATE(
+			                    SUM(fApontamento_Extrato[hrsProjetadas]),
+			                    NOT tbl_tarefas_jira[Situacao] IN {"Concluído","Cancelada"}
+			                ),0)
+			                +
+			                COALESCE(CALCULATE(
+			                    SUM(fApontamento_Extrato[hrRealizada]),
+			                    tbl_tarefas_jira[Situacao] IN {"Concluído","Cancelada"}
+			                ),0)
+			            )
+			        )
+			    ,0) + [Hr Projetada (fApontamento_Extrato_Subtask)]
+			```
+		formatString: #,0.00
+		lineageTag: 393bdb7b-44f0-4d56-be41-49cfbe600b11
+
+		changedProperty = IsHidden
+
+	measure hrs_realizadas_fApontamento_Extrato =
+			
+			SUM(fApontamento_Extrato[hrRealizada])
+		lineageTag: af3b9a3e-227c-4ee4-b4aa-56b2a179f08e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)' = ```
+			
+			                              CALCULATE(SUM(fApontamento_Extrato[hrRealizada]), ALL(fApontamento_Extrato[hrRealizada])) + 
+			                              CALCULATE(SUM(fApontamento_Extrato_Subtask[hrRealizada]), ALL(fApontamento_Extrato_Subtask[hrRealizada])) + 0
+			```
+		formatString: #,0.00
+		displayFolder: Tela Desvio
+		lineageTag: 701515b2-9473-4fc4-8ebb-cccdbfecb41f
+
+	measure '% Consumido (Tela Desvios)' = DIVIDE([Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)], 'fApontamento_Extrato'[hrs_previstas_fApontamento_Extrato], 0)
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: Tela Desvio
+		lineageTag: d37f9780-0358-4828-b6dc-7ffc9bdfbccd
+
+	measure '% Conclusão (Tela Desvios)' = ROUND(DIVIDE([Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)], [Hr Projetada (fApontamento_Extrato)],0),2)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Desvio
+		lineageTag: ad422ad8-09cc-4908-85f4-66cf1ec6b546
+
+	measure 'Desvio Realizado (Tela Desvios)' = ```
+			
+			    SWITCH(
+			        TRUE,
+			        [Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)] = 0, "0" * 10 / 1000,
+			        [hrs_previstas_fApontamento_Extrato]= 0, 0.00 ,
+			        ([Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)] - [hrs_previstas_fApontamento_Extrato]) / [hrs_previstas_fApontamento_Extrato]
+			    )
+			```
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: Tela Desvio
+		lineageTag: 02b7628f-a09a-49b8-b0d5-8a4859e17add
+
+	measure 'Desvio orçamento (Tela Desvios)' = ```
+			
+			    SWITCH(
+			        TRUE,
+			        [Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)] = 0, "0" * 10 / 1000,
+			        [Hrs. Orçadas igual (0) pegar Hrs previstas]= 0, 0.00 ,
+			        ([Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)] - [Hrs. Orçadas igual (0) pegar Hrs previstas]) / [Hrs. Orçadas igual (0) pegar Hrs previstas]
+			    )
+			```
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: Tela Desvio
+		lineageTag: ce420e08-ea55-4266-8b7b-0d72aa7eef4a
+
+	measure 'Desvio Real (Atual)' = [% Consumido (Tela Desvios)] - [% Conclusão (Tela Desvios)] + 0
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: Tela Desvio
+		lineageTag: 4478d80e-6a1a-4e3b-827e-565cacb35265
+
+	measure hrs_realizadas_backlog_execucao = ```
+			
+			                                    SWITCH(
+			                                        TRUE(),
+			                                        // Hrs previstas maior que as horas realizadas, o resultado será horas previstas.
+			                                        [hrs_previstas_fApontamento_Extrato] > 'fApontamento_Extrato'[Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)], [hrs_previstas_fApontamento_Extrato],
+			                                        // Hrs previstas menor que horas realizadas, o resultado será horas realizadas.
+			                                        [hrs_previstas_fApontamento_Extrato] < 'fApontamento_Extrato'[Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)], 'fApontamento_Extrato'[Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)]) + 0
+			```
+		lineageTag: 6f499f88-002b-48a2-8845-9aaf39c5f69f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Hrs Adicionais' = ([Hr Projetada (fApontamento_Extrato)] - [hrs_previstas_fApontamento_Extrato])
+		lineageTag: f89ee030-a700-4e51-9062-1230a6f29aa6
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Desvio projetado' = DIVIDE('fApontamento_Extrato'[Hrs Adicionais], fApontamento_Extrato[hrs_previstas_fApontamento_Extrato], 0) -- DIVIDE([Hr Adicionais], [Soma Horas Previstas Story], 0)
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: b456e0d5-2ad7-41f6-b415-63c39d125c2a
+
+		changedProperty = IsHidden
+
+	measure Hrs_restante = ('fApontamento_Extrato'[Hr Projetada (fApontamento_Extrato)] - fApontamento_Extrato[hrs_realizadas_fApontamento_Extrato]) + 0
+		lineageTag: 4b94d1a9-825a-476b-8ebd-dd4f8c7fcc69
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Status_horas_realizadas_maior_que_prevista =
+			
+			IF(
+			    [Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)] > [hrs_previstas_fApontamento_Extrato],
+			    "Sim",
+			    "Não"
+			)
+		lineageTag: 90728e8b-fd76-47a8-b9a5-821388f11f47
+
+	measure Saldo_Horas_Formatado = ```
+			
+			VAR Prevista = 'fApontamento_Extrato'[hrs_previstas_fApontamento_Extrato]
+			VAR Realizado = 'fApontamento_Extrato'[Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)]
+			VAR Saldo = Prevista - Realizado
+			RETURN
+			IF(
+			    Realizado > Prevista,
+			    "+ " & FORMAT(ABS(Saldo), "0.00"),  -- passou das horas
+			    "- " & FORMAT(ABS(Saldo), "0.00")   -- ainda não passou
+			)
+			
+			```
+		lineageTag: 95b2f95e-9d2d-495a-9a11-dbc3b8fa6f2e
+
+	column tarefaId
+		dataType: string
+		lineageTag: 8de4c0db-7773-43c4-83a3-ca1590a16a23
+		summarizeBy: none
+		sourceColumn: tarefaId
+
+		changedProperty = IsHidden
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave
+		dataType: string
+		lineageTag: bc322c12-0ddb-467b-8258-bf9d359d0fad
+		summarizeBy: none
+		sourceColumn: chave
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column projetoId
+		dataType: int64
+		formatString: 0
+		lineageTag: 927a8cc5-9af6-40f8-beb6-616a3d418ef9
+		summarizeBy: none
+		sourceColumn: projetoId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column percentualConcluido
+		dataType: string
+		lineageTag: 56cd4772-652f-4fd3-8da4-bf3fdfbcc111
+		summarizeBy: none
+		sourceColumn: percentualConcluido
+
+		changedProperty = DataType
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column hrRealizada
+		dataType: double
+		lineageTag: 7c5c0870-6d6b-4eb8-b685-925fc53b0117
+		summarizeBy: none
+		sourceColumn: hrRealizada
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hrsPrevistas
+		dataType: double
+		formatString: 0.00
+		lineageTag: 5807c8cd-7807-451d-b370-e0882daecb82
+		summarizeBy: none
+		sourceColumn: hrsPrevistas
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column hrsProjetadas
+		dataType: double
+		lineageTag: 1a8849fe-c7f2-4113-a5ca-a5a276576026
+		summarizeBy: none
+		sourceColumn: hrsProjetadas
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Status_horas_previstas
+		dataType: string
+		lineageTag: d96b5e47-76dd-4eba-be13-6f512c7ec5ac
+		summarizeBy: none
+		sourceColumn: Status_horas_previstas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Filtro_desvio_realizado_com_e_sem = ```
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK ( 'fApontamento_Extrato'[Desvio Real (Atual)] ), "Sem Desvio",
+			    'fApontamento_Extrato'[Desvio Real (Atual)] > 0, "Com Desvio",
+			    'fApontamento_Extrato'[Desvio Real (Atual)] <= 0, "Sem Desvio"
+			)
+			
+			```
+		lineageTag: 948651d2-bc8f-4147-bc87-d12679961359
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fApontamento_Extrato = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(
+				    Web.Contents(
+				        "https://service.sabium.com.br/api_controlehoras/controle-publico/orcamento/estimativa/pert/buscaLista",
+				        [Timeout = #duration(0,0,5,0)]
+				    )
+				),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"tarefaId", "chave", "projetoId", "percentualConcluido", "hrRealizada", "hrsPrevistas", "hrsProjetadas"}, {"tarefaId", "chave", "projetoId", "percentualConcluido", "hrRealizada", "hrsPrevistas", "hrsProjetadas"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"tarefaId", Int64.Type}, {"chave", type text}, {"projetoId", Int64.Type}, {"percentualConcluido", Int64.Type}, {"hrRealizada", type number}, {"hrsPrevistas", type number}, {"hrsProjetadas", type number}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each not Text.StartsWith([chave], "APPGES")),
+				    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Linhas Filtradas", "Status_horas_previstas", each if [hrsPrevistas] > 0 then "Com Estimativa" else "Sem Estimativa")
+				in
+				    #"Coluna Condicional Adicionada"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

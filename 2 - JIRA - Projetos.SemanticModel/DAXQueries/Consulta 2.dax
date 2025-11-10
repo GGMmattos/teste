@@ -1,0 +1,17 @@
+DEFINE
+	VAR __DS0FilterTable = 
+		FILTER(
+			KEEPFILTERS(VALUES('tblStory'[Created])),
+			'tblStory'[Created] >= DATE(2025, 1, 1)
+		)
+
+	VAR __DS0FilterTable2 = 
+		TREATAS({"Infra"}, 'tbl_tarefas_jira'[Project Name])
+
+EVALUATE
+	SUMMARIZECOLUMNS(
+		__DS0FilterTable,
+		__DS0FilterTable2,
+		"MinDate", IGNORE(CALCULATE(MIN('Calendario_automatico_novo'[Date]))),
+		"MaxDate", IGNORE(CALCULATE(MAX('Calendario_automatico_novo'[Date])))
+	)

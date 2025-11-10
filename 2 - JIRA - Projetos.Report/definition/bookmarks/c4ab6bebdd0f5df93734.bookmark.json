@@ -1,0 +1,1159 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "fechar_menu_TME_SA",
+  "name": "c4ab6bebdd0f5df93734",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "4d70fa9a15344e78eedd",
+    "sections": {
+      "4d70fa9a15344e78eedd": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "60dafd681caab38c1480",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "t",
+                    "Entity": "tblEpics",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "t"
+                                }
+                              },
+                              "Property": "Project_Name"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Solicitação de Atendimento'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tblEpics"
+                    }
+                  },
+                  "Property": "Project_Name"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "c6fb0c39339cb4040eb7": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "fef8ab63392e1e03b5b4": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "bb245a9a1aac4868ed95": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "b9aedf215e37069a6e83": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "f5be806172acd0b55830": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dc92a2f240de1c073229",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Data/Hora Atualização"
+                            }
+                          },
+                          "Property": "Data da Última Atualização"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Data/Hora Atualização"
+                            }
+                          },
+                          "Property": "Data da Última Atualização"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "8fc88d5943982ac04c19": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "e79dc02cbe143bc7040c": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a5a70f42463c320bb227": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "e0ac8e2f211893c3a814": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "2e983eb50529e1d60888": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "b793cb80c7945a5bd92a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ded9a847994bf1e5e200",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Nome_Cliente__Contr__Horas_"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "t",
+                                "Entity": "tblEpics",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Not": {
+                                    "Expression": {
+                                      "In": {
+                                        "Expressions": [
+                                          {
+                                            "Column": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Source": "t"
+                                                }
+                                              },
+                                              "Property": "Nome_Cliente__Contr__Horas_"
+                                            }
+                                          }
+                                        ],
+                                        "Values": [
+                                          [
+                                            {
+                                              "Literal": {
+                                                "Value": "'Cliente Teste Cauan'"
+                                              }
+                                            }
+                                          ],
+                                          [
+                                            {
+                                              "Literal": {
+                                                "Value": "'Sabium Sistemas'"
+                                              }
+                                            }
+                                          ]
+                                        ]
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        },
+                        "isInvertedSelectionMode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Nome_Cliente__Contr__Horas_"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "c7cd4e1561c95577bb8b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6e31861042e5c503670d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendário SA (criado x fechado)"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "c",
+                                "Entity": "Calendário SA (criado x fechado)",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Comparison": {
+                                    "ComparisonKind": 2,
+                                    "Left": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Source": "c"
+                                          }
+                                        },
+                                        "Property": "Date"
+                                      }
+                                    },
+                                    "Right": {
+                                      "Literal": {
+                                        "Value": "datetime'2025-01-06T00:00:00'"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "startDate": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "datetime'2025-01-06T00:00:00'"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Between'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendário SA (criado x fechado)"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Calendário SA (criado x fechado)"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "9a1a6b1e6b723009c5b0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "711d118592d3092eb62b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "tipo.descricao"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0d26cea5f306cb2c1f76",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Tempo_Medio_Conclusao_SA_Dias_Uteis"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "columnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Tempo_Medio_Conclusao_SA_Dias_Uteis"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "tipo.descricao"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "9fe313e218a40ae48466": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b7152aa9eb3b2e502b83",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Summary"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c69627a8f95570471604",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Key"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "94b216d001da8b4213a0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Status_Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "76cc58b612a68a80eed9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Created"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2486582ecd42e50c2c60",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Data_solu__o"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2b528525166670178c22",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Nome_Cliente__Contr__Horas_"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b1ee7891da1a4e620012",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Tempo_Medio_Conclusao_SA_Dias_Uteis"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "eb79f8f1bb6b6ccda98b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "tipo.descricao"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Key"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "bf8b23c9b25d0ab62034": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "081f1cfd05a75383c637",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "tipo.descricao"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fOrçamento"
+                        }
+                      },
+                      "Property": "tipo.descricao"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "c6cce9e400a21501d3a0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e9e356398ebdb814acaa",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Tempo_Medio_Conclusao_SA_Dias_Uteis"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Tempo_Medio_Conclusao_SA_Dias_Uteis"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "8be730b06174666dd9bc": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3c66286160a990c5cba3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Nome_Cliente__Contr__Horas_"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c9046b227df6463c3ad9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Tempo_Medio_Conclusao_SA_Dias_Uteis"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Tempo_Medio_Conclusao_SA_Dias_Uteis"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Nome_Cliente__Contr__Horas_"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "97b7a5f0eb202505c03a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "0b901962cdc3ab21080d",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "t",
+                        "Entity": "tblHistorico_Status_Jira",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "t"
+                                    }
+                                  },
+                                  "Property": "Status_Name_New"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Aguardando validação cliente'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Cancelada'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Concluído'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Para entrega'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Status_Name_New"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "cb811d7f4cc648fcf463",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd Entregas (SA)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd Entregas (SA)"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ef70730a15c32844be06": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "0b901962cdc3ab21080d",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "t",
+                        "Entity": "tblHistorico_Status_Jira",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "t"
+                                    }
+                                  },
+                                  "Property": "Status_Name_New"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Aguardando validação cliente'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Cancelada'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Concluído'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Para entrega'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblHistorico_Status_Jira"
+                        }
+                      },
+                      "Property": "Status_Name_New"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "9f8c6b3e2e4f334d5ecc",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_entrega_status_sa_concluido_e_cancelado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_entrega_status_sa_concluido_e_cancelado"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "5be0f1a39b20e294000d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "107f5e280593ea7794ae",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd Entrega em Aberto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd Entrega em Aberto"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "719098f7ddb22358206e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "579830b32ff9b0e41948",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Data da Última Atualização"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "51a14d1340222e3aa0f9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Usuário Logado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Data da Última Atualização"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

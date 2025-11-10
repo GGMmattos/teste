@@ -1,0 +1,657 @@
+table fOrçamento
+	lineageTag: 34a4cd74-9a9a-4425-af5c-7fce350a2387
+
+	measure 'Soma Hrs Orçadas' = ```
+			
+			 // Soma das horas orçadas, porém, faz uma média de todos os valores, para não somar valores duplicados.
+			SUMX(
+			VALUES(tbl_entregas_jira[Chave]),
+			CALCULATE(DISTINCT('fOrçamento'[totalOrcado]))
+			) + 0
+			```
+		lineageTag: 9d1d587e-7d13-4fbb-b23e-017ef541ea56
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd tarefas Orçamento Aprovado' = ```
+			
+			        CALCULATE(        
+			        DISTINCTCOUNT('fOrçamento'[issueJira.key]),
+			        FILTER('fOrçamento', 'fOrçamento'[Status Orçamento] = "Aprovado")) + 0
+			```
+		formatString: 0
+		lineageTag: e9614e21-3751-4491-aa16-e1a6a027a2de
+
+	measure 'Qtd tarefas Orçamento Não Aprovado' = ```
+			
+			        CALCULATE(        
+			        DISTINCTCOUNT('fOrçamento'[issueJira.key]),
+			        FILTER('fOrçamento', 'fOrçamento'[Status Orçamento] = "Não aprovado")) + 0
+			```
+		formatString: 0
+		lineageTag: 4e8ad964-c77e-400b-b13c-b95ca68fd693
+
+	measure 'Qtd tarefas Orçamento Em Orçamento' = ```
+			
+			        CALCULATE(        
+			        DISTINCTCOUNT('fOrçamento'[issueJira.key]),
+			        FILTER('fOrçamento', 'fOrçamento'[Status Orçamento] = "Em Orçamento")) + 0
+			```
+		formatString: 0
+		lineageTag: 18271b4a-228b-454f-baa3-eb2425e5c623
+
+	measure 'Qtd tarefas Orçamento Cobrança/Cobrado' = ```
+			
+			        CALCULATE(        
+			        DISTINCTCOUNT('fOrçamento'[issueJira.key]),
+			        FILTER('fOrçamento', 'fOrçamento'[Status Orçamento] = "Cobrança/Cobrado")) + 0
+			```
+		formatString: 0
+		lineageTag: 87313d71-1354-495a-955a-2276d13e5335
+
+	measure 'Hrs. Orçadas igual (0) pegar Hrs previstas' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Hrs. Orçadas com tratamento] = 0, [hrs_previstas_fApontamento_Extrato],
+			    [Hrs. Orçadas com tratamento] > 0, [Hrs. Orçadas com tratamento])
+		lineageTag: 02766f19-fda0-479f-be7f-c71223f7486f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Soma_horas_alto_nivel = ```
+			SUM('fOrçamento'[horas.horasAltoNivel]) + 0 
+			```
+		formatString: #,0.00
+		lineageTag: ffcd0afb-a24b-4b01-b33c-26cfac059f05
+
+	measure 'Hrs. Previsas/Alto Nível' =
+			
+			// Quando as horas previstas da Entrega estiver igual a 0, será pego as horas de alto nível do controle de horas.
+			                            SWITCH(
+			                                TRUE(),
+			                                    [hrs_previstas_fApontamento_Extrato] > 0, [hrs_previstas_fApontamento_Extrato],
+			                                    [hrs_previstas_fApontamento_Extrato] >= 0, [Soma_horas_alto_nivel]) + 0
+		formatString: #,0.00
+		displayFolder: Tela (Comitê Produto)
+		lineageTag: dc2312d0-fbe9-4baa-aa25-ac54344445bc
+
+	measure Backlog_dias_Por_Recurso = ```
+			
+			FORMAT(
+			    DIVIDE(
+			        [Soma_horas_alto_nivel],
+			        [Qtd de Recursos] * 6.5,
+			        0
+			    ),
+			    "#,##0.00"
+			) & " dias"
+			
+			```
+		displayFolder: Tela (Comitê Produto)
+		lineageTag: 1d41da89-0374-47dc-8f16-a18da8a0a143
+
+	measure 'Hrs. Orçadas com tratamento' = ```
+			
+			    SUMX(
+			    VALUES('fOrçamento'[issueJira.key]),
+			    CALCULATE(
+			    AVERAGE('fOrçamento'[totalOrcado])))
+			```
+		lineageTag: 6480f1f7-1a11-486d-99a6-ed69a374cb68
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Qtd de Usuário' = ```
+			COUNT('fOrçamento'[usuario.nome]) + 0 
+			```
+		formatString: 0
+		lineageTag: 8fed958a-90cb-4f2c-ae5f-4d5629d38446
+
+	measure 'Qtd de Recursos' = DISTINCTCOUNT('tblAdministração'[membros.nome]) + 0
+		formatString: 0
+		displayFolder: Tela (Comitê Produto)
+		lineageTag: 16591691-932b-4073-97b4-9ad4104eda72
+
+	measure 'Horas Realizadas (com relacionamento)' =
+			
+			CALCULATE(
+			    SUM(fApontamento_Extrato[hrRealizada]),
+			    USERELATIONSHIP(
+			        'fOrçamento'[issueJira.filhos.key],
+			        fApontamento_Extrato[chave]
+			    )
+			)
+		lineageTag: 96ae456e-9c50-4950-8178-53e48271b958
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure recursos_disponiveis_por_dia_comite_produto =
+			
+			-- Quantidade de recursos disponível por papel, multiplicado por 6,5 dias.
+			FORMAT([Qtd de Recursos] * 6.5, "#,##0.00") & " dias"
+		displayFolder: Tela (Comitê Produto)
+		lineageTag: f067a88a-6615-4b13-8b8b-e06aff99bb9f
+
+	measure qtd_entregas_orcamento = DISTINCTCOUNT('fOrçamento'[issueJira.key]) + 0
+		formatString: 0
+		lineageTag: 169ee32d-dddb-4fb7-a598-b25010d99541
+
+	measure %_Markup =
+			
+			AVERAGEX (
+			    VALUES ( 'fOrçamento'[issueJira.key] ),
+			    CALCULATE ( AVERAGE ( 'fOrçamento'[markup] ) )
+			) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 38e177ff-7909-4769-b096-14471f59df66
+
+	measure Hrs_Orcadas_Com_Markup =
+			
+			'fOrçamento'[Hrs. Orçadas igual (0) pegar Hrs previstas] *(1 + 'fOrçamento'[%_Markup]) + 0
+		lineageTag: bc2e73e7-82b5-4ff0-adcd-5abbc3867fba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d4a7dd0-4e2d-4c29-a014-0999104cb6fe
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'cliente.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: f44092d4-62f6-49da-a32e-6afa74c8e1a5
+		summarizeBy: sum
+		sourceColumn: cliente.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'cliente.nome'
+		dataType: string
+		lineageTag: cf67d059-51aa-4919-a678-7d124b02e195
+		summarizeBy: none
+		sourceColumn: cliente.nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'cliente.razaoSocial'
+		dataType: string
+		lineageTag: 54b15165-0d91-4d75-81de-a1c87122d514
+		summarizeBy: none
+		sourceColumn: cliente.razaoSocial
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'cliente.cnpj'
+		dataType: string
+		lineageTag: 7d8e8dec-e2dd-4393-b4f0-6f9f7859527f
+		summarizeBy: none
+		sourceColumn: cliente.cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'cliente.markup'
+		dataType: string
+		lineageTag: 1cfa7f07-3946-48e3-82e4-324bcb3b236b
+		summarizeBy: none
+		sourceColumn: cliente.markup
+
+		annotation SummarizationSetBy = Automatic
+
+	column time
+		dataType: string
+		lineageTag: 03f81ec5-09a3-4f77-bd7a-db9a9eb663c8
+		summarizeBy: none
+		sourceColumn: time
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'tipoFinanceiro.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: ca0edd0f-3322-468c-a87f-d9651f49531f
+		summarizeBy: sum
+		sourceColumn: tipoFinanceiro.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'tipoFinanceiro.descricao'
+		dataType: string
+		lineageTag: 577557f9-510f-48dd-a6b0-4fbe5beab4eb
+		summarizeBy: none
+		sourceColumn: tipoFinanceiro.descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'subTipoFinanceiro.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: d43e9eb4-7de6-47a3-ae57-400fd31e0f14
+		summarizeBy: sum
+		sourceColumn: subTipoFinanceiro.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'subTipoFinanceiro.descricao'
+		dataType: string
+		lineageTag: 2b67cda0-1225-413e-8f72-e12aa26d9021
+		summarizeBy: none
+		sourceColumn: subTipoFinanceiro.descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'tipoOrcamento.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 824a7242-14e3-4d27-90f5-b974064bcc80
+		summarizeBy: sum
+		sourceColumn: tipoOrcamento.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'tipoOrcamento.descricao'
+		dataType: string
+		lineageTag: 0bf4279e-d60c-450c-a493-5aefee94e7f2
+		summarizeBy: none
+		sourceColumn: tipoOrcamento.descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'usuario.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b4d1031-2f43-4974-9454-5d863f9fa9bd
+		summarizeBy: sum
+		sourceColumn: usuario.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'usuario.nome'
+		dataType: string
+		lineageTag: cee346de-7bbe-41ad-b742-ee040f159073
+		summarizeBy: none
+		sourceColumn: usuario.nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'usuario.email'
+		dataType: string
+		lineageTag: 74499132-c71b-48d7-9b67-957352509a46
+		summarizeBy: none
+		sourceColumn: usuario.email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'parecerFinanceiro.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 012d833b-1f5d-4fb8-8ed6-cbecb28d0371
+		summarizeBy: sum
+		sourceColumn: parecerFinanceiro.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'parecerFinanceiro.descricao'
+		dataType: string
+		lineageTag: 836f2bee-3ea5-4d5f-b36b-712317c8bfa6
+		summarizeBy: none
+		sourceColumn: parecerFinanceiro.descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column desconto
+		dataType: double
+		lineageTag: 3665f968-d00d-49d9-9092-0132966c5675
+		summarizeBy: sum
+		sourceColumn: desconto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column justificativa
+		dataType: string
+		lineageTag: 0b0e325b-5cfd-4402-9fe9-ddcfe2f820fb
+		summarizeBy: none
+		sourceColumn: justificativa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 73523549-5fa3-4005-8ed3-ad65b01b036c
+		summarizeBy: none
+		sourceColumn: issueJira.id
+
+		annotation SummarizationSetBy = User
+
+	column 'issueJira.titulo'
+		dataType: string
+		lineageTag: 40f9a2ec-a32e-4ee9-aa10-a752a5e64a45
+		summarizeBy: none
+		sourceColumn: issueJira.titulo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.previsaoEntrega'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 76a6ed35-4ca2-4f75-bfdd-3af4bd32e8ea
+		summarizeBy: none
+		sourceColumn: issueJira.previsaoEntrega
+
+		variation Variation
+			isDefault
+			relationship: 19b8ea5c-b469-4787-b93e-17e4d98c7df0
+			defaultHierarchy: LocalDateTable_07ec6f75-d49c-451e-aeb9-ee6f466f4a53.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'issueJira.versaoPlanejada'
+		dataType: string
+		lineageTag: 77612d2b-754a-4b6e-92bd-5ead2bc730a2
+		summarizeBy: none
+		sourceColumn: issueJira.versaoPlanejada
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.projetoID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c602f9c-08e3-467a-b6c8-b314729b56f6
+		summarizeBy: count
+		sourceColumn: issueJira.projetoID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.key'
+		dataType: string
+		lineageTag: c480a108-71b1-46d8-b764-80d1aa7047be
+		summarizeBy: none
+		sourceColumn: issueJira.key
+
+		annotation SummarizationSetBy = User
+
+	column 'issueJira.typeID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 13598e87-5e8c-42f4-900a-ad4f34add249
+		summarizeBy: count
+		sourceColumn: issueJira.typeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.excluidoJira'
+		dataType: string
+		lineageTag: 4a37615c-1af7-4eac-94ec-d19d1661479b
+		summarizeBy: none
+		sourceColumn: issueJira.excluidoJira
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.parentID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7b34a747-7172-4364-a38f-c8aef3098c11
+		summarizeBy: count
+		sourceColumn: issueJira.parentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'horas.idDados'
+		dataType: string
+		lineageTag: ff6c061e-524b-4281-9e4d-e5aff1ad627f
+		summarizeBy: none
+		sourceColumn: horas.idDados
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'horas.papel.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: dfc8d7c5-9847-4768-8863-51d73c958dee
+		summarizeBy: none
+		sourceColumn: horas.papel.id
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+	column 'horas.papel.papel'
+		dataType: string
+		lineageTag: 440b1eb7-e534-40c5-8089-0370a03d2fea
+		summarizeBy: none
+		sourceColumn: horas.papel.papel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'horas.horasPrevistas'
+		dataType: double
+		lineageTag: 61cdc456-9820-47bd-945a-9bd8c1957852
+		summarizeBy: sum
+		sourceColumn: horas.horasPrevistas
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'horas.horasOrcadas'
+		dataType: double
+		lineageTag: 6f5176b5-df16-4494-8ed7-bc4e7afd83e4
+		summarizeBy: sum
+		sourceColumn: horas.horasOrcadas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'horas.markup'
+		dataType: string
+		lineageTag: 2ba7f574-f236-4023-a7f3-c6001a176631
+		summarizeBy: none
+		sourceColumn: horas.markup
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'situacao.id'
+		dataType: string
+		lineageTag: 02d84a46-07ba-4031-a785-1c84ce430606
+		summarizeBy: none
+		sourceColumn: situacao.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'situacao.orçamento'
+		dataType: string
+		lineageTag: 8916b56e-bbfb-45f3-b158-4784fba3b9ed
+		summarizeBy: none
+		sourceColumn: situacao.orçamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Orçamento' =
+			SWITCH(
+			                    TRUE(),
+			                    'fOrçamento'[situacao.orçamento] = "Aprovado", "Aprovado",
+			                    'fOrçamento'[situacao.orçamento] = "Não aprovado", "Não aprovado",
+			                    'fOrçamento'[situacao.orçamento] IN {"Em estimativa", "Aprovar orçamento", "Em Autenticação Comercial", "Em orçamento", "Em Autenticação Técnica"}, "Em Orçamento",
+			                    'fOrçamento'[situacao.orçamento] IN {"Validar cobrança", "Cobrado", "A Cobrar"}, "Cobrança/Cobrado", "Não Cobrado")
+		lineageTag: 8a32aa78-372c-4946-99c2-50099fc49505
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column totalOrcado
+		dataType: double
+		lineageTag: c596c756-51f8-4b4d-8132-8beb23c069fb
+		summarizeBy: sum
+		sourceColumn: totalOrcado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'tipo.id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 35ed6209-4b1d-4c11-94a4-25e873b5738d
+		summarizeBy: sum
+		sourceColumn: tipo.id
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'tipo.descricao'
+		dataType: string
+		lineageTag: f1558d8c-d684-4fc0-a38e-f2cf13c69a7c
+		summarizeBy: none
+		sourceColumn: tipo.descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.filhos.id'
+		dataType: string
+		lineageTag: 3b865721-e072-4714-ae9a-88823239fb05
+		summarizeBy: none
+		sourceColumn: issueJira.filhos.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.filhos.key'
+		dataType: string
+		lineageTag: 38f2281c-66b1-43ec-9d64-ed7c82dc00ea
+		summarizeBy: none
+		sourceColumn: issueJira.filhos.key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.filhos.typeID'
+		dataType: string
+		lineageTag: 1c33c468-ff98-4e8a-b6d0-1f2dc2010fa1
+		summarizeBy: none
+		sourceColumn: issueJira.filhos.typeID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'issueJira.filhos.parentID'
+		dataType: string
+		lineageTag: 6e7c540c-78d3-480a-ab9a-891216e7bd31
+		summarizeBy: none
+		sourceColumn: issueJira.filhos.parentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'horas.horasAltoNivel'
+		dataType: double
+		lineageTag: df2a588b-56a6-4e10-b23d-d0441eff6ead
+		summarizeBy: sum
+		sourceColumn: horas.horasAltoNivel
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Custo Recursos' = ```
+			
+			        SWITCH(
+			            TRUE(),
+			            'fOrçamento'[horas.papel.id] = 1, "9.172,31",
+			            'fOrçamento'[horas.papel.id] = 2, "9.172,31",
+			            'fOrçamento'[horas.papel.id] = 3, "9.172,31",
+			            'fOrçamento'[horas.papel.id] = 4, "10.864,05",
+			            'fOrçamento'[horas.papel.id] = 5, "10.864,05",
+			            'fOrçamento'[horas.papel.id] = 6, "5.730,08",
+			            'fOrçamento'[horas.papel.id] = 7, "7.563,49",
+			            'fOrçamento'[horas.papel.id] = 8, "9.172,31",
+			            'fOrçamento'[horas.papel.id] = 9, "9.172,31",
+			            'fOrçamento'[horas.papel.id] = 10, "7.563,49",
+			            'fOrçamento'[horas.papel.id] = 11, "9.130,76",
+			            'fOrçamento'[horas.papel.id] = 12, "7.563,49",
+			            'fOrçamento'[horas.papel.id] = 13, "7.680,02",
+			            'fOrçamento'[horas.papel.id] = 14, "9.130,76",
+			            'fOrçamento'[horas.papel.id] = 15, "7.483,09",
+			            'fOrçamento'[horas.papel.id] = 16, "0",
+			            'fOrçamento'[horas.papel.id] = 17, "0",
+			            'fOrçamento'[horas.papel.id] = 18, "7.483,09",
+			            'fOrçamento'[horas.papel.id] = 19, "7.680,02",
+			            'fOrçamento'[horas.papel.id] = 20, "0",
+			            'fOrçamento'[horas.papel.id] = 21, "0",
+			            'fOrçamento'[horas.papel.id] = 22, "0",
+			            'fOrçamento'[horas.papel.id] = 23, "0",
+			            'fOrçamento'[horas.papel.id] = 24, "0",
+			            'fOrçamento'[horas.papel.id] = 66, "0",
+			            'fOrçamento'[horas.papel.id] = 67, "9.172,31",
+			            'fOrçamento'[horas.papel.id] = 69, "0",
+			            'fOrçamento'[horas.papel.id] = 71, "7.563,49",
+			            'fOrçamento'[horas.papel.id] = 79, "0")
+			
+			
+			```
+		dataType: double
+		lineageTag: 883f4241-4857-4631-aa3b-86ce409206a0
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column markup
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e1e2fb5a-6a26-492d-90cf-c560b9512266
+		summarizeBy: none
+		sourceColumn: markup
+
+		annotation SummarizationSetBy = User
+
+	partition fOrçamento = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(
+				    Web.Contents(
+				        "https://service.sabium.com.br/api_controlehoras/controle-publico/orcamento/buscaLista",
+				        [Timeout = #duration(0,0,5,0)]
+				    )
+				),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"id", "cliente", "time", "tipoFinanceiro", "subTipoFinanceiro", "tipoOrcamento", "usuario", "parecerFinanceiro", "desconto", "justificativa", "issueJira", "situacao", "horas", "totalOrcado", "tipo", "markup"}, {"id", "cliente", "time", "tipoFinanceiro", "subTipoFinanceiro", "tipoOrcamento", "usuario", "parecerFinanceiro", "desconto", "justificativa", "issueJira", "situacao", "horas", "totalOrcado", "tipo", "markup"}),
+				    #"cliente Expandido" = Table.ExpandRecordColumn(#"Column1 Expandido", "cliente", {"id", "nome", "razaoSocial", "cnpj", "markup"}, {"cliente.id", "cliente.nome", "cliente.razaoSocial", "cliente.cnpj", "cliente.markup"}),
+				    #"tipoFinanceiro Expandido" = Table.ExpandRecordColumn(#"cliente Expandido", "tipoFinanceiro", {"id", "descricao"}, {"tipoFinanceiro.id", "tipoFinanceiro.descricao"}),
+				    #"subTipoFinanceiro Expandido" = Table.ExpandRecordColumn(#"tipoFinanceiro Expandido", "subTipoFinanceiro", {"id", "descricao"}, {"subTipoFinanceiro.id", "subTipoFinanceiro.descricao"}),
+				    #"tipoOrcamento Expandido" = Table.ExpandRecordColumn(#"subTipoFinanceiro Expandido", "tipoOrcamento", {"id", "descricao"}, {"tipoOrcamento.id", "tipoOrcamento.descricao"}),
+				    #"usuario Expandido" = Table.ExpandRecordColumn(#"tipoOrcamento Expandido", "usuario", {"id", "nome", "email"}, {"usuario.id", "usuario.nome", "usuario.email"}),
+				    #"parecerFinanceiro Expandido" = Table.ExpandRecordColumn(#"usuario Expandido", "parecerFinanceiro", {"id", "descricao"}, {"parecerFinanceiro.id", "parecerFinanceiro.descricao"}),
+				    #"issueJira Expandido" = Table.ExpandRecordColumn(#"parecerFinanceiro Expandido", "issueJira", {"id", "titulo", "previsaoEntrega", "versaoPlanejada", "projetoID", "key", "typeID", "excluidoJira", "parentID", "filhos"}, {"issueJira.id", "issueJira.titulo", "issueJira.previsaoEntrega", "issueJira.versaoPlanejada", "issueJira.projetoID", "issueJira.key", "issueJira.typeID", "issueJira.excluidoJira", "issueJira.parentID", "issueJira.filhos"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"issueJira Expandido",{{"id", Int64.Type}, {"cliente.id", Int64.Type}, {"cliente.nome", type text}, {"cliente.razaoSocial", type text}, {"cliente.cnpj", type text}, {"cliente.markup", type any}, {"time", type any}, {"tipoFinanceiro.id", Int64.Type}, {"tipoFinanceiro.descricao", type text}, {"subTipoFinanceiro.id", Int64.Type}, {"subTipoFinanceiro.descricao", type text}, {"tipoOrcamento.id", Int64.Type}, {"tipoOrcamento.descricao", type text}, {"usuario.id", Int64.Type}, {"usuario.nome", type text}, {"usuario.email", type any}, {"parecerFinanceiro.id", Int64.Type}, {"parecerFinanceiro.descricao", type text}, {"desconto", type number}, {"justificativa", type text}, {"issueJira.id", Int64.Type}, {"issueJira.titulo", type text}, {"issueJira.previsaoEntrega", type date}, {"issueJira.versaoPlanejada", type any}, {"issueJira.projetoID", Int64.Type}, {"issueJira.key", type text}, {"issueJira.typeID", Int64.Type}, {"issueJira.excluidoJira", type text}, {"issueJira.parentID", Int64.Type}, {"issueJira.filhos", type any}, {"horas", type any}}),
+				    #"horas Expandido" = Table.ExpandListColumn(#"Tipo Alterado", "horas"),
+				    #"horas Expandido1" = Table.ExpandRecordColumn(#"horas Expandido", "horas", {"idDados", "papel", "horasAltoNivel", "horasOrcadas", "horasPrevistas", "markup"}, {"horas.idDados", "horas.papel", "horas.horasAltoNivel", "horas.horasOrcadas", "horas.horasPrevistas", "horas.markup"}),
+				    #"horas.papel Expandido" = Table.ExpandRecordColumn(#"horas Expandido1", "horas.papel", {"id", "papel"}, {"horas.papel.id", "horas.papel.papel"}),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"horas.papel Expandido",{{"cliente.nome", Text.Proper, type text}}),
+				    #"situacao Expandido" = Table.ExpandRecordColumn(#"Colocar Cada Palavra Em Maiúscula", "situacao", {"id", "descricao"}, {"situacao.id", "situacao.orçamento"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"situacao Expandido",{{"horas.horasOrcadas", type number}, {"totalOrcado", type number}}),
+				    #"tipo Expandido" = Table.ExpandRecordColumn(#"Tipo Alterado1", "tipo", {"id", "descricao"}, {"tipo.id", "tipo.descricao"}),
+				    #"issueJira.filhos Expandido" = Table.ExpandListColumn(#"tipo Expandido", "issueJira.filhos"),
+				    #"issueJira.filhos Expandido1" = Table.ExpandRecordColumn(#"issueJira.filhos Expandido", "issueJira.filhos", {"id", "key", "typeID", "parentID"}, {"issueJira.filhos.id", "issueJira.filhos.key", "issueJira.filhos.typeID", "issueJira.filhos.parentID"}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"issueJira.filhos Expandido1",{{"horas.horasAltoNivel", type number}, {"markup", Percentage.Type}}),
+				    #"Coluna dividida" = Table.TransformColumns(#"Tipo Alterado2", {{"markup", each _ / 100, Percentage.Type}})
+				in
+				    #"Coluna dividida"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

@@ -1,0 +1,43 @@
+table Calendario_dias_uteis
+	lineageTag: d4eec812-931b-4ee7-aa49-371dd2265de9
+
+	column Date
+		formatString: Short Date
+		lineageTag: c928cc02-792e-4846-8f8e-b57872047de2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 598f0f54-3305-4044-8475-e635eb031ffa
+			defaultHierarchy: LocalDateTable_d40a6f08-5d11-434b-9511-5332cdf41c9f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Dia_Util
+		formatString: 0
+		lineageTag: 8414c17b-4d9e-4abb-85d8-cda497bb16c0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia_Util]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendario_dias_uteis = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS (
+				    CALENDAR ( DATE(2025,1,1), DATE(2030,12,31) ),
+				    "Dia_Util", 
+				        IF (
+				            WEEKDAY([Date], 2) < 6, 1, 0
+				        )
+				)
+				```
+
+	annotation PBI_Id = 2bb5ccfdc4144f2984e733f9b5716305
+

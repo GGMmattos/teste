@@ -1,0 +1,1665 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "fechar_menu_prioridad_atendimento",
+  "name": "2b01eb0bfcf956231b53",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "16c26515b3227d8d5abd",
+    "sections": {
+      "16c26515b3227d8d5abd": {
+        "filters": {
+          "byExpr": [
+            {
+              "name": "6dceb2767b1ee3df91e4",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "t",
+                    "Entity": "tblEpics",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "t"
+                                }
+                              },
+                              "Property": "Project_Name"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Solicitação de Atendimento'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tblEpics"
+                    }
+                  },
+                  "Property": "Project_Name"
+                }
+              },
+              "howCreated": 1
+            }
+          ]
+        },
+        "visualContainers": {
+          "cb15d7104c5fe898f8e0": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "03ff8f2d0c03b0b163ca": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "1b796beebc49eb934af2": {
+            "singleVisual": {
+              "visualType": "pageNavigator",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "093ef6a18b13843a28c7": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "b2e27b03bd6edef9f84a": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "8821e77fff85586c50b4": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "0b241917b9b7a4b3ab7a": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "741de66e2563d48f63e3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "932434d7fec3e69776fa",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Data da Última Atualização"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3913bc05767f3116d09b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Usuário Logado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Data/Hora Atualização"
+                        }
+                      },
+                      "Property": "Data da Última Atualização"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "d847a5af33209b5092e7": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "55c34d5029cb9864ebc6": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4d5a249cd54038bd2de3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "N_vel_prioridade"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "N_vel_prioridade"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "68a2a9a7c020c450490b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b5042e1a1276d0cca6f3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Filtro_com_sem_data_limite_hierarquia_antigo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Filtro_com_sem_data_limite_hierarquia_antigo"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "9d45eb6097016a381db7": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1e5bad3e7f81f3d0d53a",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "t",
+                        "Entity": "tblEpics",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "t"
+                                    }
+                                  },
+                                  "Property": "N_vel_prioridade"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'N/A'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "N_vel_prioridade"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "946f9e5a0804b051a8f1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd de Entregas"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1a9f59966d63921c5b1d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Filtro_com_sem_data_limite_hierarquia_antigo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd de Entregas"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Filtro_com_sem_data_limite_hierarquia_antigo"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b47aa9e9270024c496a3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1beb3ffae6d3e39d0068",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "f"
+                                        }
+                                      },
+                                      "Property": "N_vel_prioridade"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'N/A'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "N_vel_prioridade"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "1c7fe49363fed0c4eaec",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Filtro_com_sem_data_limite_hierarquia_antigo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c34c4412de6a66811109",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd de Entregas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "donutChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd de Entregas"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Filtro_com_sem_data_limite_hierarquia_antigo"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "120e01b8d04e7e1292dc": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "371424c74a2c215d8964",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_Vencem_Hoje"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_Vencem_Hoje"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "74b84687d8a7c34cda2c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1f1a1dea73debde1538c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_Vencidas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_Vencidas"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f103e8f5ea95b7d2eb1d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9fb8b80885e97f82378c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Due_Date"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "startDate": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "datetime'2025-01-01T00:00:00'"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Between'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Due_Date"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Due_Date"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "794d1bc3cf126743071b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "707ed1cb52e8fd8b5619",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_no_prazo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_no_prazo"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "8289f86d6fbb830cb80d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ae1d96e6aef9f22628ce",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_Vencem_Semana_Que_Vem"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_Vencem_Semana_Que_Vem"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "9aa86afe27e03154e9f9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f6277179e7db47c1d0b0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Status_Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "t",
+                                "Entity": "tblEpics",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Not": {
+                                    "Expression": {
+                                      "In": {
+                                        "Expressions": [
+                                          {
+                                            "Column": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Source": "t"
+                                                }
+                                              },
+                                              "Property": "Status_Name"
+                                            }
+                                          }
+                                        ],
+                                        "Values": [
+                                          [
+                                            {
+                                              "Literal": {
+                                                "Value": "'Aguardando validação cliente'"
+                                              }
+                                            }
+                                          ],
+                                          [
+                                            {
+                                              "Literal": {
+                                                "Value": "'Cancelada'"
+                                              }
+                                            }
+                                          ],
+                                          [
+                                            {
+                                              "Literal": {
+                                                "Value": "'Concluído'"
+                                              }
+                                            }
+                                          ]
+                                        ]
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        },
+                        "isInvertedSelectionMode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Status_Name"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "0d28730dce21746c619d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2755fff40178ee842163",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd de Entregas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Qtd de Entregas"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ba44cf18c93731517221": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f9c9ce1c3dd1c86b4e51",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_sem_data_limite"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Qtd_Entregas_sem_data_limite"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ce694fe52f5b962deb8e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4a33bf04cf2bed72b0ab",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "t",
+                        "Entity": "tblEpics",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "t1",
+                        "Entity": "tbl_entregas_jira",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "t1"
+                                      }
+                                    },
+                                    "Property": "Exibir_chave_hierarquia_entrega_tarefa"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_chave_hierarquia_entrega_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "706fe3503295ec46cab8",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "fConsolidado",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "t",
+                        "Entity": "tblEpics",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "t1",
+                        "Entity": "tbl_entregas_jira",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "t1"
+                                      }
+                                    },
+                                    "Property": "Exibir_situacao_hierarquia_entrega_tarefa"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_situacao_hierarquia_entrega_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4d41074243fd6dc201d1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "hrs_previstas_fApontamento_Extrato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ad72ddb40c194fc6a3e3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fApontamento_Extrato"
+                        }
+                      },
+                      "Property": "Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ba448383a224348843dd",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_prioridade_hierarquia_entrega_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8681a86b8d38ed0cf71f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_responsavel_hierarquia_entrega_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c638b9ab8e7de07a315e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Exibir_type_hierarquia_entrega_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3ab38c9c381935d4f2a1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_time_hierarquia_entrega_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3cdd93e58a7c3ced7a00",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_data_limite_hierarquia_entrega_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "559dd099e83b88e3ae94",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_nivel_prioridade_hierarquia_entrega_tarefa"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1a9169f28d31408e0508",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Título e Chave (Tarefa)"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "88eb2124a5eab724f3e5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "fConsolidado"
+                            }
+                          },
+                          "Property": "Created"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e25b6193cbeade042a88",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Chave e Título (tblEpics)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pivotTable",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_entregas_jira"
+                        }
+                      },
+                      "Property": "Exibir_nivel_prioridade_hierarquia_entrega_tarefa"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Rows": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Chave e Título (tblEpics)"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Rows"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "tblEpics.Chave e Título (tblEpics)"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "tblEpics"
+                              }
+                            },
+                            "Property": "Chave e Título (tblEpics)"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "fConsolidado.Título e Chave (Tarefa)"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null
+                  }
+                }
+              ]
+            }
+          },
+          "3d3541c30dbdf256f1b2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1e765d550d1bd8c7bc77",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Status_Prazo"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Status_Prazo"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "20e4e5126c62ac5fa3e2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1bef247ebece558015e3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Team_Title"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Team_Title"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "4493b9be0ad1f85ed4ae": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a492e92e4a92953e7dc4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Priority_Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Priority_Name"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "1f7e8d8da0c2d7128b31": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9ff961190d752b3d29b9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Assignee_Name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Assignee_Name"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "c624a945faf219025285": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b8fd5c23ade85f273175",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Chave e Título (tblEpics)"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tblEpics"
+                        }
+                      },
+                      "Property": "Chave e Título (tblEpics)"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "visible": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

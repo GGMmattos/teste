@@ -1,0 +1,2801 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "800067ae6cd695b1a96e",
+  "position": {
+    "x": 0,
+    "y": 557,
+    "z": 500,
+    "height": 326,
+    "width": 1440,
+    "tabOrder": 19000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_tarefas_jira"
+                    }
+                  },
+                  "Property": "Chave_titulo_tarefas_jira"
+                }
+              },
+              "queryRef": "tbl_tarefas_jira.Chave_titulo_tarefas_jira",
+              "nativeQueryRef": "Resumo",
+              "active": true,
+              "displayName": "Resumo"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Chave"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(tbl_tarefas_jira.Chave)",
+              "nativeQueryRef": "Chave",
+              "displayName": "Chave"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Tipo de item"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(tbl_tarefas_jira.Tipo de item)",
+              "nativeQueryRef": "Tipo",
+              "displayName": "Tipo"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Situacao"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(tbl_tarefas_jira.Situacao)",
+              "nativeQueryRef": "Situacao",
+              "displayName": "Situacao"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Responsavel"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(tbl_tarefas_jira.Responsavel)",
+              "nativeQueryRef": "Resp.",
+              "displayName": "Resp."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_subtarefas_jira"
+                    }
+                  },
+                  "Property": "Qtd_subtarefas"
+                }
+              },
+              "queryRef": "tbl_subtarefas_jira.Qtd_subtarefas",
+              "nativeQueryRef": "Qtd Subtarefas",
+              "displayName": "Qtd Subtarefas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_subtarefas_jira"
+                    }
+                  },
+                  "Property": "Qtd_subtarefas_concluidas_e_canceladas"
+                }
+              },
+              "queryRef": "tbl_subtarefas_jira.Qtd_subtarefas_concluidas_e_canceladas",
+              "nativeQueryRef": "Qtd Finaliz.",
+              "displayName": "Qtd Finaliz."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tbl_subtarefas_jira"
+                    }
+                  },
+                  "Property": "%_entrega_subtarefa"
+                }
+              },
+              "queryRef": "tbl_subtarefas_jira.%_entrega_subtarefa",
+              "nativeQueryRef": "% Entrega",
+              "displayName": "% Entrega"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fApontamento_Extrato"
+                    }
+                  },
+                  "Property": "hrs_previstas_fApontamento_Extrato"
+                }
+              },
+              "queryRef": "fApontamento_Extrato.hrs_previstas_fApontamento_Extrato",
+              "nativeQueryRef": "Hrs. Prev.",
+              "displayName": "Hrs. Prev."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fApontamento_Extrato"
+                    }
+                  },
+                  "Property": "Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+                }
+              },
+              "queryRef": "fApontamento_Extrato.Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)",
+              "nativeQueryRef": "Hrs. Realiz.",
+              "displayName": "Hrs. Realiz."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fApontamento_Extrato"
+                    }
+                  },
+                  "Property": "% Consumido (Tela Desvios)"
+                }
+              },
+              "queryRef": "fApontamento_Extrato.% Consumido (Tela Desvios)",
+              "nativeQueryRef": "% Consum.",
+              "displayName": "% Consum."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fApontamento_Extrato"
+                    }
+                  },
+                  "Property": "Desvio Real (Atual)"
+                }
+              },
+              "queryRef": "fApontamento_Extrato.Desvio Real (Atual)",
+              "nativeQueryRef": "Desvio Real.",
+              "displayName": "Desvio Real."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fApontamento_Extrato"
+                    }
+                  },
+                  "Property": "% Conclusão (Tela Desvios)"
+                }
+              },
+              "queryRef": "fApontamento_Extrato.% Conclusão (Tela Desvios)",
+              "nativeQueryRef": "% Concl.1",
+              "displayName": "% Concl."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fApontamento_Extrato"
+                    }
+                  },
+                  "Property": "Hrs Adicionais"
+                }
+              },
+              "queryRef": "fApontamento.Hrs Adicionais",
+              "nativeQueryRef": "Hrs Adicionais"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fApontamento_Extrato"
+                    }
+                  },
+                  "Property": "Hr Projetada (fApontamento_Extrato)"
+                }
+              },
+              "queryRef": "fApontamento_Extrato.Hr Projetada (fApontamento_Extrato)",
+              "nativeQueryRef": "Hrs Proj.",
+              "displayName": "Hrs Proj."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fApontamento_Extrato"
+                    }
+                  },
+                  "Property": "Desvio projetado"
+                }
+              },
+              "queryRef": "fApontamento_Extrato.Desvio projetado",
+              "nativeQueryRef": "Desvio projetado"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.98838648302825D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato.Hr Previstas (fApontamento_Extrato)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "801.4765152913635D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblSubtasks.Summary"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "184.31884425574006D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento.papelFuncional"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "875.781993467173D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "tblFixVersão.Versão - 4 Primeiros Caracteres"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "103.39133453275994D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(fConsolidado.tblStory.Prioridade)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "569.540937957263D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "tblSprints.Sprint, Situação Sprint, Data Inicio e Final Sprint"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.27559187456554D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tblFixVersão.Versão - 4 Primeiros Caracteres)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "801.6427257916407D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.Chave, Título e TP"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "55.999984929602405D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "CountNonNull(fConsolidado.Dias sem Atualização (Tarefa))"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.Filtro Soma Manutenção"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "67D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento.Média Manutenção %"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "122.5678870267808D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.Filtro Soma Retrabalho"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "73D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento.Média Retrabalho %"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.45678284544746D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblSubtasks.Key"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "153.22221889880768D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblSubtasks.Responsável"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "96.16048670855803D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblSubtask.Tipo_Nome"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85.8148122991497D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblSubtask.Status_Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "64D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato_Subtask.Hr Realizada (fApontamento_Extrato_Subtask)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "67D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato_Subtask.% Concl. (fApontamento_Extrato_Subtask)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "63D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato_Subtask.Hr Projetada (fApontamento_Extrato_Subtask)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.01234525136485D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblStory.Key"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "112.02132233288559D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblStory.Status_Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "98.42094298158057D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblStory.Responsável"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89.8771150807897D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.Qtd Finalizados (Subtask)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.72286366537314D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento.Hrs Adicionais"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato.Hr Projetada (fApontamento_Extrato)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "104.04937611957679D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento.Desvio projetado (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91.57060690590384D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato.Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "85.51840803868409D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato.% Consumido (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.20693504211668D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato.% Conclusão (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "97.21683383025908D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato.Desvio Real (Atual)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.45812560481154D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fConsolidado.tblStory.Tipo_Nome"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "275D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'  Desenvolver Calculo ST Médio e Reprocessamento de 03/2017 a 02/2025'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.hrs_previstas_fApontamento_Extrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'  Desenvolver Calculo ST Médio e Reprocessamento de 03/2017 a 02/2025'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'  Desenvolver Calculo ST Médio e Reprocessamento de 03/2017 a 02/2025'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.% Consumido (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "97D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'  Desenvolver Calculo ST Médio e Reprocessamento de 03/2017 a 02/2025'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Desvio Real (Atual)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'  Desenvolver Calculo ST Médio e Reprocessamento de 03/2017 a 02/2025'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.% Conclusão (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "111D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'  Desenvolver Calculo ST Médio e Reprocessamento de 03/2017 a 02/2025'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento.Hrs Adicionais"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'  Desenvolver Calculo ST Médio e Reprocessamento de 03/2017 a 02/2025'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Hr Projetada (fApontamento_Extrato)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "275D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware Gupy'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.hrs_previstas_fApontamento_Extrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware Gupy'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware Gupy'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.% Consumido (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "97D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware Gupy'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Desvio Real (Atual)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware Gupy'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.% Conclusão (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "111D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware Gupy'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento.Hrs Adicionais"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware Gupy'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Hr Projetada (fApontamento_Extrato)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "275D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware RH Gestor'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.hrs_previstas_fApontamento_Extrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "89D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware RH Gestor'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware RH Gestor'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.% Consumido (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "97D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware RH Gestor'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Desvio Real (Atual)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "71D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "scopeId": {
+                  "Comparison": {
+                    "ComparisonKind": 0,
+                    "Left": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "fConsolidado"
+                          }
+                        },
+                        "Property": "tblStory.Summary"
+                      }
+                    },
+                    "Right": {
+                      "Literal": {
+                        "Value": "'(Ind. CA - Gestão Pessoas) Middleware RH Gestor'"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.% Conclusão (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "83.52305685529493D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato.hrs_previstas_fApontamento_Extrato"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "289D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "tbl_tarefas_jira.Chave_titulo_tarefas_jira"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tbl_tarefas_jira.Chave)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tbl_tarefas_jira.Tipo de item)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tbl_tarefas_jira.Situacao)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tbl_tarefas_jira.Responsavel)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "95D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "tbl_subtarefas_jira.Qtd_subtarefas"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "tbl_subtarefas_jira.Qtd_subtarefas_concluidas_e_canceladas"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "72D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "tbl_subtarefas_jira.%_entrega_subtarefa"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "103D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "fApontamento_Extrato.Desvio projetado"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FF3034'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridVerticalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontalWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "italic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "underline": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "webURL": {
+              "expr": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "fConsolidado"
+                        }
+                      },
+                      "Property": "Hiperlink Jira (Story/Key)"
+                    }
+                  },
+                  "Function": 3
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "fConsolidado.tblStory.Key"
+          }
+        },
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Before'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Top'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 2,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "fApontamento"
+                                  }
+                                },
+                                "Property": "Desvio projetado | (Story)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0.2D"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleSymbolMedium'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "fApontamento"
+                                      }
+                                    },
+                                    "Property": "Desvio projetado | (Story)"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "-2000D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 3,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "fApontamento"
+                                      }
+                                    },
+                                    "Property": "Desvio projetado | (Story)"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0.2D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleSymbolHigh'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "fApontamento.Desvio projetado (Tela Desvios)"
+          }
+        },
+        {
+          "properties": {
+            "icon": {
+              "kind": "Icon",
+              "layout": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Before'"
+                  }
+                }
+              },
+              "verticalAlignment": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Top'"
+                  }
+                }
+              },
+              "value": {
+                "expr": {
+                  "Conditional": {
+                    "Cases": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Entity": "fApontamento_Extrato"
+                                  }
+                                },
+                                "Property": "Desvio Real (Atual)"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0.2D"
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleSymbolMedium'"
+                          }
+                        }
+                      },
+                      {
+                        "Condition": {
+                          "And": {
+                            "Left": {
+                              "Comparison": {
+                                "ComparisonKind": 2,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "fApontamento_Extrato"
+                                      }
+                                    },
+                                    "Property": "Desvio Real (Atual)"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "-2000D"
+                                  }
+                                }
+                              }
+                            },
+                            "Right": {
+                              "Comparison": {
+                                "ComparisonKind": 4,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Entity": "fApontamento_Extrato"
+                                      }
+                                    },
+                                    "Property": "Desvio Real (Atual)"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0.2D"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Value": {
+                          "Literal": {
+                            "Value": "'CircleSymbolHigh'"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "fApontamento_Extrato.Desvio Real (Atual)"
+          }
+        },
+        {
+          "properties": {
+            "webURL": {
+              "expr": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tbl_tarefas_jira"
+                        }
+                      },
+                      "Property": "Link_tarefa_jira_novo"
+                    }
+                  },
+                  "Function": 3
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Min(tbl_tarefas_jira.Chave)"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {}
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tbl_tarefas_jira.Chave)"
+          }
+        },
+        {
+          "properties": {
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tbl_tarefas_jira.Tipo de item)"
+          }
+        },
+        {
+          "properties": {
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tbl_tarefas_jira.Situacao)"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(tbl_tarefas_jira.Responsavel)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Analítico de Tarefas de Desvios'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3D3E48'"
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3D3E48'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "border": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAF7'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#323447'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "titleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#262735'"
+                    }
+                  }
+                }
+              }
+            },
+            "valueFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#323447'"
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAF7'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FDFCFC'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeaderTooltip": [
+        {
+          "properties": {
+            "titleFontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#262735'"
+                    }
+                  }
+                }
+              }
+            },
+            "background": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAF7'"
+                    }
+                  }
+                }
+              }
+            },
+            "themedBackground": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FDFCFC'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a504980ba90718ee4e49",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Extrato"
+              }
+            },
+            "Property": "hrs_previstas_fApontamento_Extrato"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4fe6f18d994e6eb03133",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Extrato"
+              }
+            },
+            "Property": "Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a8237b5274de78210b03",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Extrato"
+              }
+            },
+            "Property": "% Consumido (Tela Desvios)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b5ea33a3501d00455e5e",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Extrato"
+              }
+            },
+            "Property": "Desvio Real (Atual)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1c9cf006e5582b2a5bda",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Extrato"
+              }
+            },
+            "Property": "% Conclusão (Tela Desvios)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b2d66cde6ca9c56797b8",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Extrato"
+              }
+            },
+            "Property": "Hrs Adicionais"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7b4139b140690b6b3c80",
+        "ordinal": 6,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Extrato"
+              }
+            },
+            "Property": "Hr Projetada (fApontamento_Extrato)"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "01c7c6ef59cc38d0764d",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_tarefas_jira"
+              }
+            },
+            "Property": "Chave_titulo_tarefas_jira"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "91b44303a21349c31a20",
+        "ordinal": 8,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "tbl_tarefas_jira"
+                  }
+                },
+                "Property": "Chave"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "tbl_tarefas_jira",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Aggregation": {
+                          "Expression": {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "t"
+                                }
+                              },
+                              "Property": "Chave"
+                            }
+                          },
+                          "Function": 3
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "0fc96afefc9eca73f963",
+        "ordinal": 9,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "tbl_tarefas_jira"
+                  }
+                },
+                "Property": "Tipo de item"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d8507547f73b3f9e5ef7",
+        "ordinal": 10,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "tbl_tarefas_jira"
+                  }
+                },
+                "Property": "Situacao"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ae0eeb4975e93c723118",
+        "ordinal": 11,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "tbl_tarefas_jira"
+                  }
+                },
+                "Property": "Responsavel"
+              }
+            },
+            "Function": 3
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5bd622d9935f9831f84e",
+        "ordinal": 12,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_subtarefas_jira"
+              }
+            },
+            "Property": "Qtd_subtarefas"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "04022c50b8c3411eb667",
+        "ordinal": 13,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_subtarefas_jira"
+              }
+            },
+            "Property": "Qtd_subtarefas_concluidas_e_canceladas"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "92829bd582393e8ecb0c",
+        "ordinal": 14,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_subtarefas_jira"
+              }
+            },
+            "Property": "%_entrega_subtarefa"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7fa77af0c792ba1268c5",
+        "ordinal": 15,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fApontamento_Extrato"
+              }
+            },
+            "Property": "Desvio projetado"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

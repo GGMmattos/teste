@@ -1,0 +1,93 @@
+table Top10_Tarefas_Horas_INFRA
+	lineageTag: 9f149608-b7a9-482c-aabb-560a71f6371b
+
+	column HorasRealizadas
+		lineageTag: 5b74f417-af6d-4815-b677-5353cc25bd98
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [HorasRealizadas]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Chave
+		lineageTag: 652ae801-1cd9-4d38-9e88-723cee4f2750
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_tarefas_jira[Chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		lineageTag: 57ded1de-b0a0-448c-a020-edb5bcb74cc5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_tarefas_jira[Project Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		formatString: General Date
+		lineageTag: c6cd1c46-ffe3-4c0d-b1f0-a1f535d714d1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_tarefas_jira[Criado]
+
+		variation Variation
+			isDefault
+			relationship: 9168fda3-7823-4cd8-bf08-fa3c8dde161a
+			defaultHierarchy: LocalDateTable_4cbed395-699a-4b9d-bd58-4406e9b26600.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsável Tecnico:  Name'
+		lineageTag: a5c459bc-771a-4cf0-a859-e19b2e7f367c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_tarefas_jira[Responsável Tecnico:  Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link_tarefa_jira_novo
+		lineageTag: 4816e22a-e5d3-495c-8848-77e44b1cdd03
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: tbl_tarefas_jira[Link_tarefa_jira_novo]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Top10_Tarefas_Horas_INFRA = calculated
+		mode: import
+		source = ```
+				
+				-- trazer as 10 tarefas com maiores apontamentos nos ultimos 30d
+				
+				TOPN(
+				    10,
+				    FILTER(
+				        ADDCOLUMNS(
+				            SUMMARIZE(
+				                'tbl_tarefas_jira',
+				                'tbl_tarefas_jira'[Chave],
+				                'tbl_tarefas_jira'[Project Name],
+				                'tbl_tarefas_jira'[Criado],
+				                'tbl_tarefas_jira'[Responsável Tecnico:  Name],
+				                'tbl_tarefas_jira'[Link_tarefa_jira_novo]
+				            ),
+				            "HorasRealizadas", 
+				            CALCULATE(
+				                'tbl_tarefas_jira'[Horas_realizadas_tarefas_e_subtarefas]
+				            )
+				        ),
+				        'tbl_tarefas_jira'[Project Name] = "INFRA"
+				        && 'tbl_tarefas_jira'[Criado] >= TODAY() - 30
+				    ),
+				    [HorasRealizadas],
+				    DESC
+				)
+				
+				```
+
+	annotation PBI_Id = 08a3392227c14f91a808b10bcd348041
+

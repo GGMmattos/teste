@@ -1,0 +1,223 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "f29d045bdba9fb1affc2",
+  "displayName": "OKR",
+  "displayOption": "ActualSize",
+  "height": 1100,
+  "width": 1440,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "640fa021b70e2001a12d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_start_stop_relacionado"
+              }
+            },
+            "Property": "Projeto"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "tbl_start_stop_relacionado",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "Projeto"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'OKR - Objetivo e Resultado Chave'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "265L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "03f88d70aa30cbcb8650",
+      "target": "6f4ca4dde14fafbebf9f",
+      "type": "DataFilter"
+    },
+    {
+      "source": "684969c535833f14cd35",
+      "target": "6f4ca4dde14fafbebf9f",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6558eefd0d175e27d102",
+      "target": "6f4ca4dde14fafbebf9f",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6f4ca4dde14fafbebf9f",
+      "target": "6558eefd0d175e27d102",
+      "type": "DataFilter"
+    },
+    {
+      "source": "684969c535833f14cd35",
+      "target": "6558eefd0d175e27d102",
+      "type": "DataFilter"
+    },
+    {
+      "source": "03f88d70aa30cbcb8650",
+      "target": "6558eefd0d175e27d102",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3be5bfd8d15b808e1092",
+      "target": "6f4ca4dde14fafbebf9f",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f957aed497ecf480d74e",
+      "target": "3be5bfd8d15b808e1092",
+      "type": "DataFilter"
+    },
+    {
+      "source": "fc475778aa6216eaac28",
+      "target": "6f4ca4dde14fafbebf9f",
+      "type": "DataFilter"
+    },
+    {
+      "source": "fc475778aa6216eaac28",
+      "target": "6558eefd0d175e27d102",
+      "type": "DataFilter"
+    },
+    {
+      "source": "30ebffd57bfc82aae924",
+      "target": "3be5bfd8d15b808e1092",
+      "type": "DataFilter"
+    }
+  ]
+}

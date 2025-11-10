@@ -1,0 +1,40 @@
+table tbl_componentes_tarefas_jira
+	lineageTag: e5b93d48-3599-449e-a48a-9122a0d12559
+
+	column Chave
+		dataType: string
+		lineageTag: 5d2028fc-b681-4b77-9509-57a95a91d2d1
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Component Name'
+		dataType: string
+		lineageTag: f57743e5-5101-4c3f-81f5-d2be7ae9521a
+		summarizeBy: none
+		sourceColumn: Component Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Component Id'
+		dataType: string
+		lineageTag: 98fd10a6-2ca5-408c-ab37-8059a12f086a
+		summarizeBy: none
+		sourceColumn: Component Id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_componentes_tarefas_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/ODgzNDlhMWUtMDdkMS00OGQyLTg2MDktZTkyMTZhMWZj", null, [Implementation="2.0"]),
+				    Components_table1 = Fonte{[Name="Components",Signature="table"]}[Data]
+				in
+				    Components_table1
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,181 @@
+table tblAdministração
+	lineageTag: 79c8f3c6-13e5-44ab-978f-74e4a23a6297
+
+	measure 'Horas por Dia' = FORMAT("6,5", "#,##0.00") & " dias"
+		lineageTag: 42998577-cb47-4c06-a3f0-2ee85a3c3610
+
+	measure Qtd_recursos_administracao = DISTINCTCOUNT('tblAdministração'[membros.nome])
+		formatString: 0
+		lineageTag: 4c753054-5382-418d-ad7f-9c39192bb490
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 726ff09c-c908-487d-b549-bdd16fac1934
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Descrição Time'
+		dataType: string
+		lineageTag: 29649a50-828f-494b-b2f9-495a2bc5f1e3
+		summarizeBy: none
+		sourceColumn: Descrição Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacaoAtivo
+		dataType: string
+		lineageTag: ad28720e-ab93-47ea-941e-c7745b9c519c
+		summarizeBy: none
+		sourceColumn: situacaoAtivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'setor.id'
+		dataType: string
+		lineageTag: c0769916-7257-4dfe-b479-5fcb3791b581
+		summarizeBy: none
+		sourceColumn: setor.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'setor.nome'
+		dataType: string
+		lineageTag: 33152d82-9fe1-49d5-b98d-1e8fa6ba81d0
+		summarizeBy: none
+		sourceColumn: setor.nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'projetos.id'
+		dataType: string
+		lineageTag: 8d544d16-993a-4798-a31c-9dd38ee97c57
+		summarizeBy: none
+		sourceColumn: projetos.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'projetos.projetoID'
+		dataType: string
+		lineageTag: 00551153-9fcf-4434-a11d-d780c6ac8b4c
+		summarizeBy: none
+		sourceColumn: projetos.projetoID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'projetos.projetoNome'
+		dataType: string
+		lineageTag: 38302ac9-567f-4a7f-a540-3aeb900079b7
+		summarizeBy: none
+		sourceColumn: projetos.projetoNome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.id'
+		dataType: string
+		lineageTag: 050b870b-821a-4e75-a301-077f451ffd54
+		summarizeBy: none
+		sourceColumn: membros.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.idUsuario'
+		dataType: string
+		lineageTag: 567117ca-e069-44d6-b2d0-d5fa94d2025b
+		summarizeBy: none
+		sourceColumn: membros.idUsuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.nome'
+		dataType: string
+		lineageTag: 02dc2407-df6e-4534-9413-248676700f53
+		summarizeBy: none
+		sourceColumn: membros.nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.email'
+		dataType: string
+		lineageTag: de70e819-d7b9-4e48-a07a-2fc7ce61f12e
+		summarizeBy: none
+		sourceColumn: membros.email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.papel.id'
+		dataType: string
+		lineageTag: 3520ea91-1b89-4bf6-a552-bfb67fa6c812
+		summarizeBy: none
+		sourceColumn: membros.papel.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.papel.papel'
+		dataType: string
+		lineageTag: c4f13a2b-8324-4ae7-b738-8c533a284f0c
+		summarizeBy: none
+		sourceColumn: membros.papel.papel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.fator'
+		dataType: string
+		lineageTag: 890333f7-d5d8-42ae-a398-9c457c440542
+		summarizeBy: none
+		sourceColumn: membros.fator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.idTime'
+		dataType: string
+		lineageTag: 27f90ca1-d3ef-4930-b797-0aea6c2d5b9b
+		summarizeBy: none
+		sourceColumn: membros.idTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.imagemJira'
+		dataType: string
+		lineageTag: 082d42fc-a459-4dc8-a5ed-42f4e4602e50
+		summarizeBy: none
+		sourceColumn: membros.imagemJira
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.ativo'
+		dataType: string
+		lineageTag: 09311971-b8cd-4ce4-9ef1-46805049ec1e
+		summarizeBy: none
+		sourceColumn: membros.ativo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tblAdministração = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/api_controlehoras/controle-publico/time/buscaLista/completo")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"id", "descricao", "situacaoAtivo", "setor", "projetos", "membros"}, {"id", "descricao", "situacaoAtivo", "setor", "projetos", "membros"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"id", Int64.Type}, {"descricao", type text}, {"situacaoAtivo", type logical}, {"setor", type any}, {"projetos", type any}, {"membros", type any}}),
+				    #"projetos Expandido" = Table.ExpandListColumn(#"Tipo Alterado", "projetos"),
+				    #"projetos Expandido1" = Table.ExpandRecordColumn(#"projetos Expandido", "projetos", {"id", "projetoID", "projetoNome"}, {"projetos.id", "projetos.projetoID", "projetos.projetoNome"}),
+				    #"membros Expandido" = Table.ExpandListColumn(#"projetos Expandido1", "membros"),
+				    #"membros Expandido1" = Table.ExpandRecordColumn(#"membros Expandido", "membros", {"id", "idUsuario", "nome", "email", "papel", "fator", "idTime", "imagemJira", "ativo"}, {"membros.id", "membros.idUsuario", "membros.nome", "membros.email", "membros.papel", "membros.fator", "membros.idTime", "membros.imagemJira", "membros.ativo"}),
+				    #"membros.papel Expandido" = Table.ExpandRecordColumn(#"membros Expandido1", "membros.papel", {"id", "papel"}, {"membros.papel.id", "membros.papel.papel"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"membros.papel Expandido",{{"situacaoAtivo", type text}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado1",{{"descricao", "Descrição Time"}}),
+				    #"setor Expandido" = Table.ExpandRecordColumn(#"Colunas Renomeadas", "setor", {"id", "nome"}, {"setor.id", "setor.nome"}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"setor Expandido",{{"membros.imagemJira", type text}, {"membros.ativo", type text}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado2","true","Sim",Replacer.ReplaceText,{"membros.ativo"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","false","Não",Replacer.ReplaceText,{"membros.ativo"})
+				in
+				    #"Valor Substituído1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

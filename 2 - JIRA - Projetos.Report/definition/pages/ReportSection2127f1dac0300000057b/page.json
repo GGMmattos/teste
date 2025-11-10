@@ -1,0 +1,280 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSection2127f1dac0300000057b",
+  "displayName": "Entrega Suporte",
+  "displayOption": "FitToWidth",
+  "height": 1000,
+  "width": 1620,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fc250c2f3a4975f64ffa",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_tarefas_jira"
+              }
+            },
+            "Property": "Tipo de item"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "tbl_tarefas_jira",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "Tipo de item"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Suporte Contratual'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "Pod5",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "267L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "ee7e8c60771d83d919cc",
+      "target": "b4e466e75c9d0d05dd62",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ee7e8c60771d83d919cc",
+      "target": "f7cdb9059019b80dd01b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b4e466e75c9d0d05dd62",
+      "target": "f7cdb9059019b80dd01b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f7cdb9059019b80dd01b",
+      "target": "b4e466e75c9d0d05dd62",
+      "type": "DataFilter"
+    },
+    {
+      "source": "99ef932f63abbdcf44a5",
+      "target": "f7cdb9059019b80dd01b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "99ef932f63abbdcf44a5",
+      "target": "b4e466e75c9d0d05dd62",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b4e466e75c9d0d05dd62",
+      "target": "99ef932f63abbdcf44a5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f7cdb9059019b80dd01b",
+      "target": "99ef932f63abbdcf44a5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b4e466e75c9d0d05dd62",
+      "target": "b7d1769af0ced2097c22",
+      "type": "DataFilter"
+    },
+    {
+      "source": "99ef932f63abbdcf44a5",
+      "target": "b7d1769af0ced2097c22",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ee7e8c60771d83d919cc",
+      "target": "b7d1769af0ced2097c22",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f7cdb9059019b80dd01b",
+      "target": "b7d1769af0ced2097c22",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b7d1769af0ced2097c22",
+      "target": "b4e466e75c9d0d05dd62",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b7d1769af0ced2097c22",
+      "target": "99ef932f63abbdcf44a5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b7d1769af0ced2097c22",
+      "target": "f7cdb9059019b80dd01b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "75b610da2f4426c6c791",
+      "target": "b4e466e75c9d0d05dd62",
+      "type": "DataFilter"
+    },
+    {
+      "source": "75b610da2f4426c6c791",
+      "target": "99ef932f63abbdcf44a5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "75b610da2f4426c6c791",
+      "target": "b7d1769af0ced2097c22",
+      "type": "DataFilter"
+    },
+    {
+      "source": "75b610da2f4426c6c791",
+      "target": "f7cdb9059019b80dd01b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f7cdb9059019b80dd01b",
+      "target": "75b610da2f4426c6c791",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b7d1769af0ced2097c22",
+      "target": "75b610da2f4426c6c791",
+      "type": "DataFilter"
+    },
+    {
+      "source": "99ef932f63abbdcf44a5",
+      "target": "75b610da2f4426c6c791",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b4e466e75c9d0d05dd62",
+      "target": "75b610da2f4426c6c791",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ee7e8c60771d83d919cc",
+      "target": "99ef932f63abbdcf44a5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ee7e8c60771d83d919cc",
+      "target": "75b610da2f4426c6c791",
+      "type": "DataFilter"
+    }
+  ]
+}

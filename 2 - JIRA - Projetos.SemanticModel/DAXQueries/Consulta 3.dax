@@ -1,0 +1,82 @@
+DEFINE
+	VAR __DS0FilterTable = 
+		FILTER(
+			KEEPFILTERS(VALUES('Calendario_automatico_novo'[Date])),
+			'Calendario_automatico_novo'[Date] >= DATE(2025, 1, 1)
+		)
+
+	VAR __DS0FilterTable2 = 
+		FILTER(
+			KEEPFILTERS(
+				SUMMARIZE(
+					VALUES('LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c'),
+					'LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c'[Ano],
+					'LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c'[Mês]
+				)
+			),
+			AND(
+				NOT(ISBLANK('LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c'[Ano])),
+				('LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c'[Ano], 'LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c'[Mês]) IN {(2025, "julho")}
+			)
+		)
+
+	VAR __DS0FilterTable3 = 
+		TREATAS({"Infra"}, 'tbl_tarefas_jira'[Project Name])
+
+	VAR __DS0Core = 
+		SUMMARIZECOLUMNS(
+			'tbl_tarefas_jira'[Parent Issue Key],
+			'tbl_tarefas_jira'[Chave],
+			'tbl_tarefas_jira'[Resumo],
+			'tbl_tarefas_jira'[Tipo de item],
+			'tbl_tarefas_jira'[Responsavel],
+			'tbl_tarefas_jira'[Responsável Tecnico:  Name],
+			'tbl_tarefas_jira'[Nome Cliente (Contr_ Horas)],
+			'tbl_tarefas_jira'[Criado],
+			'tbl_tarefas_jira'[Data solução],
+			__DS0FilterTable,
+			__DS0FilterTable2,
+			__DS0FilterTable3,
+			"Soma_Hrs_Realizado_Tarefa_e_Subtarefa__Tela_Desvios_", 'fApontamento_Extrato'[Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)],
+			"Qtd_dias", 'tbl_tarefas_jira'[Qtd_dias],
+			"MinLink_tarefa_jira_novo", IGNORE(CALCULATE(MIN('tbl_tarefas_jira'[Link_tarefa_jira_novo]))),
+			"MinLink_entrega_parent_jira_novo", IGNORE(CALCULATE(MIN('tbl_tarefas_jira'[Link_entrega_parent_jira_novo])))
+		)
+
+	VAR __DS0PrimaryWindowed = 
+		TOPN(
+			501,
+			__DS0Core,
+			'tbl_tarefas_jira'[Criado],
+			0,
+			'tbl_tarefas_jira'[Parent Issue Key],
+			1,
+			'tbl_tarefas_jira'[Chave],
+			1,
+			'tbl_tarefas_jira'[Resumo],
+			1,
+			'tbl_tarefas_jira'[Tipo de item],
+			1,
+			'tbl_tarefas_jira'[Responsavel],
+			1,
+			'tbl_tarefas_jira'[Responsável Tecnico:  Name],
+			1,
+			'tbl_tarefas_jira'[Nome Cliente (Contr_ Horas)],
+			1,
+			'tbl_tarefas_jira'[Data solução],
+			1
+		)
+
+EVALUATE
+	__DS0PrimaryWindowed
+
+ORDER BY
+	'tbl_tarefas_jira'[Criado] DESC,
+	'tbl_tarefas_jira'[Parent Issue Key],
+	'tbl_tarefas_jira'[Chave],
+	'tbl_tarefas_jira'[Resumo],
+	'tbl_tarefas_jira'[Tipo de item],
+	'tbl_tarefas_jira'[Responsavel],
+	'tbl_tarefas_jira'[Responsável Tecnico:  Name],
+	'tbl_tarefas_jira'[Nome Cliente (Contr_ Horas)],
+	'tbl_tarefas_jira'[Data solução]

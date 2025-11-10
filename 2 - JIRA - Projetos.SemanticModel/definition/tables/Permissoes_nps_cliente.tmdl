@@ -1,0 +1,108 @@
+table Permissoes_nps_cliente
+	lineageTag: 9226d120-de9a-4088-94ed-1b1659ec66f6
+
+	measure Bloqueado_media_atendimento_pesquisa =
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao =
+			    LOOKUPVALUE(
+			        Permissoes_nps_cliente[PodeVerValor],
+			        Permissoes_nps_cliente[Usuario],
+			        UsuarioLogado
+			    )
+			VAR Resultado = 'tbl_pesquisa_satisfacao'[Media_atendimento_Respondido]
+			RETURN
+			IF (
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "0.00"),   -- sempre texto
+			    "Bloqueado"
+			)
+		lineageTag: aebfdcfd-5b67-4bdf-9ce2-710898f2188b
+
+	measure Bloqueado_comentario_atendimento_pesquisa =
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao =
+			    LOOKUPVALUE(
+			        Permissoes_nps_cliente[PodeVerValor],
+			        Permissoes_nps_cliente[Usuario],
+			        UsuarioLogado
+			    )
+			RETURN
+			IF (
+			    Permissao = "Sim",
+			    SELECTEDVALUE(tbl_pesquisa_satisfacao[avaliacaoExecutorComentario]),
+			    "Bloqueado"
+			)
+		lineageTag: 4a57ec4a-ce92-4b9b-b530-4722727c2c2c
+
+	measure Bloqueado_comentario_solucao_pesquisa =
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao =
+			    LOOKUPVALUE(
+			        Permissoes_nps_cliente[PodeVerValor],
+			        Permissoes_nps_cliente[Usuario],
+			        UsuarioLogado
+			    )
+			RETURN
+			IF (
+			    Permissao = "Sim",
+			    SELECTEDVALUE(tbl_pesquisa_satisfacao[avaliacaoSolucaoComentario]),
+			    "Bloqueado"
+			)
+		lineageTag: d6dc3403-0f48-4c84-8e66-84a3acc0f9bf
+
+	measure Bloqueado_media_solucao_pesquisa =
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao =
+			    LOOKUPVALUE(
+			        Permissoes_nps_cliente[PodeVerValor],
+			        Permissoes_nps_cliente[Usuario],
+			        UsuarioLogado
+			    )
+			VAR Resultado = 'tbl_pesquisa_satisfacao'[Media_solucao_Respondido]
+			RETURN
+			IF (
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "0.00"),   -- sempre texto
+			    "Bloqueado"
+			)
+		lineageTag: ebd647d5-8a21-4df5-9fd3-47a8828ef031
+
+	column Usuario
+		lineageTag: 8dbc49d5-c4e3-4ba2-99fb-3adcb49f08f4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Usuario]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PodeVerValor
+		lineageTag: b1251182-8e9b-4464-9581-d082b1e399cf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [PodeVerValor]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Permissoes_nps_cliente = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Usuario", STRING,
+				    "PodeVerValor", STRING,
+				    {
+				        {"tiago.melo@sabium.com.br", "Sim"},
+				        {"luiz.paschoalin@sabium.com.br", "Sim"},
+				        {"ronaldo@sabium.com.br", "Sim"},
+				        {"tarso.vieira@sabium.com.br", "Sim"},
+				        {"fabio.ferreira@sabium.com.br", "Sim"},
+				        {"magli@sabium.com.br", "Sim"}
+				    }
+				)
+
+	annotation PBI_Id = 5ae17658b3bf43979bf1774fe97b9e5e
+

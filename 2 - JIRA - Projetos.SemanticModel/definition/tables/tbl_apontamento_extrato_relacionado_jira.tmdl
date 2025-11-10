@@ -1,0 +1,85 @@
+table tbl_apontamento_extrato_relacionado_jira
+	lineageTag: f6e56a3e-31ee-44db-a54d-97894b312b22
+
+	measure soma_horas_realizadas_apontamento_relacionado = SUM(tbl_apontamento_extrato_relacionado_jira[Horas Realizadas])
+		lineageTag: a1c84066-4cdb-484b-9911-db6ffa064ed0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure soma_horas_previstas_apontamento_relacionado = SUM(tbl_apontamento_extrato_relacionado_jira[Horas Previstas])
+		lineageTag: 64a14aa6-02d7-4071-bd44-606d6b81b8b2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure soma_horas_projetadas_apontamento_relacionado = SUM(tbl_apontamento_extrato_relacionado_jira[Horas Projetadas])
+		lineageTag: f703a5ec-d612-4239-982d-144229ecbfaa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure horas_restantes_apontamento_relacionado = tbl_apontamento_extrato_relacionado_jira[soma_horas_previstas_apontamento_relacionado] - 'tbl_apontamento_extrato_relacionado_jira'[soma_horas_realizadas_apontamento_relacionado]
+		lineageTag: 27d58c6e-fbfd-41ba-87d3-7fa1a37e448b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_consumido_apontamento_relacionado = ```
+			
+			 DIVIDE(tbl_apontamento_extrato_relacionado_jira[soma_horas_realizadas_apontamento_relacionado], tbl_apontamento_extrato_relacionado_jira[soma_horas_previstas_apontamento_relacionado]) + 0
+			```
+		lineageTag: 3379be5c-52dc-47ff-9314-da7c8a0cfdbb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Horas Realizadas'
+		lineageTag: f2db5ef1-0894-4b36-b72b-cc833e4479e4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Horas Realizadas]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Horas Previstas'
+		lineageTag: 041ec13e-17ce-4bfc-8409-91d8761f7463
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Horas Previstas]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column chave
+		lineageTag: e02fd4d5-5f92-4186-8393-003b2488ef0d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: fApontamento_Extrato[chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas Projetadas'
+		lineageTag: cef58bbb-cd09-45f8-a6e0-e250f14cb932
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Horas Projetadas]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition tbl_apontamento_extrato_relacionado_jira = calculated
+		mode: import
+		source = ```
+				
+				SUMMARIZE(
+				    fApontamento_Extrato,
+				    fApontamento_Extrato[chave],
+				    "Horas Realizadas", MAX(fApontamento_Extrato[hrRealizada]),
+				    "Horas Previstas", MAX(fApontamento_Extrato[hrsPrevistas]),
+				    "Horas Projetadas", MAX(fApontamento_Extrato[hrsProjetadas])
+				)
+				
+				```
+
+	annotation PBI_Id = d00fc5bbd943439780fcaa2e29bf4d8a
+

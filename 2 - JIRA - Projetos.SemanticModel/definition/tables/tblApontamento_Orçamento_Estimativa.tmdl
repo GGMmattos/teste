@@ -1,0 +1,158 @@
+table tblApontamento_Orçamento_Estimativa
+	lineageTag: 14a8a09a-dbb0-45a8-a428-7fa60b58ea1b
+
+	measure Qtd_recursos_relacionado_administracao = ```
+			
+			// Quantidade de recursos, puxando da tabela Administração. 
+			    CALCULATE(
+			        DISTINCTCOUNT('tblAdministração'[membros.nome]),
+			        USERELATIONSHIP('tblAdministração'[membros.papel.id], 'tblApontamento_Orçamento_Estimativa'[papelId])
+			    ) + 0
+			```
+		formatString: 0
+		displayFolder: Tela Comitê Execução
+		lineageTag: a581e20d-f8b4-4142-8e3e-8e4b46aff935
+
+	measure Recursos_disponiveis_por_dia_comite_execucao =
+			
+			// quantidade de recursos disponível por papel, multiplicado por 6,5 dias.
+			'tblApontamento_Orçamento_Estimativa'[Qtd_recursos_relacionado_administracao] * 6.5
+		displayFolder: Tela Comitê Execução
+		lineageTag: 487b5d1f-09dc-4856-ae6a-be3c5cc522d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Prazo_real_em_dias_backlog_execucao =
+			
+			//Divisão de Hrs Realizadas pela quantidade de Recursos disponivels (total)
+			DIVIDE([Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)], [Recursos_disponiveis_por_dia_comite_execucao],0) + 0
+		displayFolder: Tela Comitê Execução
+		lineageTag: cb68f121-500a-4bd9-a5e2-40997f908f76
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Prazo_projeto_em_dias_backlog_execucao = DIVIDE([Hr Projetada (fApontamento_Extrato)], [Recursos_disponiveis_por_dia_comite_execucao]) + 0
+		displayFolder: Tela Comitê Execução
+		lineageTag: a0a633b4-850c-498f-8f83-5fc1c70ad13e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MostrarLinha 2' =
+			
+			VAR Realizadas = fApontamento_Extrato[hrs_realizadas_backlog_execucao]
+			VAR Previstas = fApontamento_Extrato[hrs_previstas_fApontamento_Extrato]
+			VAR Projetadas = fApontamento_Extrato[Hr Projetada (fApontamento_Extrato)]
+			RETURN
+			IF(
+			    Previstas = 0 && Realizadas = 0 && Projetadas = 0,
+			    0, -- Oculta
+			    1  -- Exibe
+			)
+		formatString: 0
+		lineageTag: 3dec04a1-9484-4e49-a307-991f9d9fdc97
+
+	column chave
+		dataType: string
+		lineageTag: 7f773deb-e440-4e9c-8eaa-02d1c193faa2
+		summarizeBy: none
+		sourceColumn: chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column papelId
+		dataType: int64
+		formatString: 0
+		lineageTag: 0927d6bb-582d-4802-a951-5274eedc1a01
+		summarizeBy: count
+		sourceColumn: papelId
+
+		annotation SummarizationSetBy = Automatic
+
+	column papel
+		dataType: string
+		lineageTag: 0be8ed4c-bebb-437e-b7dd-34881e2359b5
+		summarizeBy: none
+		sourceColumn: papel
+
+		annotation SummarizationSetBy = Automatic
+
+	column percentualConcluido
+		dataType: int64
+		formatString: 0
+		lineageTag: 888b07e7-aa23-4589-8df4-2f966f627a1f
+		summarizeBy: sum
+		sourceColumn: percentualConcluido
+
+		annotation SummarizationSetBy = Automatic
+
+	column tarefapai
+		dataType: string
+		lineageTag: 92002254-e911-4a3a-884a-3c341f7f77ad
+		summarizeBy: none
+		sourceColumn: tarefapai
+
+		annotation SummarizationSetBy = Automatic
+
+	column tarefaId
+		dataType: int64
+		formatString: 0
+		lineageTag: 44a15152-9649-4348-a204-70b1d65e44b3
+		summarizeBy: count
+		sourceColumn: tarefaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column projetoId
+		dataType: int64
+		formatString: 0
+		lineageTag: 48cf0e57-fc80-4a87-b87f-106844905dbc
+		summarizeBy: count
+		sourceColumn: projetoId
+
+		annotation SummarizationSetBy = Automatic
+
+	column horasRealizadas
+		dataType: double
+		lineageTag: 2500dfe3-f2a3-4fb2-858c-02b38f647c6d
+		summarizeBy: sum
+		sourceColumn: horasRealizadas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column horasPrevistas
+		dataType: double
+		lineageTag: 1d91ff60-6d7d-4079-822e-136eaf25ab38
+		summarizeBy: sum
+		sourceColumn: horasPrevistas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column horasProjetadas
+		dataType: double
+		lineageTag: c79717ff-a96f-4a42-b929-4806c6df8912
+		summarizeBy: sum
+		sourceColumn: horasProjetadas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition tblApontamento_Orçamento_Estimativa = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/api_controlehoras/controle-publico/orcamento/estimativa/completo")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"chave", "papelId", "papel", "percentualConcluido", "tarefapai", "tarefaId", "projetoId", "horasRealizadas", "horasPrevistas", "horasProjetadas"}, {"chave", "papelId", "papel", "percentualConcluido", "tarefapai", "tarefaId", "projetoId", "horasRealizadas", "horasPrevistas", "horasProjetadas"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"chave", type text}, {"papelId", Int64.Type}, {"papel", type text}, {"percentualConcluido", Int64.Type}, {"tarefapai", type text}, {"tarefaId", Int64.Type}, {"projetoId", Int64.Type}, {"horasRealizadas", type number}, {"horasPrevistas", type number}, {"horasProjetadas", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

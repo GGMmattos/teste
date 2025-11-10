@@ -1,0 +1,135 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["tblEpics","tblStory","tblSubtasks","tblPonte","tblApontamentoPorTarefa","fConsolidado","fApontamento_Start_Stop","fApontamento_Extrato","fApontamento_Extrato_Subtask","fPonto_CLT","fPonto_Cooperado","fUsuários","Data/Hora Atualização","tblApontamento_Time","fOrçamento","tblAdministração","Papel_Funcional_e_Custos","tblApontamento_Orçamento_Estimativa","tbl_entregas_jira","tbl_tarefas_jira","tbl_subtarefas_jira","tbl_vinculados_entregas_jira","tbl_vinculados_tarefas_jira","tbl_vinculados_subtarefas_jira","tbl_versao_corrigidas_jira","tbl_historico_jira_tarefas","tbl_produtos_tarefas_jira","tbl_componentes_tarefas_jira","tbl_impedimento_tarefas","tbl_status_historico_entregas","tbl_orçamento_horas","tbl_pesquisa_satisfacao","tbl_tag_cp_entrega","tbl_todas_issues_jira","tbl_vinculados_todas_issues"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+annotation __TEdtr = 1
+
+annotation PBIDesktopVersion = 2.146.1254.0 (25.08)+791a7518fadc83da883d79322a2658aff57c8db3
+
+ref table DateTableTemplate_5c2afc54-59ba-4238-a6b3-febfdd0f9a23
+ref table fApontamento_Start_Stop
+ref table fApontamento_Extrato
+ref table fApontamento_Extrato_Subtask
+ref table fPonto_CLT
+ref table fPonto_Cooperado
+ref table fUsuários
+ref table 'Calendário Automático'
+ref table fProdução_Dashboard
+ref table 'Data/Hora Atualização'
+ref table tblApontamento_Time
+ref table fOrçamento
+ref table 'Calendário SA (criado x fechado)'
+ref table tblAdministração
+ref table LocalDateTable_94263455-b2e2-4376-b863-38347233dd89
+ref table LocalDateTable_7149c91a-a061-48e8-9d0a-ad7cae872a7a
+ref table LocalDateTable_3b10c37d-2884-49e8-be7d-201454ffea5d
+ref table LocalDateTable_07ec6f75-d49c-451e-aeb9-ee6f466f4a53
+ref table LocalDateTable_053f928a-42a6-49c2-ae14-6749bef29780
+ref table Permissoes
+ref table Papel_Funcional_e_Custos
+ref table Calendario_dias_uteis
+ref table LocalDateTable_d40a6f08-5d11-434b-9511-5332cdf41c9f
+ref table tblApontamento_Orçamento_Estimativa
+ref table Top10_Tarefas_Horas_INFRA
+ref table LocalDateTable_70da4f72-e317-44d5-94e2-bed3502b79bb
+ref table LocalDateTable_b351892b-b639-4114-b593-b648b3268452
+ref table Calendario_automatico_novo
+ref table LocalDateTable_1b41dbd8-cfcb-4753-ae09-3917756da37c
+ref table LocalDateTable_d22424fb-9bc3-4033-ac32-cc6dda22efa9
+ref table LocalDateTable_cb7ebe46-724f-4580-ac97-0620082b224f
+ref table tbl_entregas_jira
+ref table LocalDateTable_df108026-0ab2-4f14-9a4f-02e63d8009ba
+ref table LocalDateTable_0e5afab1-abe2-4a06-b4db-ffd039403bb5
+ref table LocalDateTable_1cc35e5a-69fb-4530-a24d-7d5f6b43c585
+ref table LocalDateTable_3f86fc33-bd6b-4ffb-9cef-52064f204916
+ref table tbl_tarefas_jira
+ref table LocalDateTable_999ead64-c35e-423d-8773-d4efd7787195
+ref table LocalDateTable_9f43cb66-34e9-4fdc-a985-b5165ae4a4db
+ref table LocalDateTable_7f9792b8-f8b1-4b4b-8d5f-23f13baacfc9
+ref table LocalDateTable_b2d56b3b-6471-4817-97ca-ece50ee2613b
+ref table LocalDateTable_d2d42354-75dc-42df-b068-5e611c882664
+ref table LocalDateTable_1944483b-73b1-4bea-ae0c-d0185f2a1b3a
+ref table LocalDateTable_6e181cc4-aafa-4040-93a6-4d59149ddd6d
+ref table tbl_vinculados_entregas_jira
+ref table LocalDateTable_43a5b04e-2033-4c46-aca8-73acf4eb2e80
+ref table LocalDateTable_d3c317ca-6b47-40c9-aac1-6a3800db4724
+ref table LocalDateTable_0058b030-d089-4bfc-9a28-2a30bbf14b15
+ref table tbl_versao_corrigidas_jira
+ref table LocalDateTable_2484aa64-2d67-4f11-84d3-6a5808a1868c
+ref table LocalDateTable_187aeecf-ad70-42d5-b3d2-1beebb664862
+ref table tbl_subtarefas_jira
+ref table LocalDateTable_3adeafa9-f93d-40d6-81f6-5d5ad0f5fdd9
+ref table LocalDateTable_b92d1702-a0f2-4b80-9aff-fd4c25d9497b
+ref table LocalDateTable_8b67b8fd-29de-4bad-9755-5523a7bc58f5
+ref table LocalDateTable_c8d0019a-c42c-476a-95eb-8bd9a4232275
+ref table LocalDateTable_8f7d1737-ec78-418a-9096-d5203f001bd4
+ref table LocalDateTable_02d70998-901c-4819-aaa9-b5ff14a0aeac
+ref table LocalDateTable_0962a4a4-c5ce-4f6e-bf85-145855f212fc
+ref table tbl_historico_jira_tarefas
+ref table LocalDateTable_092a4827-5e5a-4eea-b3fd-385f7d009079
+ref table LocalDateTable_d003a1fc-0a99-4ea0-b34d-51c397578fd9
+ref table LocalDateTable_3ac0c127-9e02-4603-b842-be758fad968f
+ref table LocalDateTable_7ac9a711-2c70-4ac8-b9c5-41e921ba8996
+ref table tbl_produtos_tarefas_jira
+ref table tbl_componentes_tarefas_jira
+ref table tbl_vinculados_tarefas_jira
+ref table tbl_start_stop_relacionado
+ref table tbl_impedimento_tarefas
+ref table tbl_relacionado_administracao
+ref table tbl_vinculados_subtarefas_jira
+ref table tbl_status_historico_entregas
+ref table LocalDateTable_837d8da9-3371-424f-a624-7be7264d43a8
+ref table LocalDateTable_c18739ec-54da-4259-a766-e1294dafd93a
+ref table tbl_orçamento_horas
+ref table tbl_pesquisa_satisfacao
+ref table LocalDateTable_78b4ca8b-ec2e-4b26-a40e-6d96bd98b3b3
+ref table LocalDateTable_06d7f769-d80a-403e-ab9b-8e6986f64c40
+ref table Permissoes_nps_cliente
+ref table tbl_tag_cp_entrega
+ref table tbl_todas_issues_jira
+ref table LocalDateTable_6e75b193-4e8c-480a-bafc-63bb48293e28
+ref table LocalDateTable_67032e32-46aa-4504-a767-a20c2e533c87
+ref table LocalDateTable_3eaaa71a-ff86-4bcd-bd7b-b88c5dca4901
+ref table LocalDateTable_4cbed395-699a-4b9d-bd58-4406e9b26600
+ref table Tbl_todas_issues_jira_subtarefa
+ref table LocalDateTable_0bd1bda8-d892-4b9f-b2e9-48562b34f260
+ref table tbl_vinculados_todas_issues
+ref table Tbl_relacionados
+ref table LocalDateTable_b6a17910-f333-4535-84a4-c2edbd9b0a43
+ref table LocalDateTable_28a80a40-5708-43c3-9950-e4d9bd32910a
+ref table LocalDateTable_12038bf6-7f9f-4e9c-8b2c-226f917e9933
+ref table tbl_apontamento_extrato_relacionado_jira
+ref table tbl_start_stop_relacionado_todas_issues
+ref table LocalDateTable_27809bd4-e5bf-4b01-9f78-2fe0c8c233d7
+ref table LocalDateTable_cc8fd24f-a12a-45e5-9e0a-05570fa290ae
+ref table LocalDateTable_e4746b55-86b5-4775-89b2-0b171b1872a1
+ref table LocalDateTable_8d7770e1-cbac-4732-acc1-679ca5db9073
+ref table LocalDateTable_52c4bab1-b2d3-4d3a-adb8-6557ab106965
+ref table LocalDateTable_cb9f73da-6465-4ed4-8717-5b0eba485f71
+ref table LocalDateTable_f36ad0ee-bc3b-4ce1-9faf-0885184fff3d
+ref table Tbl_todas_issues_jira_tarefa
+ref table LocalDateTable_76d81cce-b02c-4064-9517-3f0f1b4ba9ba
+ref table LocalDateTable_0dd06c72-6a53-4f19-8929-52a3f871cd29
+ref table LocalDateTable_b39ea846-d795-43a3-ada9-bd34ef72f6e2
+ref table LocalDateTable_36c6d644-e92d-47b9-a195-8194c26ee374
+ref table LocalDateTable_cf6b130f-f3d7-4963-bbf9-e88b74939bd4
+ref table LocalDateTable_362ffc57-b2a1-409a-a6d4-2441ce2932e9
+ref table LocalDateTable_47202cc4-5fba-4bca-b6ad-67d9348735e4
+ref table LocalDateTable_39444497-1c00-4159-a1f3-d755406296a7
+ref table LocalDateTable_9f200e76-cdbd-48a5-b4e3-c0b846ec9b3a
+ref table LocalDateTable_675ad473-a9a0-4b44-9946-0f7a67ce886c
+ref table LocalDateTable_6f611c81-4db3-4fa9-8be4-d89c04978125
+
+ref cultureInfo pt-BR
+

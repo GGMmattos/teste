@@ -1,0 +1,34 @@
+table 'Calendário SA (criado x fechado)'
+	lineageTag: 7fac0eed-1379-4380-a79a-1cf5fa7c50c8
+
+	measure Qtd_entrega_concluida_via_relacionamento_atendimento = ```
+			
+			                                    CALCULATE(
+			                                    tbl_entregas_jira[Qtd_entrega_status_sa_concluido_e_cancelado],
+			                                    USERELATIONSHIP('Calendário SA (criado x fechado)'[Date], tbl_entregas_jira[Data solução]))
+			```
+		formatString: 0
+		lineageTag: bf97c354-d49b-4132-b627-5b76a1c28938
+
+	column Date
+		formatString: Short Date
+		lineageTag: f046b099-c0cc-40ab-80cb-d727ddf050ad
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: a90aba44-cfda-4e9d-850a-cbd12bac9314
+			defaultHierarchy: LocalDateTable_d22424fb-9bc3-4033-ac32-cc6dda22efa9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Calendário SA (criado x fechado)' = calculated
+		mode: import
+		source = CALENDAR(DATE(2025,01,01),TODAY())
+
+	annotation PBI_Id = 2fcd6d4d8b654f369f490d9c1dcb7285
+

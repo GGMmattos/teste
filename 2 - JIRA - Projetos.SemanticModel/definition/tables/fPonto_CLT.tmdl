@@ -1,0 +1,97 @@
+table fPonto_CLT
+	lineageTag: 02525a6d-2afa-487f-92d7-e7470b0a1fab
+
+	measure 'Soma Hrs. CLT' = SUM(fPonto_CLT[horastrabalhadas])
+		displayFolder: Medidas CLT
+		lineageTag: c3adf578-b063-4530-88ec-903122247d21
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Produção' = DIVIDE(fApontamento_Start_Stop[Soma Hrs Realizadas (Start/Stop)],[Soma Hrs. CLT + Coop]) + 0
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		displayFolder: Medidas CLT
+		lineageTag: 623d4f17-50a8-40cf-85c8-a58b01e28658
+
+		changedProperty = IsHidden
+
+	measure 'Soma Hrs. CLT + Coop' = [Soma Hrs. CLT] + fPonto_Cooperado[Soma Hrs Trabalhadas Coop] + 0
+		formatString: #,0.00
+		displayFolder: Medidas CLT
+		lineageTag: f6b28c57-8851-4c71-8bf1-8299d3ecc25c
+
+		changedProperty = IsHidden
+
+	measure '% Produção limit. 100%' = ```
+			
+			    SWITCH(
+			    TRUE(),
+			    fPonto_CLT[% Produção] > 1, "100" * 10 / 1000,
+			    fPonto_CLT[% Produção] < 1, 'fPonto_CLT'[% Produção])
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Medidas CLT
+		lineageTag: f24fd518-4694-4752-bbde-c8b47b0fa97f
+
+	measure 'Meta de Apontamento' = [Soma Hrs. CLT + Coop] - 'fPonto_CLT'[90%]
+		displayFolder: Medidas CLT
+		lineageTag: d9d22ffd-d035-4c18-9312-e3173def2d36
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 90% = VALUE("90") / 100
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Medidas CLT
+		lineageTag: d6cf95c6-2153-41a7-92b6-7caf59346c95
+
+	column data
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3fa04418-fb66-416d-9211-18c66bd4a858
+		summarizeBy: none
+		sourceColumn: data
+
+		changedProperty = IsHidden
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column matricula
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dd3af97-83b0-451c-bf51-61a4382dd9c9
+		summarizeBy: none
+		sourceColumn: matricula
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column horastrabalhadas
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 5ef7f611-23ab-4e83-b357-764415db15a5
+		summarizeBy: none
+		sourceColumn: horastrabalhadas
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	partition fPonto_CLT = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/ahgora/batidas/consulta/calculo")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"data", "matricula", "horastrabalhadas"}, {"data", "matricula", "horastrabalhadas"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"data", type date}, {"matricula", Int64.Type}, {"horastrabalhadas", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

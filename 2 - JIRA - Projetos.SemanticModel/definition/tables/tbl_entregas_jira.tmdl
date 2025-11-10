@@ -1,0 +1,1520 @@
+table tbl_entregas_jira
+	lineageTag: 1032ff06-0b8b-4298-b2fb-ff784e318a53
+
+	measure Qtd_entregas = DISTINCTCOUNT(tbl_entregas_jira[Chave]) + 0
+		formatString: #,0
+		lineageTag: 8b91dcdc-cf42-434d-b2b5-2c35701a5442
+
+	measure Qtd_entrega_status_aberto_sa = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Aberto",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: c31f1e2b-102c-460d-b065-3095f78c8126
+
+	measure %_qtd_entrega_status_sa_aberto = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_aberto_sa], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: eb92ce51-b40a-493a-9857-981c1014b501
+
+	measure Qtd_entrega_status_sa_backlog_cp = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Backlog CP",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 41e3851c-2a18-45b4-904e-61f9cf80191b
+
+	measure '% Qtd Entrega Backlog Comitê Produto' = DIVIDE('tbl_entregas_jira'[Qtd_entrega_status_sa_backlog_cp], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: ffc8cadf-9047-4cb0-985b-e9d941dbf251
+
+	measure Qtd_entregas_status_sa_backlog_distribuidora = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT('tbl_entregas_jira'[Chave]),
+			            'tbl_entregas_jira'[Agrupamento_status_sa_entrega] = "Backlog distribuidora",
+			            'tbl_entregas_jira'[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 57435094-f6bb-49cc-afcf-518066ec4075
+
+	measure '% Qtd Entrega Backlog Distribuidora' = DIVIDE('tbl_entregas_jira'[Qtd_entregas_status_sa_backlog_distribuidora], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: e71bb859-c79d-4dec-88cc-aff9d3a4a91f
+
+	measure Qtd_entrega_status_sa_backlog_aceite = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Backlog aceite",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: a967bff6-3ede-4ece-8fbc-926e1cf080e5
+
+	measure Qtd_entrega_status_sa_em_andamento = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Em andamento CP",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: c26b7bdd-adb9-45d5-9eca-96ea991aecd5
+
+	measure '% Qtd Entrega Em Andamento CP' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_em_andamento], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 1eee88a1-e5bf-440f-875c-ea94feccc78e
+
+	measure Qtd_entrega_status_sa_triagem = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Triagem",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 60cb5222-ee67-440d-be34-7e4f2f7acb7e
+
+	measure '% Qtd Entrega Triagem' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_triagem], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: b185a41c-400b-4e5e-b6e7-21a0d6d77bed
+
+	measure Qtd_entregas_status_sa_avaliacao_consultoria = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Avaliação Consultoria",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: aafe5516-8b53-44b1-ab23-58c4fc3886b0
+
+	measure '% Qtd Entrega Avaliação' = DIVIDE(tbl_entregas_jira[Qtd_entregas_status_sa_avaliacao_consultoria], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 8da7df42-882a-4821-935b-c739cc099b86
+
+	measure Qtd_entrega_status_sa_orcamento_analise = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Orçamento Análise", 
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 7e08f2c9-4d6c-4b9c-9e7f-ccaf5e86f01f
+
+	measure '% Qtd Entrega Orçamento (Análise)' = DIVIDE('tbl_entregas_jira'[Qtd_entrega_status_sa_orcamento_analise], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: f0c588bc-529e-48e4-b71a-e714113df0c5
+
+	measure Qtd_entregas_status_sa_aprovar_orcamento_analise = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Aprovar Orçamento (Análise)",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 7e059ec2-25b1-4fd9-9627-6e0622682e8b
+
+	measure '% Qtd Entrega Aprovar Orçamento Análise (Análise)' = DIVIDE(tbl_entregas_jira[Qtd_entregas_status_sa_aprovar_orcamento_analise], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: a60fea95-ca65-4cb1-89f4-56dae0575401
+
+	measure 'Qtd Entrega Orçamento Execução (SA)' = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Orçamento (Execução)",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		displayFolder: Tela (SA)
+		lineageTag: ba896e4d-0139-4029-bfbd-0982b3e505fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Qtd Entrega Orçamento (Execução)' = DIVIDE(tbl_entregas_jira[Qtd Entrega Orçamento Execução (SA)], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 2c9d9e15-7ff3-4b9d-b7f1-f842607ad954
+
+	measure Qtd_entregas_status_sa_aprovar_orcamento_execucao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Aprovar Orçamento (Execução)",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: b475948d-fe4e-4c54-9432-45e4ade25e95
+
+	measure '% Qtd Entrega Aprovar Orçamento Execução' = DIVIDE(tbl_entregas_jira[Qtd_entregas_status_sa_aprovar_orcamento_execucao], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 66fb5d38-61b1-4fca-a941-8204458d4711
+
+	measure Qtd_entregas_status_sa_aprovar_documento = ```
+			
+			    CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Aprovar Documento",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 00ad854f-b0c6-4024-a63a-95bd07083635
+
+	measure '% Qtd Entrega Aprovar Documento' = DIVIDE(tbl_entregas_jira[Qtd_entregas_status_sa_aprovar_documento], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 026d830e-76a7-445c-9253-b280ac7630ed
+
+	measure Qtd_entrega_status_sa_em_analise = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Em Análise",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 049aa5b0-6e69-4fde-8544-228e0e7e7214
+
+	measure Qtd_entrega_status_sa_aguardando_interno = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Aguardando Interno",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 82172643-1b4e-458b-a6da-5bcea1463e92
+
+	measure '% Qtd Entrega Aguardando Interno' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_aguardando_interno], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 58d25475-415d-40fe-a43a-0af51f890330
+
+	measure Qtd_entrega_status_sa_aguardando_solucao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Aguardando Solução",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: c97bb394-9309-4a28-a470-0d2d4ff9e590
+
+	measure '% Qtd Entrega Aguardando Solução' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_aguardando_solucao], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: a3d6f60b-071a-4a19-82ca-52b0930e5b2c
+
+	measure Qtd_entrega_status_sa_desenvolvimento = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Desenvolvimento",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 4a33be8a-98a6-4ebd-a21c-8bdaf8bcb69e
+
+	measure '% Qtd Entrega Desenvolvimento' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_desenvolvimento], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 41d91d48-f64e-4ddc-aa55-c7db55682198
+
+	measure Qtd_entrega_status_sa_infraesrutura = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Infraestrutura",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: d49d7ca9-0330-45d8-b682-42abd6aabfdc
+
+	measure '% Qtd Entrega Infraestrutura' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_infraesrutura], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: e5fe69a2-34a4-4642-8590-2647290039b8
+
+	measure Qtd_entrega_status_sa_servico_extra = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Serviços Extracontratuais",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: db648adc-2352-494f-8a38-577db3a91720
+
+	measure '% Qtd Entrega Servicos Extracontratuais' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_servico_extra], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 365531be-fde8-4422-a180-8e2f3fa33dd3
+
+	measure Qtd_entrega_status_sa_suporte_manutencao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Suporte/Manutenção",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 9189a3b4-7607-4a30-a0bb-7946f3d0531e
+
+	measure '% Qtd Entrega Manutencao/Suporte' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_suporte_manutencao], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 9fde77c1-f292-4484-8c11-a67b85aaacbd
+
+	measure Qtd_entrega_status_sa_para_entrega = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Para Entrega",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 3b6bc91e-ed83-467a-9a97-b0016eb8d3a8
+
+	measure '% Qtd Entrega Backlog aceite' = DIVIDE('tbl_entregas_jira'[Qtd_entrega_status_sa_backlog_aceite], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: e914eaec-101e-4124-a183-574f4951d726
+
+	measure '% Qtd Entrega Para Entrega' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_para_entrega], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: e57c533f-8377-458b-a906-53a658e24e83
+
+	measure Qtd_entrega_status_sa_validacao_cliente = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Validação Cliente",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 58a19008-ade4-4f0c-bf8e-04838fc5c5fe
+
+	measure '% Qtd Entrega Validação Cliente' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_validacao_cliente], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 66e0073c-e605-4bdb-9130-59dac9fe6fe6
+
+	measure Qtd_entrega_status_sa_em_avaliacao_nc = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Em Avaliação de NC",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: 63deb369-3bb9-470f-b974-70b77e3f01b7
+
+	measure '% Qtd Entrega Em Avaliação NC' = DIVIDE('tbl_entregas_jira'[Qtd_entrega_status_sa_em_avaliacao_nc], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 1817637f-bc54-42fd-ba8c-1faee6c68b25
+
+	measure Qtd_entrega_status_sa_concluido_e_cancelado = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Situacao] IN {"Concluído", "Cancelada"},
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: #,0
+		displayFolder: Tela (SA)
+		lineageTag: d78144e8-dd25-4bfe-af6a-acec143b0cff
+
+	measure '% Qtd Entrega Concluído/Cancelado' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_concluido_e_cancelado], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 5da1b5fc-d975-4eac-a189-4270c4aec08d
+
+	measure Qtd_entrega_status_sa_autenticacao_tecnica = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Autenticação Técnica",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela Analítico de Atendimento
+		lineageTag: 4fb37cef-c5b9-415b-9797-2143e4e9fba6
+
+	measure Qtd_entrega_status_sa_autenticacao_comercial_execucao = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Autenticação Comercial (Execução)",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela Analítico de Atendimento
+		lineageTag: c9b0c729-7095-4ea4-b79f-bd595afaae76
+
+	measure Qtd_entrega_status_sa_autenticacao_comercial_analise = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Autenticação Comercial (Análise)",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela Analítico de Atendimento
+		lineageTag: 909aa1af-5301-4aee-aa7b-c24f6dbdd802
+
+	measure %_qtd_entrega_status_sa_autenticacao_tecnica = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_autenticacao_tecnica], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Analítico de Atendimento
+		lineageTag: 3db2fd8b-ebcf-435d-a4c6-9fa75e5e2fc4
+
+	measure %_qtd_entrega_status_sa_autenticacao_comercial_execucao = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_autenticacao_comercial_execucao], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Analítico de Atendimento
+		lineageTag: 20212d10-b9c4-4ec6-9a73-78767d6855b1
+
+	measure %_qtd_entrega_status_sa_autenticacao_comercial_analise = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_autenticacao_comercial_analise], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Analítico de Atendimento
+		lineageTag: b6ad2c17-f9cd-47cf-a979-65d2812b866c
+
+	measure Qtd_entregas_concluidas_e_canceladas = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Situacao] IN {"Concluído", "Cancelada"}) + 0
+			```
+		formatString: #,0
+		lineageTag: 46848cf1-4983-40f3-a2f1-a1f37b50b572
+
+	measure Acumulado_entregas_concluidas = ```
+			
+			// Total acumulado de entregas já concluidas, usando como base a tabela de data auxiliar. 
+			CALCULATE(
+			    [Qtd_entrega_concluida_via_relacionamento_atendimento],
+			    FILTER(
+			        ALLSELECTED('Calendário SA (criado x fechado)'),
+			        'Calendário SA (criado x fechado)'[Date] <= MAX('Calendário SA (criado x fechado)'[Date])
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: ccb84b6e-d5d8-45c1-8b18-a4162faf1d3f
+
+	measure Acumulado_entregas_criadas = ```
+			
+			// Total acumulado de entregas criadas, usando como base a tabela de data auxiliar. 
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			    FILTER(
+			        ALLSELECTED('Calendário SA (criado x fechado)'),
+			        'Calendário SA (criado x fechado)'[Date] <= MAX('Calendário SA (criado x fechado)'[Date])
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 672deb6f-acc9-4718-b23a-efdc61cc4b5f
+
+	measure Acumulado_entregas_em_aberto =
+			
+			//Tarefas que ainda estão em aberto, com base nas medidas acumuladas.
+			[Acumulado_entregas_criadas] - [Acumulado_entregas_concluidas]
+		formatString: 0
+		lineageTag: 8a6c7481-81eb-4728-838c-b5ccf8f8db75
+
+	measure Qtd_entregas_em_aberto = ```
+			'tbl_tarefas_jira'[Qtd_tarefas_e_subtarefas] - 'tbl_tarefas_jira'[Qtd_tarefas_e_subtarefas_concluidos] 
+			```
+		formatString: #,0
+		lineageTag: 58015a88-8cbd-4847-b66e-fa62ec4459b6
+
+	measure '% Qtd Entrega Total' = DIVIDE(tbl_entregas_jira[Qtd_entregas], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: e60ce5bd-a3c0-4070-87e8-d300e7ac1fd1
+
+	measure '% Qtd_entregas_em_aberto' = DIVIDE('tbl_entregas_jira'[Qtd_entregas_em_aberto], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: ee288333-0b42-4bf5-8a7c-7bf8d47d8a3a
+
+	measure Qtd_Entregas_Vencidas =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			    tbl_entregas_jira[Data limite] < TODAY(),
+			    NOT ISBLANK(tbl_entregas_jira[Data limite])
+			) + 0
+		formatString: #,0
+		displayFolder: Tela Prioridade Atendimento
+		lineageTag: 3c367467-6aa5-4d59-b698-55c930fb32c9
+
+	measure Qtd_Entregas_Vencem_Hoje =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			    tbl_entregas_jira[Data limite] = TODAY()
+			) + 0
+		formatString: #,0
+		displayFolder: Tela Prioridade Atendimento
+		lineageTag: 04435209-7e33-42a8-8056-d433ec7c2254
+
+	measure Qtd_Entregas_Vencem_Semana_Que_Vem =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			    FILTER(
+			        tbl_entregas_jira,
+			        tbl_entregas_jira[Data limite] >= TODAY() + (7 - WEEKDAY(TODAY(), 2)) &&
+			        tbl_entregas_jira[Data limite] <  TODAY() + (14 - WEEKDAY(TODAY(), 2))
+			    )
+			) + 0
+		formatString: #,0
+		displayFolder: Tela Prioridade Atendimento
+		lineageTag: 79f31993-7e44-4baa-9986-d9b5ed724bf0
+
+	measure Qtd_Entregas_no_prazo =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			    tbl_entregas_jira[Data limite] > TODAY()
+			) + 0
+		formatString: #,0
+		displayFolder: Tela Prioridade Atendimento
+		lineageTag: 36b8b437-a015-4730-a9a0-48a993df7983
+
+	measure Qtd_Entregas_sem_data_limite =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			    ISBLANK(tbl_entregas_jira[Data limite])) + 0
+		formatString: #,0
+		displayFolder: Tela Prioridade Atendimento
+		lineageTag: ca44d5fa-8f02-4a2a-9caa-be7d0e32fbf7
+
+	measure Horas_previstas_entregas_total =
+			
+			SUM(tbl_entregas_jira[Original Estimate (Incl_ Sub-tasks)]) + 0
+		lineageTag: 28630cc8-65a6-4f52-9a60-a459cb0c0818
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Horas_realizadas_entregas_total = SUM(tbl_entregas_jira[Tempo gasto (incluindo subtarefas)]) + 0
+		lineageTag: e402f76f-2397-4a89-85a0-4f2e0752bcc6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Exibir_chave_hierarquia_entrega_tarefa =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Chave]),
+			    SELECTEDVALUE(tbl_entregas_jira[Chave])       -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: 059ec4f6-eea4-47c9-94ec-6a2c6db282b1
+
+	measure Exibir_tipo_servico_entrega_tarefa =
+			
+			IF(
+			   ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),             -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Tipo de Serviço]),
+			    SELECTEDVALUE(tbl_entregas_jira[Tipo de Serviço])             -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: ce955222-b579-4263-95a2-5747cc2c6a22
+
+	measure Exibir_situacao_hierarquia_entrega_tarefa =
+			
+			
+			IF(
+			   ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),             -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Situacao]),
+			    SELECTEDVALUE(tbl_entregas_jira[Situacao])             -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: c1dce816-a2f1-457c-8927-d9c9f6e3d79a
+
+	measure Exibir_prioridade_hierarquia_entrega_tarefa =
+			
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),   -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Prioridade]),
+			    SELECTEDVALUE(tbl_entregas_jira[Prioridade])             -- Nível pai (entrega)
+			)
+		lineageTag: 97c579dd-30e1-4119-bd8f-f8c0a7debba0
+
+	measure Exibir_nivel_prioridade_hierarquia_entrega_tarefa =
+			
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),   -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Nível prioridade]),
+			    SELECTEDVALUE(tbl_entregas_jira[Nível prioridade])             -- Nível pai (entrega)
+			)
+		lineageTag: a8ab000d-c82a-42ba-8095-d576d6df644d
+
+	measure Exibir_time_hierarquia_entrega_tarefa =
+			
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),             -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Team]),
+			    SELECTEDVALUE(tbl_entregas_jira[Team])             -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: e571cfb9-ee28-4878-b248-c5c7bb6afc60
+
+	measure Exibir_responsavel_hierarquia_entrega_tarefa =
+			
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),   -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Responsavel]),
+			    SELECTEDVALUE(tbl_entregas_jira[Responsavel])             -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: 3c1a0384-5122-4b42-8266-93986206f552
+
+	measure Exibir_criado_hierarquia_entrega_tarefa =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),   -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Criado]),
+			    SELECTEDVALUE(tbl_entregas_jira[Criado])             -- Nível pai (entrega)
+			)
+		formatString: Short Date
+		lineageTag: d065895d-7bd5-43d5-85cf-3780c6b9e508
+
+	measure Exibir_data_limite_hierarquia_entrega_tarefa =
+			
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),   -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Data limite]),
+			    SELECTEDVALUE(tbl_entregas_jira[Data limite])             -- Nível pai (entrega)
+			)
+		formatString: Short Date
+		lineageTag: 76a35c3e-cd9e-4874-b5dd-42d5317b77e6
+
+	measure Exibir_data_final_sprint =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),   -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Current Sprint End Date]),
+			    SELECTEDVALUE(tbl_entregas_jira[Current Sprint End Date])             -- Nível pai (entrega)
+			)
+		formatString: Short Date
+		displayFolder: Medidas de Hierarquias
+		lineageTag: 8ec505b0-53b4-4603-9695-e1cd3a74dca4
+
+	measure Exibir_nome_sprint =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),   -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Current Sprint Name]),
+			    SELECTEDVALUE(tbl_entregas_jira[Current Sprint Name])             -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: c7998667-5515-41b6-8289-e506f35e3ac3
+
+	measure exibir_versao =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),   -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_versao_corrigidas_jira[Versao_concatenado]),
+			    SELECTEDVALUE(tbl_versao_corrigidas_jira[Versao_concatenado])-- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: 9f642f8e-b9ec-41eb-bf99-1ad55a833227
+
+	measure Exibir_projeto_hierarquia_entrega_tarefa =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Project Name]),
+			    SELECTEDVALUE(tbl_entregas_jira[Project Name])       -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: 84fdbd26-e597-4456-b8da-dd60a1fd4fbb
+
+	measure Exibir_cliente_hierarquia_entrega_tarefa =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Nome Cliente (Contr_ Horas)]),
+			    SELECTEDVALUE(tbl_entregas_jira[Nome Cliente (Contr_ Horas)])       -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: 73a634b5-f36a-41b3-9f0e-6ee668bd4c2c
+
+	measure Exibir_tipo_hierarquia_entrega_tarefa =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Tipo de item]),
+			    SELECTEDVALUE(tbl_entregas_jira[Tipo de item])       -- Nível pai (entrega)
+			)
+		displayFolder: Medidas de Hierarquias
+		lineageTag: 06297e90-7bd1-4989-8c8b-dcc18da548cc
+
+	measure %_entrega_concluido = DIVIDE(tbl_entregas_jira[Qtd_entregas_concluidas_e_canceladas], 'tbl_entregas_jira'[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fb36a15f-1858-4ded-9fea-d1a37c6aaa05
+
+	measure Exibir_horas_previstas_hierarquia_entrega_tarefa =
+			
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),
+			    SELECTEDVALUE(fApontamento_Extrato[hrsPrevistas]),
+			    SUMX(
+			        VALUES(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),
+			        CALCULATE(SUM(fApontamento_Extrato[hrsPrevistas]))
+			    )
+			) + 0
+		displayFolder: Medidas de Hierarquias
+		lineageTag: f05c9a07-200e-4075-926c-4e4db68236d4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Exibir_horas_realizadas_hierarquia_entrega_tarefa =
+			
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),
+			    SELECTEDVALUE(fApontamento_Extrato[hrsPrevistas]),
+			    SUMX(
+			        VALUES(tbl_tarefas_jira[Chave_titulo_tarefas_jira]),
+			        CALCULATE(SUM(fApontamento_Extrato[hrRealizada]))
+			    )
+			) + 0
+		displayFolder: Medidas de Hierarquias
+		lineageTag: 3c0a8162-0d9e-4903-a011-1ecffd0db118
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Qtd Entrega Em Análise' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_em_analise], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 85c085a5-d8d2-4af8-86c1-b4a35a10a4b2
+
+	measure Qtd_entregas_sa =
+			
+			CALCULATE(
+			DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			 tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+		formatString: #,0
+		displayFolder: Tela (SA)
+		lineageTag: 6304d5b8-b9e5-453c-b0a8-d9e7042cbba3
+
+	measure Qtd_entrega_status_sa_backlog_evolucao = ```
+			
+			    CALCULATE(
+			            DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			            tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Backlog Evolução",
+			            tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: ed6585c8-e33f-4348-8f11-485c6bf06067
+
+	measure '% Qtd Entrega backlog evolução' = DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_backlog_evolucao], tbl_entregas_jira[Qtd_entregas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: b1606672-8b77-473b-9df1-2f6e1711e6bc
+
+	measure Exibir_chave_hierarquia_entrega_tarefa_projetos =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Resumo]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Chave]),
+			    SELECTEDVALUE(tbl_entregas_jira[Chave])       -- Nível pai (entrega)
+			)
+		displayFolder: Hierarquia Projetos
+		lineageTag: 6705f794-b6f2-44a4-90be-625899a554ec
+
+	measure Exibir_situacao_hierarquia_entrega_tarefa_projetos =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Resumo]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Situacao]),
+			    SELECTEDVALUE(tbl_entregas_jira[Situacao])       -- Nível pai (entrega)
+			)
+		displayFolder: Hierarquia Projetos
+		lineageTag: eceba264-6b17-483b-bf24-53fa9e6d5f67
+
+	measure Exibir_data_inicio_hierarquia_entrega_tarefa_projetos =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Resumo]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Start date]),
+			    SELECTEDVALUE(tbl_entregas_jira[Start date])       -- Nível pai (entrega)
+			)
+		formatString: Short Date
+		displayFolder: Hierarquia Projetos
+		lineageTag: ec75cc89-ddcc-4279-ae00-6e94894af0ae
+
+	measure Exibir_data_limite_hierarquia_entrega_tarefa_projetos =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Resumo]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Data limite]),
+			    SELECTEDVALUE(tbl_entregas_jira[Data limite])       -- Nível pai (entrega)
+			)
+		formatString: Short Date
+		displayFolder: Hierarquia Projetos
+		lineageTag: 584757ec-26f7-4129-9065-6e8f20ddc007
+
+	measure Exibir_prazos_hierarquia_entrega_tarefa_projetos =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Resumo]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Status_tarefas_com_ou_sem_prazo]),
+			    SELECTEDVALUE(tbl_entregas_jira[Status_entregas_com_ou_sem_prazo])       -- Nível pai (entrega)
+			)
+		displayFolder: Hierarquia Projetos
+		lineageTag: a064d6f4-ca5c-44c5-beda-b4b3cbf15340
+
+	measure Exibir_data_solucao_hierarquia_entrega_tarefa_projetos =
+			
+			IF(
+			    ISINSCOPE(tbl_tarefas_jira[Resumo]),          -- Subnível (tarefa)
+			    SELECTEDVALUE(tbl_tarefas_jira[Data solução]),
+			    SELECTEDVALUE(tbl_entregas_jira[Data solução])       -- Nível pai (entrega)
+			)
+		formatString: General Date
+		displayFolder: Hierarquia Projetos
+		lineageTag: c1946403-7809-4798-848f-feb587adb07b
+
+	measure Qtd_entrega_status_sa_cancelado = ```
+			
+			       		 CALCULATE(
+			           		 DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			           		 tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Cancelada",
+			           		 tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: 0
+		displayFolder: Tela (SA)
+		lineageTag: af3e80e0-8796-4f2c-973c-0474cdc537c6
+
+	measure Qtd_entrega_status_sa_concluido = ```
+			
+			       		 CALCULATE(
+			           		 DISTINCTCOUNT(tbl_entregas_jira[Chave]),
+			           		 tbl_entregas_jira[Agrupamento_status_sa_entrega] = "Concluído",
+			           		 tbl_entregas_jira[Project Name] = "Solicitação de Atendimento") + 0
+			```
+		formatString: #,0
+		displayFolder: Tela (SA)
+		lineageTag: 18b391dc-b3d5-4306-8956-de90f5d0383e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure '% Qtd Entrega Concluído' = ```
+			DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_concluido], tbl_entregas_jira[Qtd_entregas]) + 0
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: b116cede-b5ad-47ab-b97f-1580d98beda8
+
+	measure '% Qtd Entrega Cancelado' = ```
+			DIVIDE(tbl_entregas_jira[Qtd_entrega_status_sa_cancelado], tbl_entregas_jira[Qtd_entregas]) + 0
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela (SA)
+		lineageTag: 71f7b0a6-c752-444f-8c7e-eef235a2f999
+
+	column Chave
+		dataType: string
+		lineageTag: 2f82bbee-8e84-4d6c-93c6-87d5b547885e
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prioridade
+		dataType: string
+		lineageTag: 0b73c3ef-5f31-4694-9408-f7eff2acaa31
+		summarizeBy: none
+		sourceColumn: Prioridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de item'
+		dataType: string
+		lineageTag: 8172b4b7-df0a-4024-a723-d424b713d126
+		summarizeBy: none
+		sourceColumn: Tipo de item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue ID'
+		dataType: string
+		lineageTag: 5cf57f97-0ea5-4b65-b6d7-ac4535cfcf44
+		summarizeBy: none
+		sourceColumn: Issue ID
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CNPJ Cliente (Contr_ Horas)'
+		dataType: string
+		lineageTag: 09065f19-5854-4a85-952a-63895a12aced
+		summarizeBy: none
+		sourceColumn: CNPJ Cliente (Contr_ Horas)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nível prioridade'
+		dataType: string
+		lineageTag: 3af3e5db-4a57-4620-99c5-9cce53e537b7
+		summarizeBy: none
+		sourceColumn: Nível prioridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Cliente (Contr_ Horas)'
+		dataType: string
+		lineageTag: 8353d425-4ead-43d9-8b4c-1b68d28af282
+		summarizeBy: none
+		sourceColumn: Nome Cliente (Contr_ Horas)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pós Implantação'
+		dataType: string
+		lineageTag: 445cc402-ab3b-46d9-bab2-5a92d126c7ba
+		summarizeBy: none
+		sourceColumn: Pós Implantação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		dataType: string
+		lineageTag: 880c58df-ab64-4c35-8e5c-02f18d6d8dd6
+		summarizeBy: none
+		sourceColumn: Team
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5d13a324-04b7-403c-9553-062abc0cb514
+		summarizeBy: none
+		sourceColumn: Start date
+
+		variation Variation
+			isDefault
+			relationship: 1f8d8b04-34e2-47e5-9248-42d3eeac1e45
+			defaultHierarchy: LocalDateTable_df108026-0ab2-4f14-9a4f-02e63d8009ba.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data solução'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 704d4072-1437-4622-8505-6e38acebc4d1
+		summarizeBy: none
+		sourceColumn: Data solução
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data Lançamento (virada)'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a44f6046-e7a4-4625-80ab-b8c5b852a72c
+		summarizeBy: none
+		sourceColumn: Data Lançamento (virada)
+
+		variation Variation
+			isDefault
+			relationship: 47aa949b-694e-4ea9-b9f8-e32230a666a7
+			defaultHierarchy: LocalDateTable_0e5afab1-abe2-4a06-b4db-ffd039403bb5.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Atualizado(a)
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f50729e2-84b5-42fb-a1d9-c67d1c538915
+		summarizeBy: none
+		sourceColumn: Atualizado(a)
+
+		variation Variation
+			isDefault
+			relationship: 04f18d2b-ad6f-465d-9f25-3e7bd7f64894
+			defaultHierarchy: LocalDateTable_1cc35e5a-69fb-4530-a24d-7d5f6b43c585.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data limite'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: fbb5f595-0c2b-474b-8e33-b3b7ff2d554f
+		summarizeBy: none
+		sourceColumn: Data limite
+
+		variation Variation
+			isDefault
+			relationship: 3764372b-d370-4356-8670-afa14d734031
+			defaultHierarchy: LocalDateTable_3f86fc33-bd6b-4ffb-9cef-52064f204916.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Project Id'
+		dataType: string
+		lineageTag: 11029976-ec84-4f83-bf59-dfe34b044cce
+		summarizeBy: none
+		sourceColumn: Project Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Key'
+		dataType: string
+		lineageTag: f6885d93-a58b-47ca-ac96-b0bd0deb18c4
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: da64992b-f7ee-4841-a41d-fe477e1c3a65
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 28ac5c33-8789-47d8-a92c-ddfb3644313d
+		summarizeBy: none
+		sourceColumn: Criado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Resumo
+		dataType: string
+		lineageTag: c276d677-8a90-4363-800a-da2b68455438
+		summarizeBy: none
+		sourceColumn: Resumo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsável Tecnico:  Name'
+		dataType: string
+		lineageTag: 4e725918-9c78-455a-87ff-82eea70492c4
+		summarizeBy: none
+		sourceColumn: Responsável Tecnico:  Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Consultor responsável:  Name'
+		dataType: string
+		lineageTag: 71ab9bec-5817-46ab-9c78-fbf7e2f94085
+		summarizeBy: none
+		sourceColumn: Consultor responsável:  Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Responsavel
+		dataType: string
+		lineageTag: 0f6acc86-2475-4a20-9bb9-1a6d0d8ab68c
+		summarizeBy: none
+		sourceColumn: Responsavel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Solicitante
+		dataType: string
+		lineageTag: 2e5045a1-56dc-4dd1-8b9f-7818a7a13ff3
+		summarizeBy: none
+		sourceColumn: Solicitante
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situacao
+		dataType: string
+		lineageTag: 420cbd2e-c9c9-4596-badd-8348ba848248
+		summarizeBy: none
+		sourceColumn: Situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Extracao_data_criado_x_solucao_entregas =
+			
+			// Extração de data da coluna Criado x Data Solução do Jira.
+			    DATEDIFF(
+			    tbl_entregas_jira[Criado],
+			    COALESCE(tbl_entregas_jira[Data solução], TODAY() ),DAY) + 1
+		formatString: 0
+		lineageTag: aa68a610-8a30-4c01-8cb0-dd0d4c61ef71
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link_entrega_jira_novo =
+			
+			"https://sabium.atlassian.net/browse/" & 'tbl_entregas_jira'[Chave]
+		lineageTag: 6b8fad22-dc19-4fbe-8a2f-732d1772715f
+		dataCategory: WebUrl
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Agrupamento_status_sa_entrega = ```
+			
+			            SWITCH(
+			                TRUE(),
+			                    tbl_entregas_jira[Situacao] IN {"Aberto"}, "Aberto",
+			                    tbl_entregas_jira[Situacao] IN {"Backlog aceite"}, "Backlog aceite",
+			                    tbl_entregas_jira[Situacao] IN {"Backlog Comitê Produto"}, "Backlog CP",
+			                    tbl_entregas_jira[Situacao] = "Backlog Evolução", "Backlog Evolução",
+			                    tbl_entregas_jira[Situacao] IN {"Backlog Distribuidora"}, "Backlog Distribuidora",
+			                    tbl_entregas_jira[Situacao] IN {"Em andamento CP"}, "Em andamento CP",
+			                    tbl_entregas_jira[Situacao] IN {"Em triagem"}, "Triagem",
+			                    tbl_entregas_jira[Situacao] IN {"Em Avaliação", "Em avaliação/Diagnóstico"}, "Avaliação Consultoria",
+			                    tbl_entregas_jira[Situacao] IN {"Em orçamento (Análise)"}, "Orçamento Análise",
+			                    tbl_entregas_jira[Situacao] IN {"Aprovar Orçamento Análise"}, "Aprovar Orçamento (Análise)",
+			                    tbl_entregas_jira[Situacao] IN {"Em análise de requisitos"}, "Em Análise",
+			                    tbl_entregas_jira[Situacao] IN {"Aprovar documento"}, "Aprovar Documento",
+			                    tbl_entregas_jira[Situacao] IN {"Em orçamento (Execução)"}, "Orçamento (Execução)",
+			                    tbl_entregas_jira[Situacao] = "Autenticação Técnica", "Autenticação Técnica",
+			                    tbl_entregas_jira[Situacao] = "Autenticação Comercial (Execução)", "Autenticação Comercial (Execução)",
+			                    tbl_entregas_jira[Situacao] = "Autenticação Comercial (Análise)", "Autenticação Comercial (Análise)",
+			                    tbl_entregas_jira[Situacao] IN {"Aprovar Orçamento Execução"}, "Aprovar Orçamento (Execução)",
+			                    tbl_entregas_jira[Situacao] IN {"Aguardando solução"}, "Aguardando Solução",
+			                    tbl_entregas_jira[Situacao] = "Desenvolvimento", "Desenvolvimento",
+			                    tbl_entregas_jira[Situacao] = "Suporte/Manutenção", "Suporte/Manutenção",
+			                    tbl_entregas_jira[Situacao] = "Infraestrutura", "Infraestrutura",
+			                    tbl_entregas_jira[Situacao] = "Serviços Extracontratuais", "Serviços Extracontratuais",
+			                    tbl_entregas_jira[Situacao] IN {"Para entrega"}, "Para Entrega",
+			                    tbl_entregas_jira[Situacao] IN {"Aguardando validação cliente"}, "Validação Cliente",
+			                    tbl_entregas_jira[Situacao] IN {"Em avaliação de NC"}, "Em Avaliação de NC",
+			                    tbl_entregas_jira[Situacao] IN {"Aguardando cliente", "Aguardando interno", "Autorizar acesso a base de terceiros"}, "Aguardando Interno",
+			                    tbl_entregas_jira[Situacao] =  "Cancelada",  "Cancelada",
+			                    tbl_entregas_jira[Situacao] =  "Concluído", "Concluído")
+			```
+		displayFolder: Tela Analítico de Atendimento
+		lineageTag: 60b7200e-8940-4f98-a688-b277705e48eb
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chave_titulo_entregas_jira
+		dataType: string
+		lineageTag: 02ea6207-94ba-49bd-b8d1-f80df1856517
+		summarizeBy: none
+		sourceColumn: Chave_titulo_entregas_jira
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estimativa de trabalho restante'
+		dataType: double
+		lineageTag: fad03615-0651-4805-b9aa-9a243d16e740
+		summarizeBy: sum
+		sourceColumn: Estimativa de trabalho restante
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Estimativa original'
+		dataType: double
+		lineageTag: 0e2b12f3-aca3-4373-ba1e-f6d87437b8a3
+		summarizeBy: sum
+		sourceColumn: Estimativa original
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Original Estimate (Incl_ Sub-tasks)'
+		dataType: double
+		lineageTag: 84f4acff-5977-4e93-8e22-212039980afa
+		summarizeBy: sum
+		sourceColumn: Original Estimate (Incl_ Sub-tasks)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Remaining Estimate (Incl_ Sub-tasks)'
+		dataType: double
+		lineageTag: 8fdb088a-c63b-4ae5-ba60-052a24f1afd7
+		summarizeBy: sum
+		sourceColumn: Remaining Estimate (Incl_ Sub-tasks)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tempo gasto'
+		dataType: double
+		lineageTag: 86136394-3988-4242-9ca9-7b1cf546a884
+		summarizeBy: sum
+		sourceColumn: Tempo gasto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Tempo gasto (incluindo subtarefas)'
+		dataType: double
+		lineageTag: 86bdc85a-01de-4ab2-8093-12f3f7107241
+		summarizeBy: sum
+		sourceColumn: Tempo gasto (incluindo subtarefas)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Status_data_limite_entregas = ```
+			
+			        SWITCH(
+			            TRUE(),
+			            ISBLANK(tbl_entregas_jira[Data limite]), "Sem Prazo", "Com Prazo")
+			```
+		lineageTag: 5bae6701-b202-4a66-8e2e-4f43c0df826a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Serviço'
+		dataType: string
+		lineageTag: e1a3445d-ee7d-4ea4-8baa-65607df5d16c
+		summarizeBy: none
+		sourceColumn: Tipo de Serviço
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Sprint Complete Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8652d78a-c7d4-4a07-a244-056f9f375068
+		summarizeBy: none
+		sourceColumn: Current Sprint Complete Date
+
+		variation Variation
+			isDefault
+			relationship: a423d47a-1db4-448f-88fe-96e8e9086db1
+			defaultHierarchy: LocalDateTable_43a5b04e-2033-4c46-aca8-73acf4eb2e80.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Sprint End Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d01a0bd6-591d-4e60-829e-731eb2a4eacd
+		summarizeBy: none
+		sourceColumn: Current Sprint End Date
+
+		variation Variation
+			isDefault
+			relationship: bfbf9748-093f-4189-a730-e1dd7ddb4c0d
+			defaultHierarchy: LocalDateTable_d3c317ca-6b47-40c9-aac1-6a3800db4724.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Sprint Id'
+		dataType: string
+		lineageTag: 7f971c55-ab02-482c-93eb-9ba31af265be
+		summarizeBy: none
+		sourceColumn: Current Sprint Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Sprint Id (Number)'
+		dataType: double
+		lineageTag: 4d2a0e2f-5177-4f62-9ef5-aeb41c81b979
+		summarizeBy: sum
+		sourceColumn: Current Sprint Id (Number)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Current Sprint Name'
+		dataType: string
+		lineageTag: 42268bc9-cb50-4ef2-b5a2-ebed12cd0aef
+		summarizeBy: none
+		sourceColumn: Current Sprint Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Sprint Start Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 40b8ef84-5444-4e38-901d-ef8249bf6261
+		summarizeBy: none
+		sourceColumn: Current Sprint Start Date
+
+		variation Variation
+			isDefault
+			relationship: 1be0c5b9-0670-41b1-bec2-f246055d2be5
+			defaultHierarchy: LocalDateTable_0058b030-d089-4bfc-9a28-2a30bbf14b15.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Sprint State'
+		dataType: string
+		lineageTag: 2ca67160-2f5b-4fe9-8437-cd6fc702d518
+		summarizeBy: none
+		sourceColumn: Current Sprint State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Agrupador_errado' = ```
+			
+			SWITCH(
+			    TRUE(),
+			    
+			    CALCULATE(
+			        COUNTROWS(tbl_entregas_jira),
+			        FILTER(
+			            tbl_entregas_jira,
+			            tbl_entregas_jira[Situacao] = "Concluído" ||
+			            tbl_entregas_jira[Situacao] = "Cancelada" ||
+			            tbl_entregas_jira[Situacao] = "Para Entrega" ||
+			            tbl_entregas_jira[Situacao] = "Aguardando validação cliente"
+			        )
+			    ) > 0, "Concluído",
+			
+			    CALCULATE(
+			        COUNTROWS(tbl_tarefas_jira),
+			        FILTER(
+			            tbl_tarefas_jira,
+			            tbl_tarefas_jira[Situacao] = "Em revisão da qualidade" ||
+			            tbl_tarefas_jira[Situacao] = "Aguardando versão" ||
+			            tbl_tarefas_jira[Situacao] = "Versão homologação interna" ||
+			            tbl_tarefas_jira[Situacao] = "Qualidade"
+			        )
+			    ) > 0, "Qualidade",
+			
+			    CALCULATE(
+			        COUNTROWS(fApontamento_Extrato),
+			        FILTER(
+			            fApontamento_Extrato,
+			            fApontamento_Extrato[hrRealizada] > 0
+			        )
+			    ) > 0, "Em Andamento",
+			
+			    "Pendente"
+			)
+			
+			```
+		lineageTag: 159f1a65-d387-4a19-a0d7-b17f82a2f7f1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Category'
+		dataType: string
+		lineageTag: 76ecfcca-354a-41ae-a75d-4c07ae5b9a48
+		summarizeBy: none
+		sourceColumn: Project Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entregas_sem_atualizacao = DATEDIFF(tbl_entregas_jira[Atualizado(a)], TODAY(), DAY)
+		formatString: 0
+		lineageTag: 24b1ba6d-c9c5-452a-aa70-338099c5a9e7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_Prazo =
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(tbl_entregas_jira[Data limite]), "Sem Prazo de Entrega",
+			    tbl_entregas_jira[Data limite] = TODAY(), "Vencem Hoje",
+			    tbl_entregas_jira[Data limite] >= TODAY() + (7 - WEEKDAY(TODAY(), 2)) &&
+			    tbl_entregas_jira[Data limite] <  TODAY() + (14 - WEEKDAY(TODAY(), 2)), "Vencem Semana que Vem",
+			    tbl_entregas_jira[Data limite] < TODAY(), "Fora do Prazo",
+			    tbl_entregas_jira[Data limite] > TODAY(), "No Prazo"
+			)
+		displayFolder: Tela Prioridade Atendimento
+		lineageTag: d0cba35c-102a-48ee-8688-44154c97529c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Key'
+		dataType: string
+		lineageTag: 272137ca-37eb-4cd4-9847-c966932a8082
+		summarizeBy: none
+		sourceColumn: Parent Issue Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Priority'
+		dataType: string
+		lineageTag: 950d0a68-c7ce-4fe1-9055-aa3af21fb649
+		summarizeBy: none
+		sourceColumn: Parent Issue Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Summary'
+		dataType: string
+		lineageTag: 1044fe53-7b3e-42b0-8ba3-6f7591727edd
+		summarizeBy: none
+		sourceColumn: Parent Issue Summary
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Status'
+		dataType: string
+		lineageTag: e8ade396-7d80-421b-87da-9d08e67637d5
+		summarizeBy: none
+		sourceColumn: Parent Issue Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Type'
+		dataType: string
+		lineageTag: ac459d79-ad43-4b27-b7b8-aab45957954d
+		summarizeBy: none
+		sourceColumn: Parent Issue Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ROI
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b58fb70b-15b6-428e-9516-f543ff93c705
+		summarizeBy: sum
+		sourceColumn: ROI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rentabilidade
+		dataType: decimal
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: d5d1da1c-b08e-4165-b43c-5e9c999dd385
+		summarizeBy: sum
+		sourceColumn: Rentabilidade
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column Filtro_status_agrupado_inovacao = ```
+			
+			SWITCH(
+			    TRUE(),
+			    
+			    -- Concluído
+			    'tbl_entregas_jira'[Situacao] IN { "Concluído", "Cancelada" }, "Concluído",
+			    'fApontamento_Extrato'[% Conclusão (Tela Desvios)] = 1, "Concluído",
+			    
+			    -- Pausado
+			    'tbl_entregas_jira'[Situacao] IN { "Exibir_situacao_hierarquia_entrega_tarefa" }, "Pausado",
+			    
+			    -- Em andamento
+			    'tbl_entregas_jira'[Situacao] = "Em andamento", "Em andamento",
+			    'fApontamento_Extrato'[Soma Hrs Realizado Tarefa e Subtarefa (Tela Desvios)] > 0, "Em andamento",
+			    
+			    -- Aberto (padrão)
+			    "Aberto"
+			)
+			
+			```
+		lineageTag: fc4af3db-3cb9-4d5d-b7f1-d776a2766f87
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_entregas_com_ou_sem_prazo = ```
+			
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(tbl_entregas_jira[Data limite]),
+			    "Sem prazo",
+			    tbl_entregas_jira[Data limite] < TODAY(),
+			    "Atrasado",
+			    "No prazo"  
+			)
+			```
+		lineageTag: e72ac69e-4cb0-47d6-87c3-c49ef5cdf6ec
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_entregas_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/NTE0OTk4ZDItNjk5YS00NzU2LThiZTMtMDQzMzdmNmY2", null, [Implementation="2.0"]),
+				    Issues_table = Fonte{[Name="Issues",Signature="table"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Issues_table,{{"Criado", type date}, {"Data limite", type date}, {"Atualizado(a)", type date}, {"Data solução", type date}, {"Start date", type date}}),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Tipo Alterado",{{"Nome Cliente (Contr_ Horas)", Text.Proper, type text}, {"Resumo", Text.Proper, type text}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Colocar Cada Palavra Em Maiúscula",{{"Current Assignee:  Name", "Responsavel"}, {"Current Status", "Situacao"}, {"Time Spent (Incl_ Sub-tasks)", "Tempo gasto (incluindo subtarefas)"}}),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Colunas Renomeadas", "Chave_titulo_entregas_jira", each Text.Combine({[Chave], [Resumo]}, " - "), type text),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Coluna Mesclada Inserida",null,"N/A",Replacer.ReplaceValue,{"Nível prioridade"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Valor Substituído",{{"Rentabilidade", Currency.Type}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Tipo Alterado1",{{"ROI", Percentage.Type}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

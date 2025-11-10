@@ -1,0 +1,259 @@
+table tbl_todas_issues_jira
+	lineageTag: 3acaa6c7-df85-47b2-85d8-bcc660fcb4c9
+
+	measure %_uso_do_sistema_todas_issues =
+			
+			AVERAGEX (
+			    VALUES ( 'tbl_todas_issues_jira'[Chave] ),
+			    CALCULATE ( AVERAGE ( 'tbl_todas_issues_jira'[% de Uso dos Sistemas Sabium] ) ) / 100
+			) + 0
+		formatString: 0%;-0%;0%
+		lineageTag: 1bcdcf98-6d4d-4880-bc15-70e8a4a8477f
+
+	column Chave
+		dataType: string
+		lineageTag: ec4b5947-8cd1-4464-b49f-97e734e79b97
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0c09a1a2-c8e3-4fc4-ac72-65e91d5e6607
+		summarizeBy: none
+		sourceColumn: Start date
+
+		variation Variation
+			isDefault
+			relationship: f715aee7-a321-49a3-875f-a00b07c2a0cd
+			defaultHierarchy: LocalDateTable_6e75b193-4e8c-480a-bafc-63bb48293e28.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data solução'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1ef83079-df18-4c02-86eb-74dbc39ddd3e
+		summarizeBy: none
+		sourceColumn: Data solução
+
+		variation Variation
+			isDefault
+			relationship: 053667ac-a9c7-43ff-8f4d-5db2ae368d13
+			defaultHierarchy: LocalDateTable_67032e32-46aa-4504-a767-a20c2e533c87.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data limite'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: efab3765-c8eb-4114-937f-129c2977d1a8
+		summarizeBy: none
+		sourceColumn: Data limite
+
+		variation Variation
+			isDefault
+			relationship: 94584bd1-677f-4c4d-b893-e8388445fdcd
+			defaultHierarchy: LocalDateTable_3eaaa71a-ff86-4bcd-bd7b-b88c5dca4901.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Current Status'
+		dataType: string
+		lineageTag: e8939a33-c901-4e85-a9e9-5b540506574c
+		summarizeBy: none
+		sourceColumn: Current Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resumo
+		dataType: string
+		lineageTag: a058a324-943f-431f-a177-3fb7b20f59af
+		summarizeBy: none
+		sourceColumn: Resumo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de item'
+		dataType: string
+		lineageTag: 847d0c40-d48d-40f7-b265-ad3c129bf424
+		summarizeBy: none
+		sourceColumn: Tipo de item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: 6a47219e-839f-4442-8708-a9e2e26d5daf
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Cliente (Contr_ Horas)'
+		dataType: string
+		lineageTag: 19db14f6-54fc-49cd-8718-7a9639d8039a
+		summarizeBy: none
+		sourceColumn: Nome Cliente (Contr_ Horas)
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% de Uso dos Sistemas Sabium'
+		dataType: int64
+		formatString: 0
+		lineageTag: d0880c2c-2ff8-469a-8c55-2802971a28a0
+		summarizeBy: sum
+		sourceColumn: % de Uso dos Sistemas Sabium
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custo (R$)'
+		dataType: double
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 5bd04104-c5ce-4aa2-97cf-fe55983d2796
+		summarizeBy: sum
+		sourceColumn: Custo (R$)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Descrição (HTML)'
+		dataType: string
+		lineageTag: f5c6094d-b696-4054-adc0-2c83a8d5d5e9
+		summarizeBy: none
+		sourceColumn: Descrição (HTML)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Despesa'
+		dataType: string
+		lineageTag: 382f8fb4-4263-4f24-9055-0a6753496f3e
+		summarizeBy: none
+		sourceColumn: Tipo de Despesa
+
+		annotation SummarizationSetBy = Automatic
+
+	column Setor
+		dataType: string
+		lineageTag: 8e274b77-5e55-4341-a357-1ee6c0c4a380
+		summarizeBy: none
+		sourceColumn: Setor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Key'
+		dataType: string
+		lineageTag: 324354b0-75cc-4681-8ba8-f09c0341aa21
+		summarizeBy: none
+		sourceColumn: Parent Issue Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Priority'
+		dataType: string
+		lineageTag: f83e50d4-092e-4be6-91b0-265aaede9269
+		summarizeBy: none
+		sourceColumn: Parent Issue Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Status'
+		dataType: string
+		lineageTag: 2c9067cc-a77a-4c65-8395-20440cffbe2f
+		summarizeBy: none
+		sourceColumn: Parent Issue Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Type'
+		dataType: string
+		lineageTag: b92eb5ad-7a4f-4af2-85b2-15383b28860d
+		summarizeBy: none
+		sourceColumn: Parent Issue Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Summary'
+		dataType: string
+		lineageTag: df991c78-3e10-45b8-982d-3124750ac5eb
+		summarizeBy: none
+		sourceColumn: Parent Issue Summary
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 14e0aa2b-132a-42ec-9488-0881bde1d329
+		summarizeBy: none
+		sourceColumn: Criado
+
+		variation Variation
+			isDefault
+			relationship: 7988cb66-d17a-4d4f-8601-de635adfc341
+			defaultHierarchy: LocalDateTable_0bd1bda8-d892-4b9f-b2e9-48562b34f260.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Assignee:  Name'
+		dataType: string
+		lineageTag: ad362550-a981-49a7-879a-2f2b672e9d21
+		summarizeBy: none
+		sourceColumn: Current Assignee:  Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		dataType: string
+		lineageTag: 7ed12077-d76a-4e41-a734-96962ab20a6b
+		summarizeBy: none
+		sourceColumn: Team
+
+		annotation SummarizationSetBy = Automatic
+
+	column Atualizado(a)
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 27dac04d-6549-4d0a-a61f-1a811342f04c
+		summarizeBy: none
+		sourceColumn: Atualizado(a)
+
+		variation Variation
+			isDefault
+			relationship: 1162a462-efb6-42a5-857b-e72c089aed2e
+			defaultHierarchy: LocalDateTable_b6a17910-f333-4535-84a4-c2edbd9b0a43.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prioridade
+		dataType: string
+		lineageTag: 4c9fcc82-3b29-48db-ae17-368d36d7ff23
+		summarizeBy: none
+		sourceColumn: Prioridade
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_todas_issues_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/NmRiYzRlOWMtNmU2ZS00YWZiLWE0ZDUtZmY4MDNmZWRh", null, [Implementation="2.0"]),
+				    Issues_table = Fonte{[Name="Issues",Signature="table"]}[Data],
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(Issues_table,{{"Nome Cliente (Contr_ Horas)", Text.Proper, type text}, {"Resumo", Text.Proper, type text}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colocar Cada Palavra Em Maiúscula",{{"Data solução", type date}, {"Data limite", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

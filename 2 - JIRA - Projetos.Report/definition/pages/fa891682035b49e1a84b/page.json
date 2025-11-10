@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "fa891682035b49e1a84b",
+  "displayName": "Revisão Qualidade",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1440,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "310799296001979a0d07",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_subtarefas_jira"
+              }
+            },
+            "Property": "Tipo de item"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "tbl_subtarefas_jira",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "Tipo de item"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Bug Qualidade'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "a9b907edf1addf20ce6d",
+      "target": "03c8b1650d404e454283",
+      "type": "DataFilter"
+    },
+    {
+      "source": "2b8dabf004b049df7006",
+      "target": "03c8b1650d404e454283",
+      "type": "DataFilter"
+    },
+    {
+      "source": "03c8b1650d404e454283",
+      "target": "2b8dabf004b049df7006",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a9b907edf1addf20ce6d",
+      "target": "2b8dabf004b049df7006",
+      "type": "DataFilter"
+    }
+  ]
+}

@@ -1,0 +1,589 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 4535.0609117957711,
+        "y": 2613042.1958046453
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 3205.40873015873,
+            "y": 2672988.3626161739
+          },
+          "nodeIndex": "fApontamento_Extrato",
+          "nodeLineageTag": "c197f43e-540f-42b8-b56b-0f75d9b9514d",
+          "size": {
+            "height": 384.25,
+            "width": 294
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 1738.3730158730159,
+            "y": 2672956.6182895368
+          },
+          "nodeIndex": "fApontamento_Extrato_Subtask",
+          "nodeLineageTag": "04cb1938-b917-478a-b8d1-dd06ac97c2aa",
+          "size": {
+            "height": 248,
+            "width": 296.5
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 1048.2500000000002,
+            "y": 2672294.2611466795
+          },
+          "nodeIndex": "fUsuários",
+          "nodeLineageTag": "5372e634-2b80-4beb-82ce-81bfd2ba30ae",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 25
+        },
+        {
+          "location": {
+            "x": 38.571428571428555,
+            "y": 2672215.546860965
+          },
+          "nodeIndex": "fPonto_CLT",
+          "nodeLineageTag": "02525a6d-2afa-487f-92d7-e7470b0a1fab",
+          "size": {
+            "height": 220,
+            "width": 244
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 3.75,
+            "y": 2671723.7611466795
+          },
+          "nodeIndex": "fPonto_Cooperado",
+          "nodeLineageTag": "02eb0a35-0c29-42d1-a54c-c9c25d46db77",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 2287.5268595041325,
+            "y": 2671527.0875929603
+          },
+          "nodeIndex": "Calendário Automático",
+          "nodeLineageTag": "833f44f6-49f1-4222-a750-d7835316f2c4",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 41
+        },
+        {
+          "location": {
+            "x": 1271.4642857142858,
+            "y": 2671759.000253357
+          },
+          "nodeIndex": "fProdução_Dashboard",
+          "nodeLineageTag": "e69d5f62-b7dc-423e-b88e-f80c84b54a89",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 24
+        },
+        {
+          "location": {
+            "x": 3807.4996064541519,
+            "y": 2672440.6103753839
+          },
+          "nodeIndex": "fOrçamento",
+          "nodeLineageTag": "34a4cd74-9a9a-4425-af5c-7fce350a2387",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 27
+        },
+        {
+          "location": {
+            "x": 2873.666666666667,
+            "y": 2671293.7859676434
+          },
+          "nodeIndex": "Data/Hora Atualização",
+          "nodeLineageTag": "dbca59b1-d619-402b-9154-009f2be6fb10",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 3796.5952380952385,
+            "y": 2671220.9055209821
+          },
+          "nodeIndex": "tblApontamento_Time",
+          "nodeLineageTag": "7abdfc10-d4a2-4ab4-bbb3-367cb5dc4d78",
+          "size": {
+            "height": 205,
+            "width": 234
+          },
+          "zIndex": 40
+        },
+        {
+          "location": {
+            "x": 3714.301587301587,
+            "y": 2671945.6043618955
+          },
+          "nodeIndex": "fApontamento_Start_Stop",
+          "nodeLineageTag": "d44c1c10-9b0b-4f56-ad5e-595f5046ac5a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 28
+        },
+        {
+          "location": {
+            "x": 2935.52380952381,
+            "y": 2670888.3896663738
+          },
+          "nodeIndex": "Calendário SA (criado x fechado)",
+          "nodeLineageTag": "7fac0eed-1379-4380-a79a-1cf5fa7c50c8",
+          "size": {
+            "height": 163.75,
+            "width": 234
+          },
+          "zIndex": 42
+        },
+        {
+          "location": {
+            "x": 2678.7380952380954,
+            "y": 2672158.4746469297
+          },
+          "nodeIndex": "tblAdministração",
+          "nodeLineageTag": "79c8f3c6-13e5-44ab-978f-74e4a23a6297",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 33
+        },
+        {
+          "location": {
+            "x": 2287.916666666667,
+            "y": 2670596.1289464384
+          },
+          "nodeIndex": "Papel_Funcional_e_Custos",
+          "nodeLineageTag": "5e9e6af1-c4d6-4d71-96c6-d55d4bb6149a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 26
+        },
+        {
+          "location": {
+            "x": 1629.166666666667,
+            "y": 2662618.4862856613
+          },
+          "nodeIndex": "Permissoes",
+          "nodeLineageTag": "450fafec-34ef-4c94-a686-e0e05b61e589",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 3619.916666666667,
+            "y": 2644652.1970835878
+          },
+          "nodeIndex": "Calendario_dias_uteis",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 718.916666666667,
+            "y": 2672582.9477200462
+          },
+          "nodeIndex": "tblApontamento_Orçamento_Estimativa",
+          "nodeLineageTag": "14a8a09a-dbb0-45a8-a428-7fa60b58ea1b",
+          "size": {
+            "height": 300,
+            "width": 360.25
+          },
+          "zIndex": 29
+        },
+        {
+          "location": {
+            "x": 5010.4880952380954,
+            "y": 2554924.3006733824
+          },
+          "nodeIndex": "Top10_Tarefas_Horas_INFRA",
+          "nodeLineageTag": "9f149608-b7a9-482c-aabb-560a71f6371b",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 4858.6309523809523,
+            "y": 2612941.7670538574
+          },
+          "nodeIndex": "tbl_entregas_jira",
+          "nodeLineageTag": "1032ff06-0b8b-4298-b2fb-ff784e318a53",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 31
+        },
+        {
+          "location": {
+            "x": 5314.20238095238,
+            "y": 2613301.4813395711
+          },
+          "nodeIndex": "tbl_tarefas_jira",
+          "nodeLineageTag": "39964472-6c29-49c7-ab8b-02162934aef9",
+          "size": {
+            "height": 307.95531820366159,
+            "width": 323.78144829969006
+          },
+          "zIndex": 44
+        },
+        {
+          "location": {
+            "x": 4416.8095238095239,
+            "y": 2613993.8027681429
+          },
+          "nodeIndex": "Calendario_automatico_novo",
+          "nodeLineageTag": "178e0b24-63ed-4e83-888f-4c4313f6a8a1",
+          "size": {
+            "height": 200,
+            "width": 324
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 4401.0595238095248,
+            "y": 2612696.3384824283
+          },
+          "nodeIndex": "tbl_versao_corrigidas_jira",
+          "nodeLineageTag": "ba335769-c2ae-404c-92dd-dd2e4958efeb",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 35
+        },
+        {
+          "location": {
+            "x": 5927.9166666666679,
+            "y": 2613207.1956252856
+          },
+          "nodeIndex": "tbl_subtarefas_jira",
+          "nodeLineageTag": "a6756fb8-0ded-4aff-bec7-83270fd6ec9a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 38
+        },
+        {
+          "location": {
+            "x": 5936.2023809523816,
+            "y": 2613556.8880528882
+          },
+          "nodeIndex": "tbl_historico_jira_tarefas",
+          "nodeLineageTag": "beaf5b85-6dc0-4557-b64d-476a9ef0b561",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 5299.0595238095257,
+            "y": 2614249.7451957455
+          },
+          "nodeIndex": "tbl_produtos_tarefas_jira",
+          "nodeLineageTag": "f3b41a21-7c58-4bf6-b004-a28e39c3771b",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 5303.3452380952394,
+            "y": 2614400.6023386028
+          },
+          "nodeIndex": "tbl_componentes_tarefas_jira",
+          "nodeLineageTag": "e5b93d48-3599-449e-a48a-9122a0d12559",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 4402.4880952380954,
+            "y": 2613014.909911
+          },
+          "nodeIndex": "tbl_vinculados_entregas_jira",
+          "nodeLineageTag": "878725fd-ac14-40dd-ae14-297952a267d4",
+          "size": {
+            "height": 246,
+            "width": 234
+          },
+          "zIndex": 34
+        },
+        {
+          "location": {
+            "x": 5839.0595238095239,
+            "y": 2613877.1737671737
+          },
+          "nodeIndex": "tbl_vinculados_tarefas_jira",
+          "nodeLineageTag": "fbf7318c-23ac-4253-96ce-3ab5aa528c7b",
+          "size": {
+            "height": 176,
+            "width": 284
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 4028.773809523811,
+            "y": 2613337.3166243164
+          },
+          "nodeIndex": "tbl_start_stop_relacionado",
+          "nodeLineageTag": "6d705446-eb3f-4c89-8716-572348fc7494",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 32
+        },
+        {
+          "location": {
+            "x": 6208.1666666666679,
+            "y": 2613412.6709304927
+          },
+          "nodeIndex": "tbl_impedimento_tarefas",
+          "nodeLineageTag": "7db89a8d-2ced-4ebd-afce-67d0b500b24a",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 5931.273809523811,
+            "y": 2612936.9387876354
+          },
+          "nodeIndex": "tbl_relacionado_administracao",
+          "nodeLineageTag": "37d77fd0-89d9-4f21-94b1-19bfb0bf8df5",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 36
+        },
+        {
+          "location": {
+            "x": 5529.8452380952376,
+            "y": 2612664.6084304927
+          },
+          "nodeIndex": "tbl_vinculados_subtarefas_jira",
+          "nodeLineageTag": "e0ebad30-95d4-4c5e-bde9-3debe38db58b",
+          "size": {
+            "height": 251.71428571428987,
+            "width": 275.42857142857156
+          },
+          "zIndex": 37
+        },
+        {
+          "location": {
+            "x": 6488.4166666666679,
+            "y": 2608897.0838769209
+          },
+          "nodeIndex": "tbl_status_historico_entregas",
+          "nodeLineageTag": "27f2090b-b459-425d-8e26-af779d097c82",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 6768.6666666666679,
+            "y": 2596781.3235532604
+          },
+          "nodeIndex": "tbl_orçamento_horas",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 6628.9166666666679,
+            "y": 2588335.6141503584
+          },
+          "nodeIndex": "tbl_pesquisa_satisfacao",
+          "nodeLineageTag": "a4be0031-a287-49ba-a7f8-a30ccc45c32a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 7329.1666666666679,
+            "y": 2575309.9071888626
+          },
+          "nodeIndex": "Permissoes_nps_cliente",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 7609.4166666666679,
+            "y": 2555976.6324609043
+          },
+          "nodeIndex": "tbl_tag_cp_entrega",
+          "nodeLineageTag": "94742b34-0007-4353-a501-c684293912ee",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 5915.3809523809532,
+            "y": 2560691.7203689683
+          },
+          "nodeIndex": "tbl_todas_issues_jira",
+          "nodeLineageTag": "3acaa6c7-df85-47b2-85d8-bcc660fcb4c9",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 9,
+          "expandedHeight": 145
+        },
+        {
+          "location": {
+            "x": 7889.6666666666679,
+            "y": 1981766.4569892345
+          },
+          "nodeIndex": "Tbl_todas_issues_jira_subtarefa",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 8169.9166666666679,
+            "y": 1952216.3790035369
+          },
+          "nodeIndex": "tbl_vinculados_todas_issues",
+          "nodeLineageTag": "4aaa38a2-9e71-4c8d-a6ad-dd7657f54dd7",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 39
+        },
+        {
+          "location": {
+            "x": 7991.5952380952394,
+            "y": 1778949.6972396593
+          },
+          "nodeIndex": "Tbl_relacionados",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 7421.5952380952394,
+            "y": 1599274.9245507859
+          },
+          "nodeIndex": "tbl_apontamento_extrato_relacionado_jira",
+          "nodeLineageTag": "f6e56a3e-31ee-44db-a54d-97894b312b22",
+          "size": {
+            "height": 232.85714285704307,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 8450.1666666666679,
+            "y": 1375766.3385638003
+          },
+          "nodeIndex": "tbl_start_stop_relacionado_todas_issues",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 8336.1309523809523,
+            "y": 1107419.0594045962
+          },
+          "nodeIndex": "Tbl_todas_issues_jira_tarefa",
+          "nodeLineageTag": "6b41e0f5-2724-4c32-b276-cc5b32bb5b16",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 43
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 78.481855489842161,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": true,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

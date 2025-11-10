@@ -1,0 +1,554 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU10",
+      "reportVersionAtImport": {
+        "visual": "1.8.95",
+        "report": "2.0.95",
+        "page": "1.3.95"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Metricalist_-_Simply_Modern_Da33600528413493824.json",
+      "reportVersionAtImport": {
+        "visual": "1.8.99",
+        "report": "2.0.99",
+        "page": "1.3.99"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "filterConfig": {
+    "filterSortOrder": "Custom"
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "advanceCardE03760C5AB684758B56AA29F9E6C257B",
+    "advancedtoggleswitch",
+    "annotatedBarByQueryOn10945130E24B4D6AAD5741C12ECB533D",
+    "aPDimEditor3160F611456D4E0AB3292CE5CB7EA3B8",
+    "aPDimEditorTestPilot",
+    "APMatrixCloud4B291F0FACAE43E38940A86C88AEC5CD",
+    "APSmartXLBeta",
+    "BusinessFlowF39DAE8D57A743EF89F5C3809DEE2B67",
+    "hierarchy50DB3783432B40A69C0B91926CE74CD9",
+    "HorizontalFunnel1449177164235",
+    "iconpack",
+    "inforiverEditable2B7A5FD2992D434DAE0B149479307B7B",
+    "kanbanChartFREEC738808C8ACE47DFA00C7E41C69AFE77",
+    "kanbanChartPROC738808C8ACE47DFA00C7E41C69AFE77",
+    "msdynxPnADimEditor_46a64748937f429fa9793cb689599b11",
+    "Multi_target_KPI",
+    "organizationChartDD06406DD55C47CCBB412EFE9A671D14",
+    "PBI_CV_32852E50B30D4D70ACC1C55C87F71ED0",
+    "PBI_CV_73744D90_4DC9_4F18_8BA5_EE8FA5C98035",
+    "powerKPIMatrixEB2381CC88A8425FBEB1B07FF57784E6",
+    "scorecard0DF89A0FEDBC47A5B8873BBCB619D35B",
+    "simpleImageEBC4593F96F1425FB3D84C5BF02B5075",
+    "skylineB4E364EE272342C783483632B1D063C8",
+    "SuperTables_1",
+    "swOrgChart2A3BCE7191B5491FBB82F771A169702D",
+    "swPowerSlicer_sharewinfo_612350D75BB94427B2E530403CFB0292_danfosi",
+    "swPowerSlicer_sharewinfo_612350D75BB94427B2E530403CFB0292_vusial",
+    "tableGridA86B787D407F4AE99B016A8E5AC0A27E",
+    "taskboard7A11309AC21042A28A78716F6638A2B0ms01x",
+    "textFilter25A4896A83E0487089E2B90C9AE57C8A",
+    "Timeline1447991079100",
+    "TornadoChart1452517688218",
+    "TreeBarChart",
+    "treeImageFreeE1148639291D450198F892FA45A672BC",
+    "ultimateVariance9712E1351D4E4FA89077ED4D9351DC71",
+    "variance8E4BB1B41A8942A7B897C7014A6E1F56",
+    "vpservice_store",
+    "zebraBiCards2C860CFAA9944091B75F0DBD117F20FA",
+    "ZebraBITablesBAE31B370F254F808553548EFB35BFA5",
+    "Tachometer1474636471549",
+    "htmlContent443BE3AD55E043BF878BED274D3A6865",
+    "p6GanttChartVisual23D4F5A6B7C8D9E0F1A2B3C4D5E6F7A8",
+    "SimpleWaterfall",
+    "powerBIGanttChartCertificationEDB15A648FAA4257A190BB4E1117FD58",
+    "GanttChart4C3653EFFFEB4E7DA5A699CE198391E2",
+    "Gantt1448688115699",
+    "BIGanttView",
+    "adwiseVisual73804AE4264848C8BCD67A31A0791911",
+    "aPGantt2DC486E54199414B99CB7E9D403FD90C",
+    "powerGANTTchart76BDD9F52FA14ADEB68823A07759D182",
+    "stratadatimelineProDB508FD14E2E41D2B5A5522CC05312AELAPIsss",
+    "gantt66E410741E374A90AF58EE8951297585",
+    "powerBiVisualsGanttDF45C9AD71594918A1FE8463F5F57380"
+  ],
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "126631306910937375423838.png",
+          "path": "126631306910937375423838.png",
+          "type": "Image"
+        },
+        {
+          "name": "248-2485394_menu-icon-png-red007956466359793968.png",
+          "path": "248-2485394_menu-icon-png-red007956466359793968.png",
+          "type": "Image"
+        },
+        {
+          "name": "248-2485394_menu-icon-png-red191262918228577.png",
+          "path": "248-2485394_menu-icon-png-red191262918228577.png",
+          "type": "Image"
+        },
+        {
+          "name": "248-2485394_menu-icon-png-red540122056809687.png",
+          "path": "248-2485394_menu-icon-png-red540122056809687.png",
+          "type": "Image"
+        },
+        {
+          "name": "248-2485394_menu-icon-png-red8093061739112457.png",
+          "path": "248-2485394_menu-icon-png-red8093061739112457.png",
+          "type": "Image"
+        },
+        {
+          "name": "248-2485394_menu-icon-png-red8152647882022195.png",
+          "path": "248-2485394_menu-icon-png-red8152647882022195.png",
+          "type": "Image"
+        },
+        {
+          "name": "248-2485394_menu-icon-png-red9752180536675548.png",
+          "path": "248-2485394_menu-icon-png-red9752180536675548.png",
+          "type": "Image"
+        },
+        {
+          "name": "248-2485394_menu-icon-png-red9872519822328778.png",
+          "path": "248-2485394_menu-icon-png-red9872519822328778.png",
+          "type": "Image"
+        },
+        {
+          "name": "33997749671504671194673.png",
+          "path": "33997749671504671194673.png",
+          "type": "Image"
+        },
+        {
+          "name": "96237907792254531201226.png",
+          "path": "96237907792254531201226.png",
+          "type": "Image"
+        },
+        {
+          "name": "analise7122148387081364.png",
+          "path": "analise7122148387081364.png",
+          "type": "Image"
+        },
+        {
+          "name": "analitico4598383875346437.png",
+          "path": "analitico4598383875346437.png",
+          "type": "Image"
+        },
+        {
+          "name": "chart_finance_economy_project_7413049175398259.png",
+          "path": "chart_finance_economy_project_7413049175398259.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_4812415242732126196246.png",
+          "path": "close_4812415242732126196246.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481242575028940707944.png",
+          "path": "close_481242575028940707944.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481242795529582132319.png",
+          "path": "close_481242795529582132319.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481243004191574903401.png",
+          "path": "close_481243004191574903401.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481243389705709905122.png",
+          "path": "close_481243389705709905122.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481243559020203966705.png",
+          "path": "close_481243559020203966705.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_4812443443249698895015.png",
+          "path": "close_4812443443249698895015.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481245267658936836663.png",
+          "path": "close_481245267658936836663.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481245548791993022977.png",
+          "path": "close_481245548791993022977.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481246025812117818234.png",
+          "path": "close_481246025812117818234.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481246071301546564654.png",
+          "path": "close_481246071301546564654.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481247339836257173691.png",
+          "path": "close_481247339836257173691.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_481248936461719247999.png",
+          "path": "close_481248936461719247999.png",
+          "type": "Image"
+        },
+        {
+          "name": "consultoria_tecnica7456116113879652.png",
+          "path": "consultoria_tecnica7456116113879652.png",
+          "type": "Image"
+        },
+        {
+          "name": "consultoria_tecnica8150804232087026.png",
+          "path": "consultoria_tecnica8150804232087026.png",
+          "type": "Image"
+        },
+        {
+          "name": "controle-de-versao09393748921070122.png",
+          "path": "controle-de-versao09393748921070122.png",
+          "type": "Image"
+        },
+        {
+          "name": "custom9178079105824914.png",
+          "path": "custom9178079105824914.png",
+          "type": "Image"
+        },
+        {
+          "name": "desvios_gerencial532518888425548.png",
+          "path": "desvios_gerencial532518888425548.png",
+          "type": "Image"
+        },
+        {
+          "name": "distribuidora7850222253005437.png",
+          "path": "distribuidora7850222253005437.png",
+          "type": "Image"
+        },
+        {
+          "name": "dynamic_process_transmission_t6818935299805924.png",
+          "path": "dynamic_process_transmission_t6818935299805924.png",
+          "type": "Image"
+        },
+        {
+          "name": "entrega_consultor025169047790320365.png",
+          "path": "entrega_consultor025169047790320365.png",
+          "type": "Image"
+        },
+        {
+          "name": "fabrica_de_sfotware6408623653877259.png",
+          "path": "fabrica_de_sfotware6408623653877259.png",
+          "type": "Image"
+        },
+        {
+          "name": "gerencial8762381721427156.png",
+          "path": "gerencial8762381721427156.png",
+          "type": "Image"
+        },
+        {
+          "name": "global4288907740358676.png",
+          "path": "global4288907740358676.png",
+          "type": "Image"
+        },
+        {
+          "name": "grafico-de-barras6300640682007879.png",
+          "path": "grafico-de-barras6300640682007879.png",
+          "type": "Image"
+        },
+        {
+          "name": "grafico-preditivo06499327725081683.png",
+          "path": "grafico-preditivo06499327725081683.png",
+          "type": "Image"
+        },
+        {
+          "name": "home5453601813535605.png",
+          "path": "home5453601813535605.png",
+          "type": "Image"
+        },
+        {
+          "name": "icone_comite12194134621772079.png",
+          "path": "icone_comite12194134621772079.png",
+          "type": "Image"
+        },
+        {
+          "name": "icone_gest_o463092987051981.png",
+          "path": "icone_gest_o463092987051981.png",
+          "type": "Image"
+        },
+        {
+          "name": "icone_tempo_medio_sa5686738110720901.png",
+          "path": "icone_tempo_medio_sa5686738110720901.png",
+          "type": "Image"
+        },
+        {
+          "name": "icone_vers_o2249201493301587.png",
+          "path": "icone_vers_o2249201493301587.png",
+          "type": "Image"
+        },
+        {
+          "name": "indicador4092318401956332.png",
+          "path": "indicador4092318401956332.png",
+          "type": "Image"
+        },
+        {
+          "name": "infra33788472638928546.png",
+          "path": "infra33788472638928546.png",
+          "type": "Image"
+        },
+        {
+          "name": "mesa3486204198220777.png",
+          "path": "mesa3486204198220777.png",
+          "type": "Image"
+        },
+        {
+          "name": "metas_consultoria35671959170952094.png",
+          "path": "metas_consultoria35671959170952094.png",
+          "type": "Image"
+        },
+        {
+          "name": "okr830656381291011.png",
+          "path": "okr830656381291011.png",
+          "type": "Image"
+        },
+        {
+          "name": "pngtree-an-icon-with-a-compute566852434634612.png",
+          "path": "pngtree-an-icon-with-a-compute566852434634612.png",
+          "type": "Image"
+        },
+        {
+          "name": "prazo-final9458002547158884.png",
+          "path": "prazo-final9458002547158884.png",
+          "type": "Image"
+        },
+        {
+          "name": "prioridade8777583789280343.png",
+          "path": "prioridade8777583789280343.png",
+          "type": "Image"
+        },
+        {
+          "name": "prioritize_54476807016701563000682.png",
+          "path": "prioritize_54476807016701563000682.png",
+          "type": "Image"
+        },
+        {
+          "name": "produtividade1834927217849116.png",
+          "path": "produtividade1834927217849116.png",
+          "type": "Image"
+        },
+        {
+          "name": "qualidade5070469822002218.png",
+          "path": "qualidade5070469822002218.png",
+          "type": "Image"
+        },
+        {
+          "name": "recrutaento_e_sele__o22818758277979523.png",
+          "path": "recrutaento_e_sele__o22818758277979523.png",
+          "type": "Image"
+        },
+        {
+          "name": "reestruturar21010171618335693.png",
+          "path": "reestruturar21010171618335693.png",
+          "type": "Image"
+        },
+        {
+          "name": "revis_o_qualidade13122105034517018.png",
+          "path": "revis_o_qualidade13122105034517018.png",
+          "type": "Image"
+        },
+        {
+          "name": "Sabium107280210192658054.jpeg",
+          "path": "Sabium107280210192658054.jpeg",
+          "type": "Image"
+        },
+        {
+          "name": "Sabium107852490656159872.jpeg",
+          "path": "Sabium107852490656159872.jpeg",
+          "type": "Image"
+        },
+        {
+          "name": "Sabium12101206080710909.jpeg",
+          "path": "Sabium12101206080710909.jpeg",
+          "type": "Image"
+        },
+        {
+          "name": "Sabium125415867690218397.jpeg",
+          "path": "Sabium125415867690218397.jpeg",
+          "type": "Image"
+        },
+        {
+          "name": "Sabium17303645934591381.jpeg",
+          "path": "Sabium17303645934591381.jpeg",
+          "type": "Image"
+        },
+        {
+          "name": "Sabium19381529946402831.jpeg",
+          "path": "Sabium19381529946402831.jpeg",
+          "type": "Image"
+        },
+        {
+          "name": "Sabium19600055112984036.jpeg",
+          "path": "Sabium19600055112984036.jpeg",
+          "type": "Image"
+        },
+        {
+          "name": "sabium5101693280342086.png",
+          "path": "sabium5101693280342086.png",
+          "type": "Image"
+        },
+        {
+          "name": "sabium5926340064187943.png",
+          "path": "sabium5926340064187943.png",
+          "type": "Image"
+        },
+        {
+          "name": "sabium6182518236545731.png",
+          "path": "sabium6182518236545731.png",
+          "type": "Image"
+        },
+        {
+          "name": "scrum_54468154646931710032931.png",
+          "path": "scrum_54468154646931710032931.png",
+          "type": "Image"
+        },
+        {
+          "name": "sprint39465589848624694.png",
+          "path": "sprint39465589848624694.png",
+          "type": "Image"
+        },
+        {
+          "name": "support_call_center_help_infor38021998406469026.png",
+          "path": "support_call_center_help_infor38021998406469026.png",
+          "type": "Image"
+        },
+        {
+          "name": "taxa-de-bits4152318299473208.png",
+          "path": "taxa-de-bits4152318299473208.png",
+          "type": "Image"
+        },
+        {
+          "name": "118752235049643276489705.png",
+          "path": "118752235049643276489705.png",
+          "type": "Image"
+        },
+        {
+          "name": "556961504974411023935932.png",
+          "path": "556961504974411023935932.png",
+          "type": "Image"
+        },
+        {
+          "name": "icone_inova__o350497848168009.png",
+          "path": "icone_inova__o350497848168009.png",
+          "type": "Image"
+        },
+        {
+          "name": "dashboard3755257016870426.png",
+          "path": "dashboard3755257016870426.png",
+          "type": "Image"
+        },
+        {
+          "name": "gantt5800502657139716.png",
+          "path": "gantt5800502657139716.png",
+          "type": "Image"
+        },
+        {
+          "name": "custo_prc2922953765929607.png",
+          "path": "custo_prc2922953765929607.png",
+          "type": "Image"
+        },
+        {
+          "name": "Metricalist_-_Simply_Modern_Da33600528413493824.json",
+          "path": "Metricalist_-_Simply_Modern_Da33600528413493824.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "benchmarking08797493525271827.png",
+          "path": "benchmarking08797493525271827.png",
+          "type": "Image"
+        },
+        {
+          "name": "iteration7444597840476831.png",
+          "path": "iteration7444597840476831.png",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU10",
+          "path": "BaseThemes/CY24SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}

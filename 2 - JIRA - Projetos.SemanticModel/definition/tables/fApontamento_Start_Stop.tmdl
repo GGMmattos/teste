@@ -1,0 +1,762 @@
+table fApontamento_Start_Stop
+	lineageTag: d44c1c10-9b0b-4f56-ad5e-595f5046ac5a
+
+	measure 'Média Produção Realizado %' =
+			
+			DIVIDE([Soma Hrs Realizadas (Start/Stop)], [Soma Hrs. CLT + Coop])
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: b46daead-0701-4046-95a5-1c96f46360be
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalDivision"
+				}
+
+		changedProperty = FormatString
+
+		changedProperty = IsHidden
+
+	measure 'Soma Hrs Realizadas (Start/Stop)' = SUM(fApontamento_Start_Stop[duracao]) + 0
+		formatString: #,0.00
+		lineageTag: dd70a23b-fc2d-489b-b807-e2591557aa78
+
+		changedProperty = IsHidden
+
+	measure 'Real Início (Produção)' = COALESCE(MIN(fApontamento_Start_Stop[data I]), BLANK())
+		formatString: General Date
+		lineageTag: a27a73eb-39b4-4c76-940e-6f3971bbe820
+
+	measure 'Média Produção limit. 100%' = ```
+			
+			    SWITCH(
+			    TRUE(),
+			    'fApontamento_Start_Stop'[Média Produção Realizado %] > 1, "100" * 10 / 1000,
+			    'fApontamento_Start_Stop'[Média Produção Realizado %] < 1, 'fApontamento_Start_Stop'[Média Produção Realizado %]) + 0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1d8c1c38-8dd4-4063-a1d3-925357529684
+
+	measure 'Qtd tarefa Manutenção (Start/Stop)' =
+			CALCULATE(
+				DISTINCTCOUNT(fApontamento_Start_Stop[nomeTarefa]),
+				fApontamento_Start_Stop[tipoTicket] IN { "Manutenção", "NC - Qualidade" }
+			) + 0
+		formatString: #,0
+		displayFolder: Tela Manutenção
+		lineageTag: bdd5c5c4-3779-436d-afbb-01e9d0b0c5f2
+
+	measure 'Qtd Tarefas (Start/Stop)' = DISTINCTCOUNT(fApontamento_Start_Stop[nomeTarefa])
+		formatString: #,0
+		lineageTag: b52da5a6-197d-4fc7-9c32-504c27b7d1be
+
+	measure 'Soma Hrs Realizada sem Manutenção e NC Qualidade (Start/Stop)' = [Soma Hrs Realizadas (Start/Stop)] - [Soma Hrs Realizada de Manutenção e NC Qualidade (Start/Stop)] + 0
+		formatString: #,0.00
+		displayFolder: Tela Manutenção
+		lineageTag: 7ea3164c-3be3-4539-a679-9f68be91e948
+
+	measure 'Soma Hrs Realizada de Manutenção e NC Qualidade (Start/Stop)' =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] IN {"Manutenção", "NC - Qualidade"})
+			) + 0
+		formatString: #,0.00
+		displayFolder: Tela Manutenção
+		lineageTag: 9fd13ac2-5b37-44c9-8bd6-b063cab19d3c
+
+	measure 'Soma Hrs Realizada de Falha Funcional (Start/Stop)' =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] = "Falha Funcional")
+			) + 0
+		formatString: #,0.00
+		displayFolder: Tela Falha Funcional
+		lineageTag: f8a44a0a-c089-4977-978b-45c49ebb34b6
+
+	measure 'Soma Hrs Realizada sem Falha Funcional (Start/Stop)' = [Soma Hrs Realizadas (Start/Stop)] - [Soma Hrs Realizada de Falha Funcional (Start/Stop)] + 0
+		formatString: #,0.00
+		displayFolder: Tela Falha Funcional
+		lineageTag: 533156d7-e680-4886-b9c1-9f3412b98802
+
+	measure 'Qtd tarefa Falha Funcional (Start/Stop)' =
+			CALCULATE(
+				DISTINCTCOUNT(fApontamento_Start_Stop[nomeTarefa]),
+				fApontamento_Start_Stop[tipoTicket] = "Falha Funcional"
+			) + 0
+		formatString: #,0
+		displayFolder: Tela Falha Funcional
+		lineageTag: 0c35eceb-2993-48cd-a60b-9657c6c2abca
+
+	measure 'Média Falha Funcional %' = DIVIDE([Soma Hrs Realizada de Falha Funcional (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)],0) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Falha Funcional
+		lineageTag: 41f313a4-6898-4428-a828-101c4a1a5bcf
+
+	measure 'Média Manutenção %' = DIVIDE([Soma Hrs Realizada de Manutenção e NC Qualidade (Start/Stop)], 'fApontamento_Start_Stop'[Soma Hrs Realizadas (Start/Stop)],0) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Manutenção
+		lineageTag: 83eac709-b61a-4fe5-a98e-16ea7bc41db3
+
+		changedProperty = IsHidden
+
+	measure 'Soma Hrs Realizada de Retrabalho (Start/Stop)' =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] IN {"Bug Qualidade", "Bug Review", "Bug Teste", "Bug Análise"})
+			) + 0
+		formatString: #,0.00
+		displayFolder: Tela Retrabalho
+		lineageTag: c30c0e92-545f-4c54-80a9-76effc6d4789
+
+		changedProperty = IsHidden
+
+	measure 'Soma Hrs Realizada sem Retrabalho (Start/Stop)' = [Soma Hrs Realizadas (Start/Stop)] - [Soma Hrs Realizada de Retrabalho (Start/Stop)] + 0
+		formatString: #,0.00
+		displayFolder: Tela Retrabalho
+		lineageTag: a974cad9-98a0-4dbd-90d2-1bee36e29d4d
+
+	measure 'Média Retrabalho %' = DIVIDE([Soma Hrs Realizada de Retrabalho (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)],0) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Retrabalho
+		lineageTag: 2bbcea03-aff4-46ee-8cb3-e482ee313e62
+
+		changedProperty = IsHidden
+
+	measure %_Hrs_Realizadas_do_Total_por_tipo_tarefa =
+			
+			DIVIDE(
+			    [Soma Hrs Realizadas (Start/Stop)],
+			    CALCULATE([Soma Hrs Realizadas (Start/Stop)], ALLSELECTED('fApontamento_Start_Stop'[tipoTicket]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4a7afcde-698c-4aee-a28e-4a0163ffbe16
+
+	measure %_Hrs_Realizadas_do_Total_por_time_tarefa =
+			
+			DIVIDE(
+			    [Soma Hrs Realizadas (Start/Stop)],
+			    CALCULATE([Soma Hrs Realizadas (Start/Stop)], ALLSELECTED('fApontamento_Start_Stop'[timeTarefa]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8ca4d67a-0195-41b0-840c-493296ff5089
+
+	measure Soma_Hrs_Realizada_de_okr_Start/Stop =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[keyProjeto] = "OKR")
+			) + 0
+		formatString: #,0.00
+		displayFolder: Tela OKR
+		lineageTag: 6a3b51db-a264-43a4-9b21-41947fa953c6
+
+	measure Soma_Hrs_Realizada_sem_okr_Start/Stop = [Soma Hrs Realizadas (Start/Stop)] - [Soma Hrs Realizada de Retrabalho (Start/Stop)] + 0
+		formatString: #,0.00
+		displayFolder: Tela OKR
+		lineageTag: 206685b8-3d8c-4a15-9f07-4361883e1e32
+
+	measure %_media_okr = DIVIDE([Soma_Hrs_Realizada_de_okr_Start/Stop], [Soma Hrs Realizadas (Start/Stop)],0) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela OKR
+		lineageTag: 217e35a0-7bb4-42cf-8f99-0854d645cfd4
+
+	measure 15% = VALUE("15") / 100
+		lineageTag: f31cf0fc-05a5-494e-a9c9-05d33b0ab411
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 5% = VALUE("5") / 100
+		displayFolder: Tela Falha Funcional
+		lineageTag: 84376fac-6c29-49ae-bc7c-1a39a13ac107
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 10% = VALUE("10") / 100
+		lineageTag: 00d57c5d-eb28-40ac-8e30-2bb024ac1501
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Qtd_tarefas_retrabalho_start_stop = ```
+			
+			    CALCULATE(
+				DISTINCTCOUNT(fApontamento_Start_Stop[nomeTarefa]),
+				fApontamento_Start_Stop[tipoTicket] IN { "Bug Teste", "Bug Qualidade", "Bug Review", "Bug Análise" }
+			) + 0
+			```
+		formatString: #,0
+		displayFolder: Tela Retrabalho
+		lineageTag: c0c26fda-6ffb-46c2-b08b-c235e357fe92
+
+		changedProperty = IsHidden
+
+	measure Qtd_tarefas_okr_start/stop =
+			CALCULATE(
+				DISTINCTCOUNT(fApontamento_Start_Stop[nomeTarefa]),
+				fApontamento_Start_Stop[keyProjeto] = "OKR"
+			) + 0
+		formatString: 0
+		displayFolder: Tela OKR
+		lineageTag: fe1b7caf-b68e-4c38-a11f-18448997c420
+
+	measure 'Soma Hrs Realizada de Customizacoes (Start/Stop)' =
+			
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] IN {"Customização", "Análise de Sistema", "Análise de Negócio"})
+			) + 0
+		displayFolder: Tela Customizações
+		lineageTag: d930a9a6-8fd6-4038-8c12-ac46e071ae75
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_Media_customizacoes = DIVIDE([Soma Hrs Realizada de Customizacoes (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Customizações
+		lineageTag: 329e3889-dd62-4b48-bda6-333dcc490b72
+
+	measure 'Soma Hrs Realizada de Analises (Start/Stop)' =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] IN {"Análise de Sistema", "Análise de Negócio"})
+			) + 0
+		displayFolder: Tela Análises
+		lineageTag: a19fdc18-6d9d-48a4-823b-56e4fab5aef4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_Media_analises = DIVIDE([Soma Hrs Realizada de Analises (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Análises
+		lineageTag: dfad828c-2d06-423c-8849-7a788b9db9f7
+
+	measure 'Soma Hrs Realizada de Suporte Contratual (Start/Stop)' =
+			
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] = "Suporte Contratual")
+			) + 0
+		displayFolder: Tela Suporte Contratual
+		lineageTag: eec2c971-5eaa-43fd-a839-21a564897e5c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_Media_suporte_contratual = DIVIDE('fApontamento_Start_Stop'[Soma Hrs Realizada de Suporte Contratual (Start/Stop)], 'fApontamento_Start_Stop'[Soma Hrs Realizadas (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Suporte Contratual
+		lineageTag: 64067de1-9c98-4c3b-a99d-02434195cf54
+
+	measure 'Soma Hrs Realizada de infraestrutura (Start/Stop)' =
+			
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[keyProjeto] = "INFRA",
+			NOT fApontamento_Start_Stop[tipoTicket] IN {"Gestão", "Reunião", "Serviço Interno"})
+			) + 0
+		displayFolder: Tela Infra
+		lineageTag: b1de6f8c-45cf-4f40-bb29-65595911c399
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_Media_infra = DIVIDE([Soma Hrs Realizada de infraestrutura (Start/Stop)], [Soma Hrs Realizada sem Retrabalho (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Infra
+		lineageTag: ffb996be-6f08-48a5-a450-1da15e295825
+
+	measure 'Soma Hrs Realizada de servicos internos (Start/Stop)' =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] IN {"Gestão", "Serviço Interno", "Reunião"})
+			) + 0
+		displayFolder: Tela Serviços Internos
+		lineageTag: ad501325-552e-4364-8541-0178bf0bc6de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_Media_servicos_internos = DIVIDE([Soma Hrs Realizada de servicos internos (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Serviços Internos
+		lineageTag: 05a88172-a6e2-4ebd-8375-ed7d8ec0912e
+
+	measure 'Soma Hrs Realizada outros tipos (Start/Stop)' = ```
+			
+			SUMX(
+			    VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			    CALCULATE(
+			        SUM(fApontamento_Start_Stop[duracao]),
+			        NOT (
+			            fApontamento_Start_Stop[tipoTicket] IN {
+			                "Gestão", "Serviço Interno", "Reunião", "Análise de Negócio", "Análise de Sistema", "Customização",
+			                "Evolução", "Obrigação legal", "Falha Funcional", "Manutenção", "NC - Qualidade", "Bug Qualidade", "Bug Review", 
+			                "Bug Teste", "Bug Análise", "Pré-estimativa", "Suporte Contratual", "Obrigação legal", "Documentação", "Homologação interna", "Versionamento", "Serviço Extracontratual"
+			            }
+			        ),
+			        NOT (
+			            fApontamento_Start_Stop[keyProjeto] = "INFRA"
+			        )
+			    )
+			) + 0
+			```
+		lineageTag: e34c6edc-56aa-4f90-a244-ae167c43ed41
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_outros_tipos = DIVIDE([Soma Hrs Realizada outros tipos (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6da25a8a-f5a1-443c-87b6-1b33dc429b08
+
+	measure 'Soma Hrs Realizada evoluções (Start/Stop)' =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] IN {"Obrigação legal", "Evolução", "Falha Funcional"})
+			) + 0
+		displayFolder: Tela Evoluções
+		lineageTag: 70c293d5-dd82-4fda-9e76-4d75809f23b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_evoluções = DIVIDE([Soma Hrs Realizada evoluções (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Evoluções
+		lineageTag: 404d33d5-f6ee-4e37-9e88-7599cecee983
+
+	measure 'Soma Hrs Realizada qualidade (Start/Stop)' =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] IN {"Homologação interna", "Versionamento", "Documentação"})
+			) + 0
+		displayFolder: Tela Qualidade
+		lineageTag: 6371dcdc-3b75-4aa6-9f36-5ebac30468fc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_qualidade = DIVIDE([Soma Hrs Realizada qualidade (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Qualidade
+		lineageTag: 872597dd-48b2-4514-a794-226d519abe4f
+
+	measure 'Soma Hrs Realizada servico extracontratual (Start/Stop)' =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]),
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]),
+			fApontamento_Start_Stop[tipoTicket] = "Serviço Extracontratual")
+			) + 0
+		displayFolder: Tela Serviço Extracontratual
+		lineageTag: a248321b-52d9-4132-985a-1655341b3f81
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_servicos_extras = DIVIDE([Soma Hrs Realizada servico extracontratual (Start/Stop)], [Soma Hrs Realizadas (Start/Stop)]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tela Serviço Extracontratual
+		lineageTag: 24769b89-7527-4a1e-a0d3-053c5e277572
+
+	measure 'Hrs Colaboração' = ```
+			
+			CALCULATE (
+			    [Soma Hrs Realizadas (Start/Stop)],
+			    FILTER (
+			        'fApontamento_Start_Stop',
+			        'fApontamento_Start_Stop'[timeTarefa] <> 'fApontamento_Start_Stop'[timeTarefa]
+			    )
+			)
+			
+			```
+		lineageTag: d4acbb17-178c-4ddd-bc14-ac34407f89f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Colaboração' =
+			
+			DIVIDE (
+			    [Hrs Colaboração],
+			    [Soma Hrs Realizadas (Start/Stop)]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: ab6de09a-10a6-4f88-8a73-e3237f860a26
+
+	measure Soma_Hrs_Realizada_de_processos_Start/Stop =
+			SUMX(
+			VALUES(fApontamento_Start_Stop[nomeTarefa]), // Agrupamento por nome tarefa
+			CALCULATE(SUM(fApontamento_Start_Stop[duracao]), //Soma da duração
+			fApontamento_Start_Stop[keyProjeto] = "EPP") //Pega apenas o projeto EPP
+			) + 0
+		lineageTag: 1973db78-5413-44ce-a215-f192618d964f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 917d97d0-8dbb-4c2b-b8b4-ac73d50d6959
+		summarizeBy: none
+		sourceColumn: id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column idProjeto
+		dataType: int64
+		formatString: 0
+		lineageTag: a4af91b4-de45-460a-b225-82d169f3c4f9
+		summarizeBy: sum
+		sourceColumn: idProjeto
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column keyProjeto
+		dataType: string
+		lineageTag: a6404056-58d0-47a8-86ff-f872a03bb8ac
+		summarizeBy: none
+		sourceColumn: keyProjeto
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column nomeProjeto
+		dataType: string
+		lineageTag: f5b8c896-5537-4077-aeec-46c021ec03ac
+		summarizeBy: none
+		sourceColumn: nomeProjeto
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column idTarefa
+		dataType: string
+		lineageTag: ba34c76c-06f2-4a45-ac87-63fea9d299b5
+		summarizeBy: none
+		sourceColumn: idTarefa
+
+		changedProperty = IsHidden
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column nomeTarefa
+		dataType: string
+		lineageTag: 1b7f610c-4884-4eba-a6ae-cea8f4051a11
+		summarizeBy: none
+		sourceColumn: nomeTarefa
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column tituloTarefa
+		dataType: string
+		lineageTag: 6c5d3c01-74b3-48bc-b97e-d2ad6ad30781
+		summarizeBy: none
+		sourceColumn: tituloTarefa
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipoTicket
+		dataType: string
+		lineageTag: bc0c835f-0494-4f4f-ab49-96adf7dbc5e3
+		summarizeBy: none
+		sourceColumn: tipoTicket
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column executor
+		dataType: string
+		lineageTag: 409d0e96-10b5-4342-b310-29df6d66680b
+		summarizeBy: none
+		sourceColumn: executor
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column executorEmail
+		dataType: string
+		lineageTag: 982b30d9-7811-4bd1-98a0-ee670daf00a7
+		summarizeBy: none
+		sourceColumn: executorEmail
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column papelFuncional
+		dataType: string
+		lineageTag: 08b225b8-672a-40f3-b46b-a743c01f46ec
+		summarizeBy: none
+		sourceColumn: papelFuncional
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column idPapelFuncional
+		dataType: string
+		lineageTag: f97a4269-92bc-418b-9500-1194373ed22f
+		summarizeBy: none
+		sourceColumn: idPapelFuncional
+
+		changedProperty = IsHidden
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataInicial
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a6a6c126-9abe-4fee-9627-2c805d9f7a9e
+		summarizeBy: none
+		sourceColumn: dataInicial
+
+		variation Variation
+			isDefault
+			relationship: 98f1ac62-cc38-42b3-b6d7-5fab16bedd9e
+			defaultHierarchy: LocalDateTable_94263455-b2e2-4376-b863-38347233dd89.'Hierarquia de datas'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataFinal
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c655fe13-b66b-43cf-9c18-55e71f01b2e9
+		summarizeBy: none
+		sourceColumn: dataFinal
+
+		variation Variation
+			isDefault
+			relationship: c294af9f-4d9d-4f53-b54a-e16b56867591
+			defaultHierarchy: LocalDateTable_7149c91a-a061-48e8-9d0a-ad7cae872a7a.'Hierarquia de datas'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column duracao
+		dataType: double
+		lineageTag: a43913cd-3384-47ba-8e76-b0f57c5b4540
+		summarizeBy: sum
+		sourceColumn: duracao
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percentualConclusao
+		dataType: int64
+		formatString: 0
+		lineageTag: 218eca73-eafc-48b5-aca0-68f84fe85a77
+		summarizeBy: sum
+		sourceColumn: percentualConclusao
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column comentario
+		dataType: string
+		lineageTag: 1a884188-27b5-4861-af7d-9c061bfa9919
+		summarizeBy: none
+		sourceColumn: comentario
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'data I'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 56b76067-ba8c-4b9c-a0a3-5de9c1cb54e1
+		summarizeBy: none
+		sourceColumn: data I
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Mesclado Key e Título'
+		dataType: string
+		lineageTag: 09ef7147-137d-471d-999d-1aeb671a9d3f
+		summarizeBy: none
+		sourceColumn: Mesclado Key e Título
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link Jira'
+		dataType: string
+		lineageTag: a5492522-a444-46c9-958e-ed8b0a366590
+		summarizeBy: none
+		sourceColumn: Link Jira
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hiperlink (Produção)'
+		dataType: string
+		lineageTag: f3daef5d-63e8-4901-a2cf-8a150a56c3ee
+		summarizeBy: none
+		sourceColumn: Hiperlink (Produção)
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeTarefa
+		dataType: string
+		lineageTag: 02114ae8-7edb-4b41-b607-db4330a01bb7
+		summarizeBy: none
+		sourceColumn: timeTarefa
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'datainicial_semana (Interação)' =
+			
+			"Semana " & FORMAT(WEEKNUM(fApontamento_Start_Stop[dataFinal], 2), "00")
+			//WEEKNUM(fApontamento_Start_Stop[Data_inicial_sem_horas], 2)
+		lineageTag: 31398596-4123-46e8-a3ae-1df008d18216
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column 'Filtro Período (Fábrica)' =
+			
+			SWITCH(
+			    TRUE(),
+			    fApontamento_Start_Stop[dataInicial] >= TODAY() - 7 && fApontamento_Start_Stop[dataInicial] <= TODAY(), "Últimos 7 dias",
+			    fApontamento_Start_Stop[dataInicial] >= TODAY() - 30 && fApontamento_Start_Stop[dataFinal] <= TODAY(), "Últimos 30 dias",
+			    fApontamento_Start_Stop[dataInicial] >= TODAY() - 180, "Últimos 180 dias",
+			    "Outros"
+			)
+		lineageTag: 5b09c95e-aad2-461e-84ce-2c31445539f8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ajuda entre times' = LOOKUPVALUE(tblApontamento_Time[descricao], tblApontamento_Time[id], fApontamento_Start_Stop[timeTarefaId])
+		lineageTag: d222e70b-ab8c-4a49-8d91-ba0ccc56c5c8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column executorMatricula
+		dataType: string
+		lineageTag: 81bb32d6-999e-4d3d-aca4-0e9150fb58e1
+		summarizeBy: none
+		sourceColumn: executorMatricula
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeTarefaId
+		dataType: int64
+		formatString: 0
+		lineageTag: b3c4a557-90c8-4d12-aef2-7ffd998603e6
+		summarizeBy: count
+		sourceColumn: timeTarefaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_inicial_sem_horas =
+			
+			DATE(YEAR(fApontamento_Start_Stop[dataInicial]), MONTH(fApontamento_Start_Stop[dataInicial]), DAY(fApontamento_Start_Stop[dataInicial]))
+		formatString: Short Date
+		lineageTag: 0cf57623-f3f0-42c6-860f-89346f54ac07
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 97a3e854-998c-4bad-b7bf-18b587ef4f97
+			defaultHierarchy: LocalDateTable_cb7ebe46-724f-4580-ac97-0620082b224f.'Hierarquia de datas'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column FiltroPeriodoOK = ```
+			
+			SWITCH(
+			    TRUE(),
+			
+			    -- Últimos 7 dias (inclui hoje até 23:59:59)
+			    fApontamento_Start_Stop[dataInicial] >= TODAY() - 7 
+			        && fApontamento_Start_Stop[dataInicial] < TODAY() + 1, 
+			    "Últimos 7 dias",
+			
+			    -- Últimos 30 dias (inclui os últimos 7 também)
+			    fApontamento_Start_Stop[dataInicial] >= TODAY() - 30
+			        && fApontamento_Start_Stop[dataInicial] < TODAY() + 1, 
+			    "Últimos 30 dias",
+			
+			    -- Últimos 180 dias, excluindo os últimos 30
+			    fApontamento_Start_Stop[dataInicial] >= TODAY() - 180 
+			        && fApontamento_Start_Stop[dataInicial] < TODAY() - 30, 
+			    "Últimos 180 dias",
+			
+			    "Outros"
+			)
+			
+			```
+		lineageTag: c47bc544-75e8-472d-990d-ad36bf7db453
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'datainicial_semana (Interação) Hierarquia'
+		lineageTag: 0565fa11-27a8-4b84-aa90-ccd11731467a
+
+		level 'datainicial_semana (Interação)'
+			lineageTag: 084f8122-0111-4443-b255-521af0a2f3bd
+			column: 'datainicial_semana (Interação)'
+
+	partition fApontamento_Start_Stop = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://www.sabium.com.br/startstop/api/apontamento/consulta")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"id", "idProjeto", "keyProjeto", "nomeProjeto", "idTarefa", "nomeTarefa", "tituloTarefa", "tipoTicket", "executor", "executorMatricula", "executorEmail", "papelFuncional", "idPapelFuncional", "dataInicial", "dataFinal", "duracao", "percentualConclusao", "comentario", "timeTarefaId", "timeTarefa"}, {"id", "idProjeto", "keyProjeto", "nomeProjeto", "idTarefa", "nomeTarefa", "tituloTarefa", "tipoTicket", "executor", "executorMatricula", "executorEmail", "papelFuncional", "idPapelFuncional", "dataInicial", "dataFinal", "duracao", "percentualConclusao", "comentario", "timeTarefaId", "timeTarefa"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"id", Int64.Type}, {"idProjeto", Int64.Type}, {"keyProjeto", type text}, {"nomeProjeto", type text}, {"idTarefa", Int64.Type}, {"nomeTarefa", type text}, {"tituloTarefa", type text}, {"tipoTicket", type text}, {"executor", type text}, {"executorEmail", type text}, {"papelFuncional", type text}, {"idPapelFuncional", Int64.Type}, {"dataInicial", type datetime}, {"dataFinal", type datetime}, {"duracao", type number}, {"percentualConclusao", Int64.Type}, {"comentario", type text}}),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Tipo Alterado",{{"executor", Text.Proper, type text}}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Colocar Cada Palavra Em Maiúscula",{"id", "idProjeto", "keyProjeto", "nomeProjeto", "idTarefa", "nomeTarefa", "tituloTarefa", "tipoTicket", "executor", "executorMatricula", "executorEmail", "papelFuncional", "idPapelFuncional", "dataInicial", "dataFinal", "duracao", "percentualConclusao", "comentario", "timeTarefaId", "timeTarefa"}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Outras Colunas Removidas","Alex Criado Via Postman","Alex Carvalho",Replacer.ReplaceText,{"executor"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","Alex Santos","Alex Carvalho",Replacer.ReplaceText,{"executor"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","Alex Philippe De Carvalho Santos","Alex Carvalho",Replacer.ReplaceText,{"executor"}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Valor Substituído2", each true),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Linhas Filtradas","Tiago Campos Melo","Tiago Melo",Replacer.ReplaceText,{"executor"}),
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Valor Substituído3", "dataInicial", "data I"),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Coluna Duplicada",{{"data I", type date}}),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Tipo Alterado1", "Mesclado Key e Título", each Text.Combine({[nomeTarefa], [tituloTarefa]}, " - "), type text),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Coluna Mesclada Inserida", "Link Jira", each "https://sabium.atlassian.net/browse/"),
+				    #"Coluna Mesclada Inserida1" = Table.AddColumn(#"Personalização Adicionada", "Hiperlink (Produção)", each Text.Combine({[Link Jira], [nomeTarefa]}, ""), type text),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Coluna Mesclada Inserida1",{{"timeTarefaId", Int64.Type}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado2", each ([nomeProjeto] <> "Projeto Teste - DI")),
+				    #"Valor Substituído4" = Table.ReplaceValue(#"Linhas Filtradas1","Análise de Dados (B.I)","Análise de Dados (BI)",Replacer.ReplaceText,{"tipoTicket"})
+				in
+				    #"Valor Substituído4"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navegação
+

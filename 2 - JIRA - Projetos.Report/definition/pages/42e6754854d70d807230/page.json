@@ -1,0 +1,174 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "42e6754854d70d807230",
+  "displayName": "Custos PRC",
+  "displayOption": "ActualSize",
+  "height": 780,
+  "width": 1440,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ade8955d0d1c30dedeb5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Tbl_todas_issues_jira_subtarefa"
+              }
+            },
+            "Property": "Resumo"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "Tbl_todas_issues_jira_subtarefa",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Contains": {
+                      "Left": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "t"
+                            }
+                          },
+                          "Property": "Resumo"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "'Planejamento Financeiro'"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "e15a6aea7446a2eba508",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "296L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "type": "Drillthrough",
+  "visualInteractions": [
+    {
+      "source": "827f9501e36bbdc6e821",
+      "target": "22ea551822a52955b8e8",
+      "type": "DataFilter"
+    },
+    {
+      "source": "22ea551822a52955b8e8",
+      "target": "827f9501e36bbdc6e821",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3f4b8baa0b28c465a475",
+      "target": "827f9501e36bbdc6e821",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3f4b8baa0b28c465a475",
+      "target": "22ea551822a52955b8e8",
+      "type": "DataFilter"
+    }
+  ]
+}

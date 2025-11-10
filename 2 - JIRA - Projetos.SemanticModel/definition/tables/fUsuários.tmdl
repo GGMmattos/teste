@@ -1,0 +1,83 @@
+table fUsuários
+	lineageTag: 5372e634-2b80-4beb-82ce-81bfd2ba30ae
+
+	column id
+		dataType: string
+		lineageTag: 79ff3ff5-7ad3-4598-97cc-9abb689d23e0
+		summarizeBy: none
+		sourceColumn: id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: 6001805d-dea6-46b2-a0d0-f1704b8d8945
+		summarizeBy: none
+		sourceColumn: nome
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 4876bd18-0a09-441b-a3f4-c4855dee6f82
+		summarizeBy: none
+		sourceColumn: email
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column matricula
+		dataType: string
+		lineageTag: 7376b283-c176-41c6-b040-65c295b55ceb
+		summarizeBy: none
+		sourceColumn: matricula
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column centroCusto
+		dataType: string
+		lineageTag: bc3d75d6-978f-44e3-9f52-fd74d2a006ca
+		summarizeBy: none
+		sourceColumn: centroCusto
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacao
+		dataType: string
+		lineageTag: feb36490-7d58-4f1c-bc45-924b97b9e950
+		summarizeBy: none
+		sourceColumn: situacao
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fUsuários = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/api_controlehoras/controle-publico/usuario/buscaLista")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"id", "nome", "email", "matricula", "centroCusto", "situacao"}, {"id", "nome", "email", "matricula", "centroCusto", "situacao"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"situacao", type text}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado","true","Ativo",Replacer.ReplaceText,{"situacao"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","false","Inativo",Replacer.ReplaceText,{"situacao"}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Valor Substituído1", each [nome] <> "André Francisco de Moura"),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Linhas Filtradas",{{"nome", Text.Proper, type text}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Colocar Cada Palavra Em Maiúscula", each [nome] <> "Bianca Beatriz Gomes Souto" and [nome] <> "Devops" and [nome] <> "Ednaldo Oliveira" and [nome] <> "Lucas.Santos" and [nome] <> "Área Do Cliente" and [nome] <> "Lucas Nakahara Badaró Santos")
+				in
+				    #"Linhas Filtradas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

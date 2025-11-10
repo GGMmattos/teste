@@ -1,0 +1,146 @@
+table tbl_vinculados_tarefas_jira
+	lineageTag: fbf7318c-23ac-4253-96ce-3ab5aa528c7b
+
+	measure Qtd_tarefas_impeditivas =
+			
+			// Soma a quantidade de tarefas que estejam relacionadas com o status de impedimento
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_vinculados_tarefas_jira[Chave]),
+			    tbl_vinculados_tarefas_jira[Linked Issues: Link Type] = "Impeditiva") + 0
+		formatString: 0
+		lineageTag: fa98ee50-1c08-4314-a9ca-c01352cba41f
+
+	measure Qtd_tarefas_nao_impeditivas =
+			
+			// Soma a quantidade de tarefas que não estejam relacionadas com o status de impedimento
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_vinculados_tarefas_jira[Chave]),
+			    tbl_vinculados_tarefas_jira[Linked Issues: Link Type] = "Não Impeditiva") + 0
+		formatString: 0
+		lineageTag: b6e5fc40-fc40-4cc5-95f7-f1e518294f01
+
+	column Chave
+		dataType: string
+		lineageTag: dd0174a3-79d8-4d06-87b6-3ce0a04eebbf
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Key'
+		dataType: string
+		lineageTag: 8386eb85-a920-447d-b3ee-5e7ef7fc0c90
+		summarizeBy: none
+		sourceColumn: Linked Issues: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Link Direction'
+		dataType: string
+		lineageTag: 9d7a919f-6478-4835-80fb-89b09ecc35ff
+		summarizeBy: none
+		sourceColumn: Linked Issues: Link Direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Link Type'
+		dataType: string
+		lineageTag: c0d99218-1dac-41c0-a6fc-bc4b07e6702b
+		summarizeBy: none
+		sourceColumn: Linked Issues: Link Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relacionado_resumo_tarefas =
+			LOOKUPVALUE(
+			    tbl_tarefas_jira[Resumo],     -- o valor que você quer retornar
+			    tbl_tarefas_jira[Chave],           -- coluna para buscar o valor
+			    tbl_vinculados_tarefas_jira[Chave]             -- valor da chave na tabela atual
+			)
+		lineageTag: 50623425-9a8d-4229-b3aa-a05b63047e29
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relacionado_situacao_tarefas =
+			LOOKUPVALUE(
+			    tbl_tarefas_jira[Situacao],     -- o valor que você quer retornar
+			    tbl_tarefas_jira[Chave],           -- coluna para buscar o valor
+			    tbl_vinculados_tarefas_jira[Chave]             -- valor da chave na tabela atual
+			)
+		lineageTag: 14accda4-cf3c-4d16-b12f-450163b3e5c2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relacionado_responsavel_tarefas =
+			LOOKUPVALUE(
+			    tbl_tarefas_jira[Responsavel],     -- o valor que você quer retornar
+			    tbl_tarefas_jira[Chave],           -- coluna para buscar o valor
+			    tbl_vinculados_tarefas_jira[Chave]             -- valor da chave na tabela atual
+			)
+		lineageTag: 3dc7858c-a092-4536-aac8-1e175c943f2a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relacionado_tipo_tarefas =
+			LOOKUPVALUE(
+			    tbl_tarefas_jira[Tipo de item],     -- o valor que você quer retornar
+			    tbl_tarefas_jira[Chave],           -- coluna para buscar o valor
+			    tbl_vinculados_tarefas_jira[Chave]             -- valor da chave na tabela atual
+			)
+		lineageTag: 9bf30ca2-6b37-4dab-b351-969ff15158ad
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relacionado_time_tarefas =
+			LOOKUPVALUE(
+			    tbl_tarefas_jira[Team],     -- o valor que você quer retornar
+			    tbl_tarefas_jira[Chave],           -- coluna para buscar o valor
+			    tbl_vinculados_tarefas_jira[Chave]             -- valor da chave na tabela atual
+			)
+		lineageTag: 5bc1f02d-0cf5-4845-8072-037c354326e0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Relacionado_horas_realizadas = ```
+			
+			CALCULATE(
+			    SUM(fApontamento_Extrato[hrRealizada]),
+			    RELATEDTABLE(fApontamento_Extrato)
+			) +0 
+			```
+		lineageTag: 99124a85-db9e-4933-95cf-7af616d9a494
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Relacionado_hiperlink_chave_tarefas =
+			
+			COMBINEVALUES("/", tbl_vinculados_tarefas_jira[Relacionado_resumo_tarefas], tbl_vinculados_tarefas_jira[Chave])
+		lineageTag: 53230576-6f09-4bf5-8d7a-9a94c81ddf6b
+		dataCategory: WebUrl
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_vinculados_tarefas_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/ODgzNDlhMWUtMDdkMS00OGQyLTg2MDktZTkyMTZhMWZj", null, [Implementation="2.0"]),
+				    #"Linked Issues_table1" = Fonte{[Name="Linked Issues",Signature="table"]}[Data],
+				    #"Valor Substituído" = Table.ReplaceValue(#"Linked Issues_table1","Não Impeditiva por","Não Impeditiva",Replacer.ReplaceText,{"Linked Issues: Link Type"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","Impeditiva por","Impeditiva",Replacer.ReplaceText,{"Linked Issues: Link Type"})
+				in
+				    #"Valor Substituído1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "2 - JIRA - Projetos"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "140b98be-515a-4e7c-b394-8bf6599ef2e1"
+  }
+}

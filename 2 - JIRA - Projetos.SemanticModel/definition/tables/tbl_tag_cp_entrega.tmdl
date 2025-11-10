@@ -1,0 +1,32 @@
+table tbl_tag_cp_entrega
+	lineageTag: 94742b34-0007-4353-a501-c684293912ee
+
+	column Chave
+		dataType: string
+		lineageTag: 3db1236e-0e9d-43e4-9c6a-76a8eba66596
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tag Comitê Produto'
+		dataType: string
+		lineageTag: a0f99fac-f689-4f86-bdec-33d1d2adbaa4
+		summarizeBy: none
+		sourceColumn: Tag Comitê Produto
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_tag_cp_entrega = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/NTE0OTk4ZDItNjk5YS00NzU2LThiZTMtMDQzMzdmNmY2", null, [Implementation="2.0"]),
+				    #"Tag Comitê Produto_table1" = Fonte{[Name="Tag Comitê Produto",Signature="table"]}[Data]
+				in
+				    #"Tag Comitê Produto_table1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

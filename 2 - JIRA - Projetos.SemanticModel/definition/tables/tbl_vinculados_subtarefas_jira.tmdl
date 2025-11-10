@@ -1,0 +1,93 @@
+table tbl_vinculados_subtarefas_jira
+	lineageTag: e0ebad30-95d4-4c5e-bde9-3debe38db58b
+
+	column Chave
+		dataType: string
+		lineageTag: c9e38de4-59e4-4d91-b33f-69c9080f3d93
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Key'
+		dataType: string
+		lineageTag: e3bca4da-5e88-44cf-ae07-987c70051046
+		summarizeBy: none
+		sourceColumn: Linked Issues: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Link Direction'
+		dataType: string
+		lineageTag: 2d3e4b1b-8f28-4abd-8c7d-a198eb8a1354
+		summarizeBy: none
+		sourceColumn: Linked Issues: Link Direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Link Type'
+		dataType: string
+		lineageTag: 68ae9375-ef9c-4174-90b5-619f16bf04ed
+		summarizeBy: none
+		sourceColumn: Linked Issues: Link Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chave_sem_numero
+		dataType: string
+		lineageTag: 496f9461-2ee2-4a2d-a43f-d10d326bbb65
+		summarizeBy: none
+		sourceColumn: Chave_sem_numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column chaves_vinculadas_subtarefas_concatenado = ```
+			
+			CALCULATE (
+			    // CONCATENATEX serve para juntar vários valores em um único texto
+			    CONCATENATEX (
+			        // Pega a lista de versões distintas no contexto atual
+			        VALUES('tbl_vinculados_subtarefas_jira'[Linked Issues: Key]),
+			        
+			        // O valor que será concatenado (o próprio nome da versão)
+			        'tbl_vinculados_subtarefas_jira'[Linked Issues: Key],
+			        
+			        // Delimitador usado para separar os valores concatenados
+			        " ; "
+			    ),
+			    
+			    // ALLEXCEPT remove todos os filtros da tabela,
+			    // mas mantém o filtro pela Chave da issue
+			    // → assim, traz todas as versões relacionadas a uma mesma Chave
+			    ALLEXCEPT('tbl_vinculados_subtarefas_jira', 'tbl_vinculados_subtarefas_jira'[Chave])
+			)
+			
+			```
+		lineageTag: e6095f0d-1e9f-4405-9b29-41950a6029f3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coluna =
+			
+			RELATED(tbl_entregas_jira[Resumo])
+		lineageTag: 40c96393-193d-4862-8dd6-803481b8f4f7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_vinculados_subtarefas_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/NjYwYzQxYjYtZGU4Ny00YzdjLWFjZWYtMzNmYWUyMzMx", null, [Implementation="2.0"]),
+				    #"Linked Issues_table1" = Fonte{[Name="Linked Issues",Signature="table"]}[Data],
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Linked Issues_table1", "Chave", "Chave_sem_numero"),
+				    #"Texto Extraído Antes do Delimitador" = Table.TransformColumns(#"Coluna Duplicada", {{"Chave_sem_numero", each Text.BeforeDelimiter(_, "-"), type text}})
+				in
+				    #"Texto Extraído Antes do Delimitador"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,36 @@
+table tbl_produtos_tarefas_jira
+	lineageTag: f3b41a21-7c58-4bf6-b004-a28e39c3771b
+
+	measure Qtd_produtos = DISTINCTCOUNT(tbl_produtos_tarefas_jira[Chave]) + 0
+		formatString: 0
+		lineageTag: 46330e3f-6846-451a-93a5-6238ab217a6e
+
+	column Chave
+		dataType: string
+		lineageTag: a6909e77-c9d7-4fa6-9c2f-ce04aa96a777
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column Produtos
+		dataType: string
+		lineageTag: 78cbc98e-59ee-44d6-bde9-755ec8fb8a13
+		summarizeBy: none
+		sourceColumn: Produtos
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_produtos_tarefas_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/ODgzNDlhMWUtMDdkMS00OGQyLTg2MDktZTkyMTZhMWZj", null, [Implementation="2.0"]),
+				    Produtos_table1 = Fonte{[Name="Produtos",Signature="table"]}[Data]
+				in
+				    Produtos_table1
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

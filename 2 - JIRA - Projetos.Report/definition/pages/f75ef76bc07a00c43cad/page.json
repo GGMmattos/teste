@@ -1,0 +1,140 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "f75ef76bc07a00c43cad",
+  "displayName": "Infraestrutura",
+  "displayOption": "FitToWidth",
+  "height": 1020,
+  "width": 1440,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "74623e50d2adc03d1253",
+        "displayName": "Projeto",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_tarefas_jira"
+              }
+            },
+            "Property": "Project Name"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "tbl_tarefas_jira",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "Project Name"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Infra'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "6b7d979909b519946789",
+      "target": "3180803d6c66d72150a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "88f69aa3a10b2d128b4a",
+      "target": "3180803d6c66d72150a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ccdedeea51c93365117e",
+      "target": "3180803d6c66d72150a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "516471fa819adb0521d1",
+      "target": "3180803d6c66d72150a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f15c666410b605779fba",
+      "target": "3180803d6c66d72150a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3180803d6c66d72150a3",
+      "target": "f15c666410b605779fba",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6b7d979909b519946789",
+      "target": "f15c666410b605779fba",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ccdedeea51c93365117e",
+      "target": "f15c666410b605779fba",
+      "type": "DataFilter"
+    },
+    {
+      "source": "516471fa819adb0521d1",
+      "target": "f15c666410b605779fba",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4b48b946736c2e020d66",
+      "target": "3180803d6c66d72150a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4b48b946736c2e020d66",
+      "target": "f15c666410b605779fba",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4f947888622d3a75c218",
+      "target": "f15c666410b605779fba",
+      "type": "DataFilter"
+    },
+    {
+      "source": "88f69aa3a10b2d128b4a",
+      "target": "f15c666410b605779fba",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4f947888622d3a75c218",
+      "target": "3180803d6c66d72150a3",
+      "type": "DataFilter"
+    }
+  ]
+}

@@ -1,0 +1,212 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "16c26515b3227d8d5abd",
+  "displayName": "Backlog Central de Demandas",
+  "displayOption": "FitToWidth",
+  "height": 1250,
+  "width": 2200,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9039a955abb862d4a24d",
+        "displayName": "Projeto",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_entregas_jira"
+              }
+            },
+            "Property": "Project Name"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "tbl_entregas_jira",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "Project Name"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Solicitação de Atendimento'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "a2e4ca510d878a79a6b2",
+    "type": "Default",
+    "parameters": []
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "181L"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "type": "Drillthrough",
+  "visualInteractions": [
+    {
+      "source": "9d45eb6097016a381db7",
+      "target": "b47aa9e9270024c496a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b47aa9e9270024c496a3",
+      "target": "9d45eb6097016a381db7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4493b9be0ad1f85ed4ae",
+      "target": "f103e8f5ea95b7d2eb1d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "68a2a9a7c020c450490b",
+      "target": "f103e8f5ea95b7d2eb1d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3d3541c30dbdf256f1b2",
+      "target": "f103e8f5ea95b7d2eb1d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "20e4e5126c62ac5fa3e2",
+      "target": "f103e8f5ea95b7d2eb1d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "55c34d5029cb9864ebc6",
+      "target": "f103e8f5ea95b7d2eb1d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1f7e8d8da0c2d7128b31",
+      "target": "f103e8f5ea95b7d2eb1d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ce694fe52f5b962deb8e",
+      "target": "9d45eb6097016a381db7",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ce694fe52f5b962deb8e",
+      "target": "b47aa9e9270024c496a3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "c624a945faf219025285",
+      "target": "f103e8f5ea95b7d2eb1d",
+      "type": "DataFilter"
+    }
+  ]
+}

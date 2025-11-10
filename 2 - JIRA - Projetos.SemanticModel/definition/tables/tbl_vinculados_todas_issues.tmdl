@@ -1,0 +1,60 @@
+table tbl_vinculados_todas_issues
+	lineageTag: 4aaa38a2-9e71-4c8d-a6ad-dd7657f54dd7
+
+	column Chave
+		dataType: string
+		lineageTag: 9bc452ab-ddfb-4b42-b28c-6edf82a324e0
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Key'
+		dataType: string
+		lineageTag: edcfb40a-05d1-49b8-9658-0e0f5cfad09b
+		summarizeBy: none
+		sourceColumn: Linked Issues: Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Link Direction'
+		dataType: string
+		lineageTag: 8d34158d-82d4-46e9-9e3a-574c1ddc47ec
+		summarizeBy: none
+		sourceColumn: Linked Issues: Link Direction
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked Issues: Link Type'
+		dataType: string
+		lineageTag: acc0f22d-f365-4d0c-86d2-8dea21752440
+		summarizeBy: none
+		sourceColumn: Linked Issues: Link Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resumo_Linked_old =
+			
+			LOOKUPVALUE(
+			    'Tbl_todas_issues_jira_subtarefa'[Resumo],
+			    'Tbl_todas_issues_jira_subtarefa'[Chave],
+			    'tbl_vinculados_todas_issues'[Linked Issues: Key]
+			)
+		lineageTag: d8bed71b-bfa1-4546-a61a-d6e5333be953
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_vinculados_todas_issues = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/NmRiYzRlOWMtNmU2ZS00YWZiLWE0ZDUtZmY4MDNmZWRh", null, [Implementation="2.0"]),
+				    #"Linked Issues_table1" = Fonte{[Name="Linked Issues",Signature="table"]}[Data]
+				in
+				    #"Linked Issues_table1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

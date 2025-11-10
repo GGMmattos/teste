@@ -1,0 +1,179 @@
+table tblApontamento_Time
+	lineageTag: 7abdfc10-d4a2-4ab4-bbb3-367cb5dc4d78
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c17f5ef-fe0b-4ded-a2c5-04f5c321e0be
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao
+		dataType: string
+		lineageTag: 120cf975-c433-4e60-b3f1-303aba5f2b42
+		summarizeBy: none
+		sourceColumn: descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacaoAtivo
+		dataType: string
+		lineageTag: 28c14469-5116-418b-9693-9fa3194bca80
+		summarizeBy: none
+		sourceColumn: situacaoAtivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'projetos.id'
+		dataType: string
+		lineageTag: c0b52b97-27fc-45ab-842c-77f84a523dc9
+		summarizeBy: none
+		sourceColumn: projetos.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'projetos.projetoID'
+		dataType: string
+		lineageTag: fad0d5f8-e4c0-47b5-9fbb-4f979623568f
+		summarizeBy: none
+		sourceColumn: projetos.projetoID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'projetos.projetoNome'
+		dataType: string
+		lineageTag: 14aa4ff8-a869-4abb-a74c-a4dad8d6d8cd
+		summarizeBy: none
+		sourceColumn: projetos.projetoNome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.id'
+		dataType: string
+		lineageTag: 40b49bf4-eb0f-4998-aa3b-ab878f31cc1c
+		summarizeBy: none
+		sourceColumn: membros.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.idUsuario'
+		dataType: string
+		lineageTag: 7d915ff4-08ac-4724-b753-894e09f3dfa2
+		summarizeBy: none
+		sourceColumn: membros.idUsuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.nome'
+		dataType: string
+		lineageTag: 01f866f1-0b48-4af4-b971-446f1aeea51e
+		summarizeBy: none
+		sourceColumn: membros.nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.email'
+		dataType: string
+		lineageTag: bf151d74-02b8-4508-b9cc-a88e174e5742
+		summarizeBy: none
+		sourceColumn: membros.email
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.papel.id'
+		dataType: string
+		lineageTag: 50847779-47bb-43ca-80a4-af6b5f1c28b0
+		summarizeBy: none
+		sourceColumn: membros.papel.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.papel.papel'
+		dataType: string
+		lineageTag: cbc2c37e-6d7c-4ff0-9ade-f9650afb0417
+		summarizeBy: none
+		sourceColumn: membros.papel.papel
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.fator'
+		dataType: string
+		lineageTag: eb68fce6-ff79-4215-bdb9-d09eee59d575
+		summarizeBy: none
+		sourceColumn: membros.fator
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'membros.idTime'
+		dataType: string
+		lineageTag: f0b10516-aef5-41ab-99ab-284c085840b7
+		summarizeBy: none
+		sourceColumn: membros.idTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'setor.id'
+		dataType: string
+		lineageTag: a8c2a806-5977-4b67-84b0-2e75a939e368
+		summarizeBy: none
+		sourceColumn: setor.id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'setor.nome'
+		dataType: string
+		lineageTag: ab74c269-1ef7-420b-a6a3-dcebc3297f39
+		summarizeBy: none
+		sourceColumn: setor.nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coluna = LOOKUPVALUE(fApontamento_Start_Stop[timeTarefa], fApontamento_Start_Stop[timeTarefaId], tblApontamento_Time[id])
+		lineageTag: 55693d99-9821-4c08-b6e5-708e9f43e1fd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Coluna 2' = RELATED('fUsuários'[email])
+		lineageTag: 17111b15-9087-4964-94ae-09511ad0d926
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_area = ```
+			SWITCH(
+			                TRUE(),
+			                tblApontamento_Time[setor.nome] IN {"Administrativo e Financeiro", "Gestão de Pessoas", "Processos e Indicadores", "Produção de Conteúdo"}, "Gestão", 
+			                tblApontamento_Time[setor.nome] IN {"Atendimento", "Comercial", "Consultoria Técnica", "Implantação", "Publicidade"},"Distribuidora",
+			                tblApontamento_Time[setor.nome] IN {"Governança", "Comitê Gestor"}, "Comitê Gestor / Governança", 
+			                "Fábrica de Software")
+			```
+		lineageTag: 2e1630ee-1de4-405f-a012-4e1fdc9ac6a8
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tblApontamento_Time = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/api_controlehoras/controle-publico/time/buscaLista/completo")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"id", "descricao", "situacaoAtivo", "setor", "projetos", "membros"}, {"id", "descricao", "situacaoAtivo", "setor", "projetos", "membros"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"id", Int64.Type}, {"descricao", type text}, {"situacaoAtivo", type logical}, {"setor", type any}, {"projetos", type any}, {"membros", type any}}),
+				    #"membros Expandido" = Table.ExpandListColumn(#"Tipo Alterado", "membros"),
+				    #"membros Expandido1" = Table.ExpandRecordColumn(#"membros Expandido", "membros", {"id", "idUsuario", "nome", "email", "papel", "fator", "idTime"}, {"membros.id", "membros.idUsuario", "membros.nome", "membros.email", "membros.papel", "membros.fator", "membros.idTime"}),
+				    #"projetos Expandido" = Table.ExpandListColumn(#"membros Expandido1", "projetos"),
+				    #"projetos Expandido1" = Table.ExpandRecordColumn(#"projetos Expandido", "projetos", {"id", "projetoID", "projetoNome"}, {"projetos.id", "projetos.projetoID", "projetos.projetoNome"}),
+				    #"membros.papel Expandido" = Table.ExpandRecordColumn(#"projetos Expandido1", "membros.papel", {"id", "papel"}, {"membros.papel.id", "membros.papel.papel"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"membros.papel Expandido",{{"situacaoAtivo", type text}}),
+				    #"setor Expandido" = Table.ExpandRecordColumn(#"Tipo Alterado1", "setor", {"id", "nome"}, {"setor.id", "setor.nome"})
+				in
+				    #"setor Expandido"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

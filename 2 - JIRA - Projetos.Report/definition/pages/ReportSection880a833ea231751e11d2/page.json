@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "ReportSection880a833ea231751e11d2",
+  "displayName": "Analítico Produtividade",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1440,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          },
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          },
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "Literal": {
+                    "Value": "''"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#282b35'"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "width": {
+            "expr": {
+              "Literal": {
+                "Value": "196L"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "cc8a9675d52b6f520c15",
+      "target": "44276189b03326900c08",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8de662fb3433c94dac5d",
+      "target": "44276189b03326900c08",
+      "type": "DataFilter"
+    },
+    {
+      "source": "44276189b03326900c08",
+      "target": "66fb51a52b848b7a6dd4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "44276189b03326900c08",
+      "target": "8de662fb3433c94dac5d",
+      "type": "DataFilter"
+    },
+    {
+      "source": "03d32e308da050127a7e",
+      "target": "44276189b03326900c08",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4b3b7af04ccc796a75d1",
+      "target": "44276189b03326900c08",
+      "type": "DataFilter"
+    },
+    {
+      "source": "4b3b7af04ccc796a75d1",
+      "target": "03d32e308da050127a7e",
+      "type": "DataFilter"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+table Papel_Funcional_e_Custos
+	lineageTag: 5e9e6af1-c4d6-4d71-96c6-d55d4bb6149a
+
+	measure 'Soma Custo Por Papel' = SUM(Papel_Funcional_e_Custos[custo]) + 0
+		lineageTag: e6706193-1d23-4131-ac61-f8cbe39c936d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Custo Médio papel_hora' = [Soma Custo Por Papel] / 150 + 0
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: fb679edd-4378-464c-87db-dece0a04b5cb
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Custo Médio Alto Nível' =
+			CALCULATE(
+			                            SUMX(Papel_Funcional_e_Custos, Papel_Funcional_e_Custos[Custo Médio papel_hora] * [Soma_horas_alto_nivel])) + 0
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 9b49120d-0c9a-412b-812a-2819aaa7977e
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3db44faf-5b9c-4075-a0f4-4305d0e8ecb9
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column papel
+		dataType: string
+		lineageTag: ab7c5714-e93a-4245-bf39-071b6636a2cc
+		summarizeBy: none
+		sourceColumn: papel
+
+		annotation SummarizationSetBy = Automatic
+
+	column agrupador_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d63d3e11-9ee4-44d8-93f5-b15ec045df6f
+		summarizeBy: none
+		sourceColumn: agrupador_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_setor
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a07569e-a3e8-4653-a53b-b82562ec3024
+		summarizeBy: none
+		sourceColumn: id_setor
+
+		annotation SummarizationSetBy = Automatic
+
+	column custo
+		dataType: double
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 86b281dd-d26d-46aa-ae0c-90fc3f1aa585
+		summarizeBy: none
+		sourceColumn: custo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	partition Papel_Funcional_e_Custos = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/api_controlehoras/controle-publico/custo/custoPapelFuncional")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"id", "papel", "agrupador_id", "id_setor", "custo"}, {"id", "papel", "agrupador_id", "id_setor", "custo"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"id", Int64.Type}, {"papel", type text}, {"agrupador_id", Int64.Type}, {"id_setor", Int64.Type}, {"custo", type number}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado",null,0,Replacer.ReplaceValue,{"custo"})
+				in
+				    #"Valor Substituído"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

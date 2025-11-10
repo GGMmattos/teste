@@ -1,0 +1,147 @@
+table fApontamento_Extrato_Subtask
+	lineageTag: 04cb1938-b917-478a-b8d1-dd06ac97c2aa
+
+	measure 'Hr Previstas (fApontamento_Extrato_Subtask)' = CALCULATE(SUM(fApontamento_Extrato_Subtask[hrsPrevistas])) + 0
+		formatString: 0
+		lineageTag: f5e886ec-6533-46b5-8cb1-2d7e03c8f656
+
+		changedProperty = IsHidden
+
+	measure 'Hr Projetada (fApontamento_Extrato_Subtask)' =
+			
+			COALESCE(
+			 CALCULATE(
+			SWITCH(
+			TRUE(),
+			[% Concl. (fApontamento_Extrato_Subtask)] = 100, [Hr Realizada (fApontamento_Extrato_Subtask)],
+			CALCULATE(
+			SUM(fApontamento_Extrato_Subtask[hrsProjetadas]),
+			NOT tbl_subtarefas_jira[Situacao] IN {"Concluído","Cancelada"}
+			)
+			+
+			CALCULATE(
+			[Hr Realizada (fApontamento_Extrato_Subtask)],
+			tbl_subtarefas_jira[Situacao]  IN {"Concluído","Cancelada"}
+			)
+			)
+			)
+			,0)
+		lineageTag: 24de0a58-dda4-416f-956e-6311334afae7
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Hr Realizada (fApontamento_Extrato_Subtask)' = COALESCE(CALCULATE(SUM(fApontamento_Extrato_Subtask[hrRealizada])) ,0)
+		lineageTag: 1cf0de98-dbf3-453a-94da-4f1c1ac503be
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Concl. (fApontamento_Extrato_Subtask)' =
+			
+			COALESCE(CALCULATE(MAX(fApontamento_Extrato_Subtask[percentualConcluido])) ,100) / 100
+		formatString: 0%;-0%;0%
+		lineageTag: 0c489f57-ecb7-4feb-8d5b-1efc485d9a80
+
+		changedProperty = IsHidden
+
+	column tarefaId
+		dataType: int64
+		formatString: 0
+		lineageTag: 418a4fa6-96bd-4995-80e4-f31d76a106cc
+		summarizeBy: count
+		sourceColumn: tarefaId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column chave
+		dataType: string
+		lineageTag: 119ce2f2-a6cf-41db-b457-1f7c0398fc6e
+		summarizeBy: none
+		sourceColumn: chave
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column projetoId
+		dataType: int64
+		formatString: 0
+		lineageTag: 683fd8f2-19ef-4d9a-bb81-9fc137cee8c5
+		summarizeBy: count
+		sourceColumn: projetoId
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column percentualConcluido
+		dataType: int64
+		formatString: 0%;-0%;0%
+		lineageTag: 5d19a262-a4ed-4c53-8723-5923a822f4dc
+		summarizeBy: sum
+		sourceColumn: percentualConcluido
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column hrRealizada
+		dataType: double
+		lineageTag: 3043ea35-60ef-4827-bf07-d51dc2817835
+		summarizeBy: sum
+		sourceColumn: hrRealizada
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hrsPrevistas
+		dataType: int64
+		formatString: 0
+		lineageTag: be44ebad-d088-4ef3-8c4e-33004c500f0d
+		summarizeBy: sum
+		sourceColumn: hrsPrevistas
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column hrsProjetadas
+		dataType: double
+		lineageTag: 747baa5a-8952-4623-86a8-b723d3331fd9
+		summarizeBy: sum
+		sourceColumn: hrsProjetadas
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fApontamento_Extrato_Subtask = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(
+				    Web.Contents(
+				        "https://service.sabium.com.br/api_controlehoras/controle-publico/orcamento/estimativa/pert/buscaLista",
+				        [Timeout = #duration(0,0,5,0)]
+				    )
+				),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"tarefaId", "chave", "projetoId", "percentualConcluido", "hrRealizada", "hrsPrevistas", "hrsProjetadas"}, {"tarefaId", "chave", "projetoId", "percentualConcluido", "hrRealizada", "hrsPrevistas", "hrsProjetadas"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"tarefaId", Int64.Type}, {"chave", type text}, {"projetoId", Int64.Type}, {"percentualConcluido", Int64.Type}, {"hrRealizada", type number}, {"hrsPrevistas", Int64.Type}, {"hrsProjetadas", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

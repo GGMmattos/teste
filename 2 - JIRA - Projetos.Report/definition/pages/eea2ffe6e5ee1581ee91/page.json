@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "eea2ffe6e5ee1581ee91",
+  "displayName": "Homologações",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1440,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "65e47ef309eb9d158e0a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tbl_tarefas_jira"
+              }
+            },
+            "Property": "Tipo de item"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "tbl_tarefas_jira",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "Tipo de item"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Homologação interna'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "e20b43f6fa534b0b58e1",
+      "target": "d29d0f955369d22c376f",
+      "type": "DataFilter"
+    },
+    {
+      "source": "d29d0f955369d22c376f",
+      "target": "e20b43f6fa534b0b58e1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "31d8545e7db8311d43fa",
+      "target": "d29d0f955369d22c376f",
+      "type": "DataFilter"
+    },
+    {
+      "source": "31d8545e7db8311d43fa",
+      "target": "e20b43f6fa534b0b58e1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6c88cd4fa243a43987c7",
+      "target": "e20b43f6fa534b0b58e1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6c88cd4fa243a43987c7",
+      "target": "d29d0f955369d22c376f",
+      "type": "DataFilter"
+    }
+  ]
+}

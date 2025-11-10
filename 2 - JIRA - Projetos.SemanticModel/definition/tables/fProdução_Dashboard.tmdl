@@ -1,0 +1,76 @@
+table fProdução_Dashboard
+	lineageTag: e69d5f62-b7dc-423e-b88e-f80c84b54a89
+
+	column matricula
+		lineageTag: 8c9fc37d-48dd-4a87-bef4-3f773cf95050
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: fUsuários[matricula]
+
+		annotation SummarizationSetBy = User
+
+	column Date
+		formatString: Short Date
+		lineageTag: 6edbfd33-f28e-46be-9d95-b59f52bcde50
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Calendário Automático[Date]
+
+		variation Variation
+			isDefault
+			relationship: e9f36c87-e2e9-42cc-b86d-cf081614bba9
+			defaultHierarchy: LocalDateTable_b351892b-b639-4114-b593-b648b3268452.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Extração Meses Produtividade' = MONTH('fProdução_Dashboard'[Date])
+		formatString: 0
+		lineageTag: b87e42a0-2437-421d-82d1-2260fbbc3600
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Filtro Mês Atual (Produtividade)' = IF('fProdução_Dashboard'[Extração Ano Produtividade] = YEAR(TODAY()) && 'fProdução_Dashboard'[Extração Meses Produtividade] = MONTH(TODAY()), "Sim", "Não")
+		lineageTag: d7a0fa16-a0d4-4b42-81d1-bade23287d07
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Extração Ano Produtividade' = YEAR('fProdução_Dashboard'[Date])
+		formatString: 0
+		lineageTag: 2daab3bd-291e-43ea-ab81-0bb1a641a2ef
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Extração Semanas Produtividade' = WEEKNUM('fProdução_Dashboard'[Date])
+		formatString: 0
+		lineageTag: 87df39eb-3b27-4612-9339-d3191b6196f5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Filtro Período (Produtividade)' =
+			
+			SWITCH(
+			    TRUE(),
+			    'fProdução_Dashboard'[Date] >= TODAY() - 7 && 'fProdução_Dashboard'[Date] <= TODAY(), "Últimos 7 dias",
+			    'fProdução_Dashboard'[Date] >= TODAY() - 30 && 'fProdução_Dashboard'[Date] <= TODAY(), "Últimos 30 dias",
+			    'fProdução_Dashboard'[Date] >= TODAY() - 180 && 'fProdução_Dashboard'[Date] <= TODAY(), "Últimos 180 dias",
+			    'fProdução_Dashboard'[Date] >= TODAY() - 365 && 'fProdução_Dashboard'[Date] <= TODAY() - 30, "Últimos 365 dias",
+			    "Outros"
+			)
+		lineageTag: 4299cc68-4693-4945-87b5-4a270766c476
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fProdução_Dashboard = calculated
+		mode: import
+		source =
+				
+				CROSSJOIN(VALUES('fUsuários'[matricula]),
+				VALUES('Calendário Automático'[Date]))
+
+	annotation PBI_Id = 11ad9ee9561f478386a86dce59acf37a
+

@@ -1,0 +1,167 @@
+table tbl_versao_corrigidas_jira
+	lineageTag: ba335769-c2ae-404c-92dd-dd2e4958efeb
+
+	measure Qtd_versao = DISTINCTCOUNT('tbl_versao_corrigidas_jira'[Fix Version Id]) + 0
+		formatString: 0
+		lineageTag: 406fe6f4-f602-484e-bd71-fb6d652fa199
+
+	measure qtd_tarefas_versao = ```
+			DISTINCTCOUNT(tbl_versao_corrigidas_jira[Chave]) + 0 
+			```
+		formatString: 0
+		lineageTag: 3abaf182-2914-46da-9c20-31b7740234df
+
+	measure Previsao_versao = ```
+			
+			            COALESCE(
+			            MAX(tbl_versao_corrigidas_jira[Fix Version Release Date]), BLANK())
+			```
+		formatString: Short Date
+		lineageTag: ab0fe4bf-8b93-47d0-9c6d-9beaad7cfc28
+
+	column Chave
+		dataType: string
+		lineageTag: 2383e790-72ff-4914-abbb-088c2aa22f70
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fix Version Archived'
+		dataType: string
+		lineageTag: f46ec36d-ba61-483d-8e4e-65df39ed035f
+		summarizeBy: none
+		sourceColumn: Fix Version Archived
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fix Version Id'
+		dataType: string
+		lineageTag: a44550ae-444e-4459-9fb9-a4e9e67dbaef
+		summarizeBy: none
+		sourceColumn: Fix Version Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fix Version Name'
+		dataType: string
+		lineageTag: 8dd0362d-8792-4372-b351-ae14c3d88bbd
+		summarizeBy: none
+		sourceColumn: Fix Version Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fix Version Release Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 178ee535-9c51-4bf9-8dcc-c3f562dd4de8
+		summarizeBy: none
+		sourceColumn: Fix Version Release Date
+
+		variation Variation
+			isDefault
+			relationship: ae2263a7-994d-4152-926e-889a864ff84d
+			defaultHierarchy: LocalDateTable_2484aa64-2d67-4f11-84d3-6a5808a1868c.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fix Version Released'
+		dataType: string
+		lineageTag: c5f0e3a7-8ac5-47a8-8479-89284a3cd219
+		summarizeBy: none
+		sourceColumn: Fix Version Released
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fix Version Start Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: d0b7f35a-5ec3-4b97-b513-b3d30534b9bd
+		summarizeBy: none
+		sourceColumn: Fix Version Start Date
+
+		variation Variation
+			isDefault
+			relationship: 05c2cff2-27f1-43ed-be63-9fa05de6942b
+			defaultHierarchy: LocalDateTable_187aeecf-ad70-42d5-b3d2-1beebb664862.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Versao_concatenado =
+			
+			CALCULATE (
+			    CONCATENATEX (
+			        VALUES('tbl_versao_corrigidas_jira'[Fix Version Name]),
+			        'tbl_versao_corrigidas_jira'[Fix Version Name],
+			        " ; "
+			    ),
+			    ALLEXCEPT('tbl_versao_corrigidas_jira', 'tbl_versao_corrigidas_jira'[Chave])
+			)
+		lineageTag: 3ad3329c-9963-425f-ab63-84d2c95b0b7d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situacao_versao =
+			
+			SWITCH(
+			    TRUE(),
+			    'tbl_versao_corrigidas_jira'[Fix Version Archived] = "Não" && 'tbl_versao_corrigidas_jira'[Fix Version Released] = "Não", "Não Lançado",
+			    'tbl_versao_corrigidas_jira'[Fix Version Archived] = "Não" && 'tbl_versao_corrigidas_jira'[Fix Version Released] = "Sim", "Lançado",
+			    'tbl_versao_corrigidas_jira'[Fix Version Archived] = "Sim", "Arquivado")
+		lineageTag: fcb17e00-26f0-46ac-a814-fb3cf1dccd04
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Versão
+		dataType: string
+		lineageTag: f27a27c7-9e3a-4944-a760-bb7ab4bbbd05
+		summarizeBy: none
+		sourceColumn: Versão
+
+		annotation SummarizationSetBy = Automatic
+
+	column Release
+		dataType: string
+		lineageTag: f327415c-4936-4cfc-9257-30b9c062efc1
+		summarizeBy: none
+		sourceColumn: Release
+
+		annotation SummarizationSetBy = Automatic
+
+	column Versão_e_situacao =
+			
+			COMBINEVALUES(" | Situação: ", tbl_versao_corrigidas_jira[Versão], tbl_versao_corrigidas_jira[Situacao_versao])
+		lineageTag: a2a20b13-c5be-49ee-a121-8a30e47e6386
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Release_e_situacao =
+			
+			COMBINEVALUES(" | Situação: ", tbl_versao_corrigidas_jira[Release], tbl_versao_corrigidas_jira[Situacao_versao])
+		lineageTag: 8a8857dc-f135-4620-8a08-335f4fb47ba3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_versao_corrigidas_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/ODgzNDlhMWUtMDdkMS00OGQyLTg2MDktZTkyMTZhMWZj", null, [Implementation="2.0"]),
+				    #"Fix Versions_table1" = Fonte{[Name="Fix Versions",Signature="table"]}[Data],
+				    #"Valor Substituído" = Table.ReplaceValue(#"Fix Versions_table1","true","Sim",Replacer.ReplaceText,{"Fix Version Archived"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","false","Não",Replacer.ReplaceText,{"Fix Version Archived"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","false","Não",Replacer.ReplaceText,{"Fix Version Released"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","true","Sim",Replacer.ReplaceText,{"Fix Version Released"}),
+				    #"Primeiros Caracteres Inseridos" = Table.AddColumn(#"Valor Substituído3", "Versão", each Text.Start([Fix Version Name], 5), type text),
+				    #"Últimos caracteres inseridos" = Table.AddColumn(#"Primeiros Caracteres Inseridos", "Release", each Text.End([Fix Version Name], 4), type text)
+				in
+				    #"Últimos caracteres inseridos"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

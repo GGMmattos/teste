@@ -1,0 +1,68 @@
+table tbl_relacionado_administracao
+	lineageTag: 37d77fd0-89d9-4f21-94b1-19bfb0bf8df5
+
+	measure Qtd_recursos_relacionado_administracao_sprint = DISTINCTCOUNT('tbl_relacionado_administracao'[Pessoas Time])
+		formatString: 0
+		lineageTag: 601c07e1-090f-4e3f-a460-833352d9e7f4
+
+	measure Qtd_recursos_desenv_relacionado_administracao_sprint =
+			
+			CALCULATE(
+			DISTINCTCOUNT('tbl_relacionado_administracao'[Pessoas Time]),
+			tbl_relacionado_administracao[Papel Pessoas] IN {"Desenvolvedor Angular", "Desenvolvedor Delphi", "Desenvolvedor Flutter", "Desenvolvedor Java", "Desenvolvedor NodeJs"}) + 0
+		formatString: 0
+		lineageTag: 927ebe4f-8f6c-4d17-ba65-2ea9818be4ea
+
+	measure Qtd_recursos_teste_relacionado_administracao_sprint =
+			
+			CALCULATE(
+			DISTINCTCOUNT('tbl_relacionado_administracao'[Pessoas Time]),
+			tbl_relacionado_administracao[Papel Pessoas] = "Certificador/Teste") + 0
+		formatString: 0
+		lineageTag: e193cbec-c75d-4f2d-89c6-7320428c7b48
+
+	column Time
+		lineageTag: 81f4152f-7a08-4242-aeeb-8832939385c2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Time]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ID Projeto'
+		lineageTag: 7016efa3-a727-4a73-85a8-14a5cf5a5bce
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ID Projeto]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pessoas Time'
+		lineageTag: af182acf-2f5c-40eb-8281-468a53a55f05
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Pessoas Time]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Papel Pessoas'
+		lineageTag: 2d6048fb-987e-4436-96e3-a699adbcfdb2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Papel Pessoas]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_relacionado_administracao = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    'tblAdministração',
+				    "Time", 'tblAdministração'[Descrição Time],
+				    "ID Projeto", 'tblAdministração'[projetos.projetoID],
+				    "Pessoas Time", 'tblAdministração'[membros.nome],
+				    "Papel Pessoas", 'tblAdministração'[membros.papel.papel])
+
+	annotation PBI_Id = 79d7f240349842ef8a783944dc787686
+

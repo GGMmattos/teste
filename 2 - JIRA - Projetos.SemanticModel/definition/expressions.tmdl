@@ -1,0 +1,167 @@
+expression tblPonte =
+		let
+		    Fonte = Table.NestedJoin(#"tblEpics", {"Issue_Id"}, #"tblStory", {"Parent_Issue_Id"}, "tblStory", JoinKind.LeftOuter),
+		    #"tblStory Expandido" = Table.ExpandTableColumn(Fonte, "tblStory", {"Issue_Id", "Key", "Summary", "Parent_Issue_Id"}, {"tblStory.Issue_Id", "tblStory.Key", "tblStory.Summary", "tblStory.Parent_Issue_Id"}),
+		    #"Consultas Mescladas1" = Table.NestedJoin(#"tblStory Expandido", {"tblStory.Issue_Id"}, #"tblSubtasks", {"Parent_Issue_Id"}, "tblSubtasks", JoinKind.LeftOuter),
+		    #"tblSubtasks Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas1", "tblSubtasks", {"Issue_Id", "Key", "Summary", "Parent_Issue_Id"}, {"tblSubtasks.Issue_Id", "tblSubtasks.Key", "tblSubtasks.Summary", "tblSubtasks.Parent_Issue_Id"}),
+		    #"Coluna Mesclada Inserida" = Table.AddColumn(#"tblSubtasks Expandido", "Main_Key", each Text.Combine({Text.From([Issue_Id], "pt-BR"), Text.From([tblStory.Issue_Id], "pt-BR"), Text.From([tblSubtasks.Issue_Id], "pt-BR")}, "_"), type text),
+		    #"Coluna Mesclada Inserida1" = Table.AddColumn(#"Coluna Mesclada Inserida", "Mesclado", each Text.Combine({[Summary], [tblStory.Summary], [tblSubtasks.Summary]}, " > "), type text),
+		    #"Outras Colunas Removidas_" = Table.SelectColumns(#"Coluna Mesclada Inserida1",{"Main_Key", "Mesclado"}),
+		    #"Coluna Duplicada_" = Table.DuplicateColumn(#"Outras Colunas Removidas_", "Main_Key", "Main_Key - Copiar"),
+		    #"Dividir Coluna por Delimitador_" = Table.SplitColumn(#"Coluna Duplicada_", "Main_Key - Copiar", Splitter.SplitTextByDelimiter("_", QuoteStyle.Csv), {"Main_Key - Copiar.1", "Main_Key - Copiar.2", "Main_Key - Copiar.3"}),
+		    #"Tipo Alterado_" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador_",{{"Main_Key - Copiar.1", Int64.Type}, {"Main_Key - Copiar.2", Int64.Type}, {"Main_Key - Copiar.3", Int64.Type}}),
+		    #"Outras Colunas Não Dinâmicas_" = Table.UnpivotOtherColumns(#"Tipo Alterado_", {"Main_Key", "Mesclado"}, "Atributo", "IdParaApontamento"),
+		    #"Outras Colunas Removidas1_" = Table.SelectColumns(#"Outras Colunas Não Dinâmicas_",{"Main_Key", "IdParaApontamento"}),
+		    #"Duplicatas Removidas_" = Table.Distinct(#"Outras Colunas Removidas1_")
+		in
+		    #"Duplicatas Removidas_"
+	lineageTag: 6b39a4d8-d099-432c-9360-02570668d04e
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression tblApontamentoPorTarefa =
+		let
+		    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/api_controlehoras/controle-publico/apontamento/buscaLista")),
+		    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+		    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"tarefaid", "chave", "projectid", "projectkey", "idPapel", "papelFuncional", "datainicial", "datafinal", "percentualConcluido", "hrRealizada", "hrProjetada", "usuario"}, {"tarefaid", "chave", "projectid", "projectkey", "idPapel", "papelFuncional", "datainicial", "datafinal", "percentualConcluido", "hrRealizada", "hrProjetada", "usuario"}),
+		    #"usuario Expandido" = Table.ExpandRecordColumn(#"Column1 Expandido", "usuario", {"nome", "email"}, {"usuario.nome", "usuario.email"}),
+		    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"usuario Expandido",{{"usuario.nome", Text.Proper, type text}}),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colocar Cada Palavra Em Maiúscula",{{"tarefaid", Int64.Type}, {"chave", type text}, {"projectid", Int64.Type}, {"projectkey", type text}, {"idPapel", Int64.Type}, {"papelFuncional", type text}, {"datainicial", type datetime}, {"datafinal", type datetime}, {"percentualConcluido", Int64.Type}, {"hrRealizada", type number}, {"hrProjetada", type number}}),
+		    #"Linhas Classificadas" = Table.Sort(#"Tipo Alterado",{{"chave", Order.Ascending}}),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Linhas Classificadas",{{"datainicial", type date}, {"datafinal", type date}}),
+		    #"Outras Colunas Removidas" = Table.SelectColumns(#"Tipo Alterado1",{"chave", "datafinal", "datainicial", "hrProjetada", "hrRealizada", "idPapel", "papelFuncional", "percentualConcluido", "projectid", "projectkey", "tarefaid", "usuario.email", "usuario.nome"})
+		in
+		    #"Outras Colunas Removidas"
+	lineageTag: f47f01ad-a27c-4cbf-82c6-ed5c40ec4397
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression tblSubtasks = ```
+		let
+		    Fonte = OData.Feed("https://cloud-powerbi.doit-bi.com/api/powerbi/export/d80a1e668ac883ee5b324db112c60409", null, [Implementation="2.0"]),
+		    Issues_table = Fonte{[Name="Issues",Signature="table"]}[Data],    
+		    #"Tipo Alterado" = Table.TransformColumnTypes(Issues_table,{{"Issue_Id", Int64.Type}, {"Key", type text}, {"Summary", type text}, {"Description", type text}, {"Created", type datetime}, {"Updated", type datetime}, {"Due_Date", type datetime}, {"Last_Viewed", type datetime}, {"Resolved", type any}, {"Issue_Priority_Id", Int64.Type}, {"Priority_Name", type text}, {"Watchers", type any}, {"Environment", type any}, {"Work_Ratio", Int64.Type}, {"Votes", Int64.Type}, {"Status_Changed_Date", type datetime}, {"Is_Subtask", type logical}, {"Number_Of_Subtasks", type any}, {"Time_Spent", Int64.Type}, {"Time_Spent_With_Subtasks", Int64.Type}, {"Original_Estimate", Int64.Type}, {"Original_Estimate_With_Subtasks", Int64.Type}, {"Remaining_Estimate", Int64.Type}, {"Remaining_Estimate_With_Subtasks", Int64.Type}, {"Issue_Assignee_Account_Id", type text}, {"Assignee_Name", type text}, {"Assignee_Is_Active", type logical}, {"Assignee_Account_Type", type text}, {"Assignee_Time_Zone", type text}, {"Issue_Creator_Account_Id", type text}, {"Creator_Name", type text}, {"Creator_Is_Active", type logical}, {"Creator_Account_Type", type text}, {"Creator_Time_Zone", type text}, {"Issue_Reporter_Account_Id", type text}, {"Reporter_Name", type text}, {"Reporter_Is_Active", type logical}, {"Reporter_Account_Type", type text}, {"Reporter_Time_Zone", type text}, {"Project_Id", Int64.Type}, {"Project_Description", type text}, {"Project_Type", type text}, {"Project_Style", type text}, {"Project_Is_Private", type logical}, {"Project_Lead_Account_Id", type text}, {"Project_Lead_Name", type text}, {"Project_Assignee_Type", type text}, {"Project_Lead_Is_Active", type logical}, {"Project_Category_Id", Int64.Type}, {"Project_Category_Name", type text}, {"Project_Category_Description", type text}, {"Issue_Type_Id", Int64.Type}, {"Issue_Type_Name", type text}, {"Issue_Type_Description", type text}, {"Issue_Type_Hierarchy_Level", Int64.Type}, {"Status_Id", Int64.Type}, {"Status_Name", type text}, {"Status_Description", type text}, {"Status_Category_Id", Int64.Type}, {"Status_Category_Key", type text}, {"Status_Category_Name", type text}, {"Status_Category_Color_Name", type text}, {"Resolution_Id", type any}, {"Resolution_Name", type any}, {"Resolution_Description", type any}, {"Parent_Issue_Id", type any}, {"Parent_Issue_Key", type any}, {"Parent_Issue_Summary", type any}, {"Parent_Issue_Priority_Id", type any}, {"Parent_Issue_Priority_Name", type any}, {"Parent_Issue_Status_Id", type any}, {"Parent_Issue_Status_Name", type any}, {"Parent_Issue_Status_Category_Name", type any}, {"Parent_Issue_Type_Id", type any}, {"Parent_Issue_Type_Name", type any}, {"Vers_o_Planejada_Id", Int64.Type}, {"Vers_o_Planejada_Name", type text}, {"Categoria", type text}, {"End_date", type datetime}, {"Baseline_start_date", type any}, {"Classifica__o_do_servi_o", type any}, {"Prot_tipo", Int64.Type}, {"Data_solu__o", type datetime}, {"Open_forms", type any}, {"Submitted_forms", type any}, {"Locked_forms", type any}, {"Total_forms", type any}, {"Horas", type any}, {"Solu__o", type any}, {"End_Date__Gantt_", type any}, {"_CHART__Time_in_Status", type any}, {"Start_Date__Gantt_", type any}, {"Time", type text}, {"Fronteira_de_Dom_nio", type text},{"Previs_o_de_in_cio", type any}, {"Categoria_de_trabalho", type any}, {"_CHART__Date_of_First_Response", type any}, {"Previs_o_de_entrega", type any}, {"Story_point_estimate", Int64.Type}, {"Issue_color", type text}, {"Release_notes", type any}, {"Link_documenta__o", type any}, {"Rank", type text}, {"Start_date", type datetime}, {"Funcionalidade", type any}, {"Tipo_funcionalidade", type any}, {"development", type text}}),
+		
+		    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado", "E_Type", each "Subtasks"),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Personalização Adicionada",{{"Data_solu__o", "Data Solução"}}),
+		    #"Duplicatas Removidas" = Table.Distinct(#"Colunas Renomeadas", {"Issue_Id"}),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Duplicatas Removidas",{{"Is_Subtask", type text}, {"Created", type date}})
+		in
+		    #"Tipo Alterado1"
+		```
+	lineageTag: 51ce5959-50ca-43ae-9a00-17e5a83d5a58
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression tblEpics = ```
+		let
+		 Fonte = OData.Feed("https://cloud-powerbi.doit-bi.com/api/powerbi/export/7b73eea0ed76098022abe8b14466decb", null, [Implementation="2.0"]),
+		    Issues_table = Fonte{[Name="Issues",Signature="table"]}[Data],
+		    #"Tipo Alterado" = Table.TransformColumnTypes(Issues_table,{{"Issue_Id", Int64.Type}, {"Key", type text}, {"Summary", type text}, {"Created", type datetime}, {"Updated", type datetime}, {"Due_Date", type datetime}, {"Last_Viewed", type datetime}, {"Resolved", type any}, {"Issue_Priority_Id", Int64.Type}, {"Priority_Name", type text}, {"Watchers", type any}, {"Environment", type any}, {"Work_Ratio", Int64.Type}, {"Votes", Int64.Type}, {"Status_Changed_Date", type datetime}, {"Is_Subtask", type logical}, {"Number_Of_Subtasks", type any}, {"Time_Spent", Int64.Type}, {"Time_Spent_With_Subtasks", Int64.Type}, {"Original_Estimate", Int64.Type}, {"Original_Estimate_With_Subtasks", Int64.Type}, {"Remaining_Estimate", Int64.Type}, {"Remaining_Estimate_With_Subtasks", Int64.Type}, {"Issue_Assignee_Account_Id", type text}, {"Assignee_Name", type text}, {"Assignee_Is_Active", type logical}, {"Assignee_Account_Type", type text}, {"Assignee_Time_Zone", type text}, {"Issue_Creator_Account_Id", type text}, {"Creator_Name", type text}, {"Creator_Is_Active", type logical}, {"Creator_Account_Type", type text}, {"Creator_Time_Zone", type text}, {"Issue_Reporter_Account_Id", type text}, {"Reporter_Name", type text}, {"Reporter_Is_Active", type logical}, {"Reporter_Account_Type", type text}, {"Reporter_Time_Zone", type text}, {"Project_Id", Int64.Type}, {"Project_Key", type text}, {"Project_Name", type text}, {"Project_Description", type text}, {"Project_Type", type text}, {"Project_Style", type text}, {"Project_Is_Private", type logical}, {"Project_Lead_Account_Id", type text}, {"Project_Lead_Name", type text}, {"Project_Assignee_Type", type text}, {"Project_Lead_Is_Active", type logical}, {"Project_Category_Id", Int64.Type}, {"Project_Category_Name", type text}, {"Project_Category_Description", type text}, {"Issue_Type_Id", Int64.Type}, {"Issue_Type_Name", type text}, {"Issue_Type_Description", type text}, {"Issue_Type_Hierarchy_Level", Int64.Type}, {"Status_Id", Int64.Type}, {"Status_Name", type text}, {"Status_Description", type text}, {"Status_Category_Id", Int64.Type}, {"Status_Category_Key", type text}, {"Status_Category_Name", type text}, {"Status_Category_Color_Name", type text}, {"Resolution_Id", type any}, {"Resolution_Name", type any}, {"Resolution_Description", type any}, {"Parent_Issue_Id", type any}, {"Parent_Issue_Key", type any}, {"Parent_Issue_Summary", type any}, {"Parent_Issue_Priority_Id", type any}, {"Parent_Issue_Priority_Name", type any}, {"Parent_Issue_Status_Id", type any}, {"Parent_Issue_Status_Name", type any}, {"Parent_Issue_Status_Category_Name", type any}, {"Parent_Issue_Type_Id", type any}, {"Parent_Issue_Type_Name", type any}, {"End_date", type datetime}, {"Baseline_start_date", type any}, {"Classifica__o_do_servi_o", type any}, {"Prot_tipo", Int64.Type}, {"Data_solu__o", type datetime}, {"Open_forms", type any}, {"Submitted_forms", type any}, {"Locked_forms", type any}, {"Total_forms", type any}, {"Horas", type any}, {"Solu__o", type any}, {"End_Date__Gantt_", type any}, {"_CHART__Time_in_Status", type any}, {"Start_Date__Gantt_", type any}, {"Time", type text}, {"Fronteira_de_Dom_nio", type text}, {"Previs_o_de_in_cio", type any}, {"Categoria_de_trabalho", type any}, {"_CHART__Date_of_First_Response", type any}, {"Previs_o_de_entrega", type any}, {"Story_point_estimate", Int64.Type}, {"Issue_color", type text}, {"Release_notes", type any}, {"Link_documenta__o", type any}, {"Rank", type text}, {"Start_date", type datetime}, {"Funcionalidade", type any}, {"Tipo_funcionalidade", type any}, {"development", type text}, {"N_vel_prioridade", Int64.Type}, {"Tipo_de_Servi_o", type text}}),
+		    
+		    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado", "E_Type", each "Epics"),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Personalização Adicionada",{{"P_s_Implanta__o", "Pós_Implantação"}, {"Data_Lan_amento__virada_", "Data de Lançamento (Virada)"}}),
+		    #"Duplicatas Removidas" = Table.Distinct(#"Colunas Renomeadas", {"Issue_Id"}),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Duplicatas Removidas",{{"Created", type date}, {"Data_solu__o", type date}}),
+		    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Tipo Alterado1",{{"Nome_Cliente__Contr__Horas_", Text.Proper, type text}, {"Summary", Text.Proper, type text}}),
+		    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Colocar Cada Palavra Em Maiúscula",{{"N_vel_prioridade", type text}}),
+		    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado2",null,"N/A",Replacer.ReplaceValue,{"N_vel_prioridade"}),
+		    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Valor Substituído",{{"Due_Date", type date}}),
+		    #"Duplicatas Removidas1" = Table.Distinct(#"Tipo Alterado3", {"Issue_Id"})
+		in
+		    #"Duplicatas Removidas1"
+		```
+	lineageTag: 9d78041d-9ea5-4772-ad7d-733cbfbb0714
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression tblStory =
+		let
+		    Fonte = OData.Feed("https://cloud-powerbi.doit-bi.com/api/powerbi/export/5993befa89d75599d25cb1377ed5935b", null, [Implementation="2.0"]),
+		    Issues_table = Fonte{[Name="Issues",Signature="table"]}[Data],
+		    #"Tipo Alterado" = Table.TransformColumnTypes(Issues_table,{{"Issue_Id", Int64.Type}, {"Vers_o_Homologa__o", type text}, {"Key", type text}, {"Summary", type text}, {"Created", type datetime}, {"Updated", type datetime}, {"Due_Date", type datetime}, {"Last_Viewed", type datetime}, {"Resolved", type any}, {"Issue_Priority_Id", Int64.Type}, {"Priority_Name", type text}, {"Watchers", type any}, {"Environment", type any}, {"Work_Ratio", Int64.Type}, {"Votes", Int64.Type}, {"Status_Changed_Date", type datetime}, {"Is_Subtask", type logical}, {"Number_Of_Subtasks", type any}, {"Time_Spent", Int64.Type}, {"Time_Spent_With_Subtasks", Int64.Type}, {"Original_Estimate", Int64.Type}, {"Original_Estimate_With_Subtasks", Int64.Type}, {"Remaining_Estimate", Int64.Type}, {"Remaining_Estimate_With_Subtasks", Int64.Type}, {"Issue_Assignee_Account_Id", type text}, {"Assignee_Name", type text}, {"Assignee_Is_Active", type logical}, {"Assignee_Account_Type", type text}, {"Assignee_Time_Zone", type text}, {"Issue_Creator_Account_Id", type text}, {"Creator_Name", type text}, {"Creator_Is_Active", type logical}, {"Creator_Account_Type", type text}, {"Creator_Time_Zone", type text}, {"Issue_Reporter_Account_Id", type text}, {"Reporter_Name", type text}, {"Reporter_Is_Active", type logical}, {"Reporter_Account_Type", type text}, {"Reporter_Time_Zone", type text}, {"Project_Id", Int64.Type}, {"Project_Key", type text}, {"Project_Name", type text}, {"Project_Description", type text}, {"Project_Type", type text}, {"Project_Style", type text}, {"Project_Is_Private", type logical}, {"Project_Lead_Account_Id", type text}, {"Project_Lead_Name", type text}, {"Project_Assignee_Type", type text}, {"Project_Lead_Is_Active", type logical}, {"Project_Category_Id", Int64.Type}, {"Project_Category_Name", type text}, {"Project_Category_Description", type text}, {"Issue_Type_Id", Int64.Type}, {"Issue_Type_Name", type text}, {"Issue_Type_Description", type text}, {"Issue_Type_Hierarchy_Level", Int64.Type}, {"Status_Id", Int64.Type}, {"Status_Name", type text}, {"Status_Description", type text}, {"Status_Category_Id", Int64.Type}, {"Status_Category_Key", type text}, {"Status_Category_Name", type text}, {"Status_Category_Color_Name", type text}, {"Resolution_Id", type any}, {"Resolution_Name", type any}, {"Resolution_Description", type any}, {"Parent_Issue_Id", type any}, {"Parent_Issue_Key", type any}, {"Parent_Issue_Summary", type any}, {"Parent_Issue_Priority_Id", type any}, {"Parent_Issue_Priority_Name", type any}, {"Parent_Issue_Status_Id", type any}, {"Parent_Issue_Status_Name", type any}, {"Parent_Issue_Status_Category_Name", type any}, {"Parent_Issue_Type_Id", type any}, {"Parent_Issue_Type_Name", type any}, {"Vers_o_Planejada_Id", Int64.Type}, {"Vers_o_Planejada_Name", type text}, {"Categoria", type text}, {"End_date", type datetime}, {"Baseline_start_date", type any}, {"Classifica__o_do_servi_o", type any}, {"Prot_tipo", Int64.Type}, {"Data_solu__o", type datetime}, {"Open_forms", type any}, {"Submitted_forms", type any}, {"Locked_forms", type any}, {"Total_forms", type any}, {"Horas", type any}, {"Solu__o", type any}, {"End_Date__Gantt_", type any}, {"_CHART__Time_in_Status", type any}, {"Start_Date__Gantt_", type any}, {"Time", type text}, {"Fronteira_de_Dom_nio", type text}, {"Previs_o_de_in_cio", type any}, {"Categoria_de_trabalho", type any}, {"Previs_o_de_entrega", type any}, {"Story_point_estimate", Int64.Type}, {"Issue_color", type text}, {"Release_notes", type any}, {"Link_documenta__o", type any}, {"Start_date", type datetime}, {"Funcionalidade", type any}, {"Tipo_funcionalidade", type any}, {"development", type text}, {"Motivo_do_Cancelamento", type text}, {"N_vel_prioridade", type text}, {"Tipo_de_Servi_o", type text}}),
+		
+		    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado", "E_Type", each "Story"),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Personalização Adicionada",{{"Data_solu__o", "Data_Solução"}}),
+		    #"Colunas Renomeadas1" = Table.RenameColumns(#"Colunas Renomeadas",{{"Vers_o_Planejada_Name", "Versão_Planejada_Name"}, {"Vers_o_Planejada_Id", "Versão_Planejada_Id"}}),
+		    #"Duplicatas Removidas" = Table.Distinct(#"Colunas Renomeadas1", {"Issue_Id"}),
+		    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Duplicatas Removidas",{{"Team_Title", Text.Proper, type text}, {"Nome_Cliente__Contr__Horas_", Text.Proper, type text}}),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colocar Cada Palavra Em Maiúscula",{{"Created", type date}, {"Data_Solução", type date}}),
+		    #"Colocar Cada Palavra Em Maiúscula1" = Table.TransformColumns(#"Tipo Alterado1",{{"Summary", Text.Proper, type text}}),
+		    #"Valor Substituído" = Table.ReplaceValue(#"Colocar Cada Palavra Em Maiúscula1",10000,1,Replacer.ReplaceValue,{"Issue_Priority_Id"}),
+		    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído",null,"N/A",Replacer.ReplaceValue,{"N_vel_prioridade"}),
+		    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Valor Substituído1", "Chave_Titulo_tbl_story", each Text.Combine({[Key], [Summary]}, " - "), type text)
+		in
+		    #"Coluna Mesclada Inserida"
+	lineageTag: 205217dd-1918-4296-b7d2-7933fd9d9a93
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression fConsolidado =
+		let
+		    Fonte = Table.NestedJoin(#"tblEpics", {"Issue_Id"}, #"tblStory", {"Parent_Issue_Id"}, "tblStory", JoinKind.LeftOuter),
+		    #"tblStory Expandido" = Table.ExpandTableColumn(Fonte, "tblStory", {"Issue_Id", "Key", "Summary", "Parent_Issue_Id", "Status_Name", "Assignee_Name", "Original_Estimate", "Original_Estimate_With_Subtasks", "Start_date", "End_date", "Issue_Type_Name", "E_Type", "Due_Date","Created", "Data_Solução", "Status_Category_Name", "Priority_Name", "Status_Changed_Date", "Team_Title", "Team_Id", "Versão_Planejada_Name", "Versão_Planejada_Id", "Issue_color", "Is_Subtask", "N__OS__Sabium_OS_", "Updated", "Issue_Type_Id", "Parent_Issue_Key", "Custo__R__", "Resultado_Esperado", "Investimento__R__", "Nome_Cliente__Contr__Horas_","Creator_Name", "Meta_PBI", "Project_Name", "Parent_Issue_Status_Name", "Parent_Issue_Summary", "Vers_o_Homologa__o", "Solu__o", "Project_Category_Name", "Issue_Priority_Id", "N_vel_prioridade", "Tipo_de_Servi_o"}, {"tblStory.Issue_Id", "tblStory.Key", "tblStory.Summary", "tblStory.Parent_Issue_Id", "tblStory.Status_Name", "tblStory.Responsável", "tblStory.Estimativa_Original", "tblStory.Estimativa_Original_C_SubTarefa", "tblStory.Data_Inicio", "tblStory.Data_Conclusão", "tblStory.Tipo_Nome", "tbl.Story.E_Type","tbl.Story.Prev_Termino","tblStory.CreatedIssue", "tblStory.Data_Solução", "tblStory.Status_Category_Name", "tblStory.Prioridade", "tblStory.Troca_Status", "tblStory.Team_Title", "tblStory.Team_Id", "tblStory.Versão_Planejado", "tblStory.Versão_Planejada_Id", "tblStory.Issue_color","tblStory.Is_Subtask", "tblStory.N__OS__Sabium_OS_", "tblStory.Atualização", "tblStory.Issue_Type_Id", "tblStory.Parent_Issue_Key", "tblStory.Custo_R$", "tblStory.Resultado_Esperado", "tblStory.Investimento_R$", "tblStory.Nome_Cliente_Control_Hrs", "tblStory.Creator_Name", "tblStory.Meta_PBI", "tblStory.Projeto","tblStory.Parent_Issue_Status_Name", "tblStory.Parent_Issue_Summary", "tblStory_Versao_homologacao", "tblStory_Solucao", "tblStory_Categoria_projeto", "tblStory_Issue_Priority_Id", "tblStory_Nível_Prioridade", "tblStory_Tipo_de_servico"}),
+		    #"Consultas Mescladas1" = Table.NestedJoin(#"tblStory Expandido", {"tblStory.Issue_Id"}, #"tblSubtasks", {"Parent_Issue_Id"}, "tblSubtasks", JoinKind.LeftOuter),
+		    #"tblSubtasks Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas1", "tblSubtasks", {"Issue_Id", "Key", "Summary", "Parent_Issue_Id", "Status_Name", "Issue_Type_Name", "E_Type","Created", "Data Solução", "Assignee_Name", "Team_Id", "Team_Title", "Issue_color", "Is_Subtask", "Parent_Issue_Key", "Status_Category_Name", "Creator_Name", "Updated", "Priority_Name", "Meta_PBI", "Project_Name"}, {"tblSubtasks.Issue_Id", "tblSubtasks.Key", "tblSubtasks.Summary", "tblSubtasks.Parent_Issue_Id", "tblSubtask.Status_Name", "tblSubtask.Tipo_Nome", "tblSubtask.E_Type","tblSubtask.CreatedIssue", "tblSubtasks.Data_Solução", "tblSubtasks.Responsável", "tblSubtask.Team_Id", "tblSubtask.Team_Title", "tblSubtask.Issue_color", "tblSubtask.Is_Subtask", "tblSubtask.Parent_Issue_Key", "tblSubtask.Status_Category_Name", "tbSubtask.Creator_Name", "tblSubtask.Atualização", "tblSubtask.Prioridade", "tblSubtask.Meta_PBI", "tblSubtask_Projeto"}),
+		    #"Coluna Mesclada Inserida" = Table.AddColumn(#"tblSubtasks Expandido", "Main_Key", each Text.Combine({Text.From([Issue_Id], "pt-BR"), Text.From([tblStory.Issue_Id], "pt-BR"), Text.From([tblSubtasks.Issue_Id], "pt-BR")}, "_"), type text),
+		    #"Consultas Mescladas" = Table.NestedJoin(#"Coluna Mesclada Inserida", {"Main_Key"}, #"tblPonte", {"Main_Key"}, "fPonte", JoinKind.LeftOuter),
+		    #"fPonte Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "fPonte", {"IdParaApontamento"}, {"IdParaApontamento"}),
+		    #"Consultas Mescladas2" = Table.NestedJoin(#"fPonte Expandido", {"IdParaApontamento"}, tblApontamentoPorTarefa, {"tarefaid"}, "tblApontamentoPorTarefa", JoinKind.LeftOuter),
+		    #"tblApontamentoPorTarefa Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas2", "tblApontamentoPorTarefa", {"totalHrRealizada", "totalHrProjetada", "dtInicio", "dtFim"}, {"totalHrRealizada", "totalHrProjetada", "dtInicio", "dtFim"}),
+		    #"Valor Substituído" = Table.ReplaceValue(#"tblApontamentoPorTarefa Expandido",null,0,Replacer.ReplaceValue,{"totalHrRealizada"}),
+		    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído",null,0,Replacer.ReplaceValue,{"totalHrProjetada"}),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Valor Substituído1",{{"Issue_Type_Hierarchy_Level", "Hieraquia de Tipo"}}),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Hieraquia de Tipo", type text}}),
+		    #"Valor Substituído2" = Table.ReplaceValue(#"Tipo Alterado","-1","Subtarefa",Replacer.ReplaceText,{"Hieraquia de Tipo"}),
+		    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","0","Tarefa",Replacer.ReplaceText,{"Hieraquia de Tipo"}),
+		    #"Valor Substituído4" = Table.ReplaceValue(#"Valor Substituído3","1","Entrega",Replacer.ReplaceText,{"Hieraquia de Tipo"}),
+		    #"Colunas Renomeadas1" = Table.RenameColumns(#"Valor Substituído4",{{"Issue_Type_Name", "Tipo"}}),
+		    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Colunas Renomeadas1", "Status Agrupado", each if [tblStory.Status_Name] = "Concluído" then "Finalizado" else if [tblSubtask.Status_Name] = "Concluído" then "Finalizado" else if [tblStory.Status_Name] = "Cancelada" then "Finalizado" else if [tblSubtask.Status_Name] = "Cancelada" then "Finalizado" else "Em Aberto"),
+		    #"Colunas Renomeadas2" = Table.RenameColumns(#"Coluna Condicional Adicionada",{{"Data_solu__o", "Data solução"}, {"End_date", "Data conclusão"}, {"Start_date", "Prev. inicio"}, {"Status_Changed_Date", "Troca status"}, {"Time_Spent", "Hr. Real"}, {"Time_Spent_With_Subtasks", "Hr. Real (c/ subtarefas)"}, {"Original_Estimate", "Estimada"}, {"Original_Estimate_With_Subtasks", "Estimada (c/subtarefas)"}, {"Remaining_Estimate", "Hr. restante"}, {"Remaining_Estimate_With_Subtasks", "Hr. restante (c/ subtarefas)"}, {"Due_Date", "Prev. término"}, {"Updated", "Atualização"}, {"Parent_Issue_Summary", "Pai Título"}, {"Summary", "Título"}, {"Parent_Issue_Type_Name", "Pai Tipo"}}),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Colunas Renomeadas2",{{"End_Date__Gantt_", type datetime}, {"Previs_o_de_in_cio", type datetime}, {"Previs_o_de_entrega", type datetime}}),
+		    #"Coluna Duplicada" = Table.DuplicateColumn(#"Tipo Alterado1", "Environment", "Link Jira"),
+		    #"Valor Substituído5" = Table.ReplaceValue(#"Coluna Duplicada",null,"https://sabium.atlassian.net/browse/",Replacer.ReplaceValue,{"Link Jira"}),
+		    #"Coluna Mesclada Inserida2" = Table.AddColumn(#"Valor Substituído5", "Hiperlink Jira", each Text.Combine({[Link Jira], [Key]}, ""), type text),
+		    #"Coluna Mesclada Inserida3" = Table.AddColumn(#"Coluna Mesclada Inserida2", "Hiperlink Jira (Story/Key)", each Text.Combine({[Link Jira], [tblStory.Key]}, ""), type text),
+		    #"Colunas Renomeadas3" = Table.RenameColumns(#"Coluna Mesclada Inserida3",{{"Project_Name", "Projeto"}, {"Previs_o_de_in_cio", "Previsão de inicio"}, {"Previs_o_de_entrega", "Previsão de Entrega"}}),
+		    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Colunas Renomeadas3",{{"Estimada", type number}, {"Estimada (c/subtarefas)", type number}, {"Hr. restante", type number}, {"Hr. Real (c/ subtarefas)", type number}, {"Hr. Real", type number}, {"Hr. restante (c/ subtarefas)", type number}}),
+		    #"Valor Substituído6" = Table.ReplaceValue(#"Tipo Alterado2",null,0,Replacer.ReplaceValue,{"Hr. Real", "Hr. Real (c/ subtarefas)", "Estimada", "Estimada (c/subtarefas)", "Hr. restante", "Hr. restante (c/ subtarefas)"}),
+		    #"Valor Substituído7" = Table.ReplaceValue(#"Valor Substituído6",null,0,Replacer.ReplaceValue,{"tblStory.Estimativa_Original", "tblStory.Estimativa_Original_C_SubTarefa"}),
+		    #"Colunas Renomeadas4" = Table.RenameColumns(#"Valor Substituído7",{{"Solu__o", "Solução"}, {"Last_Viewed", "Visto pela última vez"}, {"Project_Lead_Name", "Líder do projeto"}, {"Project_Category_Name", "Categoria Projeto"}}),
+		    #"Coluna inteiro-dividir" = Table.TransformColumns(#"Colunas Renomeadas4", {{"Estimada", each _ / 3600, type number}}),
+		    #"Coluna inteiro-dividir1" = Table.TransformColumns(#"Coluna inteiro-dividir", {{"Estimada (c/subtarefas)", each _ / 3600, type number}}),
+		    #"Coluna inteiro-dividir2" = Table.TransformColumns(#"Coluna inteiro-dividir1", {{"tblStory.Estimativa_Original", each _ / 3600, type number}}),
+		    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Coluna inteiro-dividir2",{{"tblStory.Data_Solução", type date}, {"tblStory.CreatedIssue", type date}}),
+		    #"Coluna Mesclada Inserida4" = Table.AddColumn(#"Tipo Alterado3", "HiperLink Jira (Subtask/Key)", each Text.Combine({[Link Jira], [tblSubtasks.Key]}, ""), type text),
+		    #"Coluna Condicional Adicionada1" = Table.AddColumn(#"Coluna Mesclada Inserida4", "Visão Prazo Dias (Entrega Manutenção)", each if [tblStory.Prioridade] = "Muito Alta" then "3 Dias" else if [tblStory.Prioridade] = "Alta" then "7 Dias" else if [tblStory.Prioridade] = "Média" then "15 Dias" else if [tblStory.Prioridade] = "Baixa" then "20 Dias" else if [tblStory.Prioridade] = "Muito Baixa" then "30 Dias" else "60 Dias"),
+		    #"Personalização Adicionada" = Table.AddColumn(#"Coluna Condicional Adicionada1", "Último Atendimento", each if [tblStory.Status_Name] = "Concluído" then [tblStory.Troca_Status] else if [tblStory.Status_Name] = "Cancelada" then [tblStory.Troca_Status] else ""),
+		    #"Tipo Alterado4" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"Último Atendimento", type datetime}}),
+		    #"Colunas Renomeadas5" = Table.RenameColumns(#"Tipo Alterado4",{{"Prev. inicio", "Prev. Início"}, {"Prev. término", "Prev. Término"}}),
+		    #"Valor Substituído10" = Table.ReplaceValue(#"Colunas Renomeadas5","Epics","Entrega",Replacer.ReplaceText,{"E_Type"}),
+		    #"Valor Substituído11" = Table.ReplaceValue(#"Valor Substituído10","Story","Tarefa",Replacer.ReplaceText,{"tbl.Story.E_Type"}),
+		    #"Valor Substituído12" = Table.ReplaceValue(#"Valor Substituído11","Subtasks","Subtarefa",Replacer.ReplaceText,{"tblSubtask.E_Type"}),
+		    #"Coluna Mesclada Inserida5" = Table.AddColumn(#"Valor Substituído12", "Mesclado Key e Título", each Text.Combine({[Key], [Título]}, " - "), type text),
+		    #"Coluna Mesclada Inserida6" = Table.AddColumn(#"Coluna Mesclada Inserida5", "Título e Chave (Tarefa)", each Text.Combine({[tblStory.Key], [tblStory.Summary]}, " - "), type text),
+		    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Coluna Mesclada Inserida6",{{"Nome_Cliente__Contr__Horas_", Text.Proper, type text}, {"tblStory.Nome_Cliente_Control_Hrs", Text.Proper, type text}}),
+		    #"Tipo Alterado5" = Table.TransformColumnTypes(#"Colocar Cada Palavra Em Maiúscula",{{"tblStory.Data_Inicio", type date}}),
+		    #"Coluna Duplicada1" = Table.DuplicateColumn(#"Tipo Alterado5", "tblStory.Data_Solução", "tblStory.Data_Solução - Tela Consultoria"),
+		    #"Tipo Alterado6" = Table.TransformColumnTypes(#"Coluna Duplicada1",{{"Data solução", type date}}),
+		    #"Valor Substituído8" = Table.ReplaceValue(#"Tipo Alterado6",10000,1,Replacer.ReplaceValue,{"Issue_Priority_Id"})
+		in
+		    #"Valor Substituído8"
+	lineageTag: ddb80121-6908-4a24-b23b-69d635e87c52
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

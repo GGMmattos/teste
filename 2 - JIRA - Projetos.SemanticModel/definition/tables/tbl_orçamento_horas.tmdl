@@ -1,0 +1,118 @@
+table tbl_orçamento_horas
+	lineageTag: e15bb049-0f0a-435a-bf3d-81076e52d5a8
+
+	column tarefaId
+		dataType: int64
+		formatString: 0
+		lineageTag: ee07a5be-bd92-4cf3-bb4d-8265c5a0db56
+		summarizeBy: count
+		sourceColumn: tarefaId
+
+		annotation SummarizationSetBy = Automatic
+
+	column tarefaNome
+		dataType: string
+		lineageTag: 3cc53284-564c-4b68-b2b8-b608ddc69533
+		summarizeBy: none
+		sourceColumn: tarefaNome
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectId
+		dataType: int64
+		formatString: 0
+		lineageTag: c4515f84-2d56-4a7e-bf50-e73339a656fe
+		summarizeBy: count
+		sourceColumn: projectId
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectKey
+		dataType: string
+		lineageTag: 9e3c13ef-2bef-4012-832e-b9898ac6aa5e
+		summarizeBy: none
+		sourceColumn: projectKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricaoid
+		dataType: int64
+		formatString: 0
+		lineageTag: 46d8e6b2-2a86-4f1b-988c-394ef7cecca9
+		summarizeBy: sum
+		sourceColumn: descricaoid
+
+		annotation SummarizationSetBy = Automatic
+
+	column papel
+		dataType: string
+		lineageTag: ee483276-4691-42b5-a91a-071e29c825d1
+		summarizeBy: none
+		sourceColumn: papel
+
+		annotation SummarizationSetBy = Automatic
+
+	column agrupadorId
+		dataType: int64
+		formatString: 0
+		lineageTag: c0517b67-771c-484b-8851-e1516ec210c3
+		summarizeBy: count
+		sourceColumn: agrupadorId
+
+		annotation SummarizationSetBy = Automatic
+
+	column agrupador
+		dataType: string
+		lineageTag: b0de2c39-5b96-41e1-92d2-6740ee5fa1c4
+		summarizeBy: none
+		sourceColumn: agrupador
+
+		annotation SummarizationSetBy = Automatic
+
+	column hrRealizada
+		dataType: double
+		lineageTag: cc99f9fc-8267-421e-b540-52bc5161e89e
+		summarizeBy: sum
+		sourceColumn: hrRealizada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hrProjetada
+		dataType: double
+		lineageTag: 0f320eb7-40a5-4926-a3de-d4cf62091405
+		summarizeBy: sum
+		sourceColumn: hrProjetada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column hrsPrevista
+		dataType: double
+		formatString: 0.00
+		lineageTag: 6438d096-bd37-4d4c-80ef-d12d36bcd3f8
+		summarizeBy: sum
+		sourceColumn: hrsPrevista
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_orçamento_horas = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/api_controlehoras/controle-publico/orcamento/buscaLista/horas
+				 ")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"tarefaId", "tarefaNome", "projectId", "projectKey", "descricaoid", "papel", "agrupadorId", "agrupador", "hrRealizada", "hrProjetada", "hrsPrevista"}, {"tarefaId", "tarefaNome", "projectId", "projectKey", "descricaoid", "papel", "agrupadorId", "agrupador", "hrRealizada", "hrProjetada", "hrsPrevista"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"tarefaId", Int64.Type}, {"tarefaNome", type text}, {"projectId", Int64.Type}, {"projectKey", type text}, {"descricaoid", Int64.Type}, {"papel", type text}, {"agrupadorId", Int64.Type}, {"agrupador", type text}, {"hrRealizada", type number}, {"hrProjetada", type number}, {"hrsPrevista", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

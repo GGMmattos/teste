@@ -1,0 +1,1480 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "a49f7d3854a14561acd4",
+  "position": {
+    "x": 0,
+    "y": 201,
+    "z": 19000,
+    "height": 172,
+    "width": 1600,
+    "tabOrder": 17000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_aberto"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aberto",
+              "nativeQueryRef": "Aberto",
+              "displayName": "Aberto"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_triagem"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_triagem",
+              "nativeQueryRef": "Em Triagem",
+              "displayName": "Em Triagem"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_Avaliacao_consultoria"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_Avaliacao_consultoria",
+              "nativeQueryRef": "Avaliação Consultoria",
+              "displayName": "Avaliação Consultoria"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_backlog_distribuidora"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_backlog_distribuidora",
+              "nativeQueryRef": "Backlog Distribuidora",
+              "displayName": "Backlog Distribuidora"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_backlog_cp"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_backlog_cp",
+              "nativeQueryRef": "Backlog CP",
+              "displayName": "Backlog CP"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_em_andamento_cp"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_em_andamento_cp",
+              "nativeQueryRef": "Em Andamento CP",
+              "displayName": "Em Andamento CP"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_backlog_evolucao"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_backlog_evolucao",
+              "nativeQueryRef": "Backlog Evolução",
+              "displayName": "Backlog Evolução"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_backlog_aceite"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_backlog_aceite",
+              "nativeQueryRef": "Backlog Aceite",
+              "displayName": "Backlog Aceite"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_orcamento_analise"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_orcamento_analise",
+              "nativeQueryRef": "Orçamento Análise",
+              "displayName": "Orçamento Análise"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_autenticacao_comercial_analise"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_autenticacao_comercial_analise",
+              "nativeQueryRef": "Auten. Comerc. Análise",
+              "displayName": "Auten. Comerc. Análise"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_aprovar_orcamento_analise"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aprovar_orcamento_analise",
+              "nativeQueryRef": "Aprovar Orçam. Análise",
+              "displayName": "Aprovar Orçam. Análise"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_em_analise"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_em_analise",
+              "nativeQueryRef": "Em Análise",
+              "displayName": "Em Análise"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_aprovar_documento"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aprovar_documento",
+              "nativeQueryRef": "Aprovar Documento",
+              "displayName": "Aprovar Documento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_orcamento_execucao"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_orcamento_execucao",
+              "nativeQueryRef": "Orçamento Execução",
+              "displayName": "Orçamento Execução"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_autenticacao_tecnica"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_autenticacao_tecnica",
+              "nativeQueryRef": "Autenticação Técnica",
+              "displayName": "Autenticação Técnica"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_autenticacao_comercial_execucao"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_autenticacao_comercial_execucao",
+              "nativeQueryRef": "Autentic. Comercial Exec.",
+              "displayName": "Autentic. Comercial Exec."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_aprovar_orcamento_execucao"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aprovar_orcamento_execucao",
+              "nativeQueryRef": "Aprovar Orçam. Exec.",
+              "displayName": "Aprovar Orçam. Exec."
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_aguardando_solucao"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aguardando_solucao",
+              "nativeQueryRef": "Aguardando Solução",
+              "displayName": "Aguardando Solução"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_desenvolvimento"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_desenvolvimento",
+              "nativeQueryRef": "Desenvolvimento",
+              "displayName": "Desenvolvimento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_infraestrutura"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_infraestrutura",
+              "nativeQueryRef": "Infraestrutura",
+              "displayName": "Infraestrutura"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_servicos_extra"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_servicos_extra",
+              "nativeQueryRef": "Serviços Extracontratuais",
+              "displayName": "Serviços Extracontratuais"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_suporte/manutencao"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_suporte/manutencao",
+              "nativeQueryRef": "Manutenção | Suporte",
+              "displayName": "Manutenção | Suporte"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_ag_cliente_interno"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_ag_cliente_interno",
+              "nativeQueryRef": "Aguard. Cliente | Interno",
+              "displayName": "Aguard. Cliente | Interno"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_validacao_cliente"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_validacao_cliente",
+              "nativeQueryRef": "Validação Cliente",
+              "displayName": "Validação Cliente"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_nao_conformidade"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_nao_conformidade",
+              "nativeQueryRef": "Não Conformidade (NC)",
+              "displayName": "Não Conformidade (NC)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_concluido"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_concluido",
+              "nativeQueryRef": "Concluído",
+              "displayName": "Concluído"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_status_cancelada"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_status_cancelada",
+              "nativeQueryRef": "Cancelado",
+              "displayName": "Cancelado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Tbl_relacionados"
+                    }
+                  },
+                  "Property": "Relacionado_Qtd_entrega_total"
+                }
+              },
+              "queryRef": "Tbl_relacionados.Relacionado_Qtd_entrega_total",
+              "nativeQueryRef": "Total",
+              "displayName": "Total"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Tbl_relacionados"
+                  }
+                },
+                "Property": "Relacionado_Qtd_entrega_status_aberto"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "layout": [
+        {
+          "properties": {
+            "orientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "rowCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "3L"
+                }
+              }
+            },
+            "columnCount": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            },
+            "backgroundShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "style": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Table'"
+                }
+              }
+            },
+            "rectangleRoundedCurveCustomStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "customizeLines": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "lineWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "customizePadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "maxTiles": {
+              "expr": {
+                "Literal": {
+                  "Value": "10L"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backgroundShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "value": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Calibri'"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "label": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Normal'"
+                }
+              }
+            },
+            "matchValueAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "textWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'aboveValue'"
+                }
+              }
+            },
+            "alignBaselines": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "italic": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "2L"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "overFlow": [
+        {
+          "properties": {
+            "overFlowDirection": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "overFlowStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "style": {
+              "expr": {
+                "Literal": {
+                  "Value": "'solid'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "fillCustom": [
+        {
+          "properties": {
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#30323E'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "accentBar": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        },
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#cccccc'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aberto"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#cccccc'"
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_triagem"
+          }
+        },
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#cccccc'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_Avaliacao_consultoria"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#cccccc'"
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_backlog_distribuidora"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_backlog_cp"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_em_andamento_cp"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 4,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_backlog_evolucao"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00C3FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_backlog_aceite"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00C3FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_orcamento_analise"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00C3FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_autenticacao_comercial_analise"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#55CC1A'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_concluido"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00C3FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aprovar_orcamento_analise"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00C3FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_em_analise"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00C3FF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aprovar_documento"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B3700'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_orcamento_execucao"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B3700'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_autenticacao_tecnica"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B3700'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_autenticacao_comercial_execucao"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#7B3700'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aprovar_orcamento_execucao"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0f488c'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_aguardando_solucao"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0f488c'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_desenvolvimento"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0f488c'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_infraestrutura"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0f488c'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_servicos_extra"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0f488c'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_suporte/manutencao"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FF7700'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_ag_cliente_interno"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#00FF95'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_validacao_cliente"
+          }
+        },
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_total"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FF0000'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_nao_conformidade"
+          }
+        },
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#666666'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Tbl_relacionados.Relacionado_Qtd_entrega_status_cancelada"
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#000000'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "referenceLabelTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "referenceLabelValue": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ],
+      "referenceLabelLayout": [
+        {
+          "properties": {
+            "horizontalAlignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'below'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "id": "default"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,262 @@
+table Permissoes
+	lineageTag: 450fafec-34ef-4c94-a686-e0e05b61e589
+
+	measure Soma_custo_bloqueado_comite_produto = ```
+			
+			// Regra para bloquear os valores na tela "comitê produto", e-mail na tabela "permissão" com status igual "sim", podem ver os valores R$. 
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao = 
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			VAR Resultado = SUM(Papel_Funcional_e_Custos[custo]) + 0
+			RETURN
+			IF(
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "R$ #,##0.00"),   -- sempre texto
+			    "Bloqueado"
+			)
+			```
+		displayFolder: Tela Comitê Produto
+		lineageTag: fe8d422b-ea19-4bf9-a52c-119e6dd7776c
+
+	measure 'Custo Médio Alto Nivel (Bloqueado)' = ```
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao = 
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			VAR Resultado = 
+			    CALCULATE(
+			    SUMX(Papel_Funcional_e_Custos, Papel_Funcional_e_Custos[Custo Médio papel_hora] * [Soma_horas_alto_nivel])) + 0
+			RETURN
+			IF(
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "R$ #,##0.00"),   -- sempre texto
+			    "Bloqueado"
+			)
+			```
+		displayFolder: Tela Comitê Produto
+		lineageTag: 5b6a5a3f-8d81-458f-bf9f-418d62ecbfe9
+
+	measure 'Custo Médio Papel/Hora (Bloqueado)' = ```
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao = 
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			VAR Resultado = SUM(Papel_Funcional_e_Custos[custo]) / 150 + 0
+			RETURN
+			IF(
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "R$ #,##0.00"),   -- sempre texto
+			    "Bloqueado"
+			)
+			```
+		displayFolder: Tela Comitê Produto
+		lineageTag: efc66b37-8fac-43e9-9d10-04aac8838632
+
+	measure 'Maquina Logado' = USERNAME()
+		lineageTag: 3a26ca64-e757-4557-be95-e08b315b421d
+
+	measure Soma_custo_papel_bloqueado_comite_execucao = ```
+			
+			// Regra para bloquear os valores na tela "comitê execução", e-mail na tabela "permissão" com status igual "sim", podem ver os valores R$. 
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao = 
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			RETURN
+			IF(
+			    Permissao = "Sim",
+			    CALCULATE(
+			        SUM(Papel_Funcional_e_Custos[custo]),
+			        USERELATIONSHIP(Papel_Funcional_e_Custos[id], 'tblApontamento_Orçamento_Estimativa'[papelId])
+			    ),
+			    "*****"
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: Tela Comitê Execução
+		lineageTag: cad4291c-673b-4855-8cea-85fab45e9c75
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Soma_custo_real_bloqueado_comite_execucao = ```
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao =
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			VAR Resultado =
+			    CALCULATE(
+			        SUMX(
+			            'fApontamento_Extrato',
+			            [hrs_realizadas_backlog_execucao] * 
+			            [Soma_custo__medio_papel_hora_bloqueado_comite_execucao]
+			        )
+			    ) + 0
+			RETURN
+			IF(
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "R$ #,##0.00"),
+			    "Bloqueado"
+			)
+			```
+		displayFolder: Tela Comitê Execução
+		lineageTag: 30921b28-bc9e-4a8b-bf72-29c16da03330
+
+	measure Soma_custo_projetado_bloqueado_comite_execucao = ```
+			
+			// Regra para bloquear os valores na tela "comitê execução", e-mail na tabela "permissão" com status igual "sim", podem ver os valores R$. 
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao = 
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			VAR Resultado = 
+			    CALCULATE(
+			        SUMX(
+			            'fApontamento_Extrato',
+			            [Hr Projetada (fApontamento_Extrato)] * [Soma_custo__medio_papel_hora_bloqueado_comite_execucao]
+			        )) + 0
+			RETURN
+			IF(
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "R$ #,##0.00"),   -- sempre texto
+			    "Bloqueado"
+			)
+			```
+		displayFolder: Tela Comitê Execução
+		lineageTag: f0fbec28-714b-4f67-be8e-5bae24838b41
+
+	measure Soma_custo__medio_papel_hora_bloqueado_comite_execucao = ```
+			
+			// Regra para bloquear os valores na tela "comitê execução", e na tabela "permissão" com status igual "Sim" podem ver os valores R$. 
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao = 
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			    VAR Resultado =     
+			        CALCULATE(
+			        SUM(Papel_Funcional_e_Custos[custo]) / 150,
+			        USERELATIONSHIP(Papel_Funcional_e_Custos[id], 'tblApontamento_Orçamento_Estimativa'[papelId])) + 0
+			RETURN
+			IF(
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "R$ #,##0.00"),   -- sempre texto
+			    "Bloqueado"
+			)
+			```
+		displayFolder: Tela Comitê Execução
+		lineageTag: 148d69c2-fbda-4d48-9d39-0045f313fe2f
+
+	measure Soma_custo_real_bloqueado_comite_execucao_2 = ```
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao = 
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			
+			RETURN
+			IF (
+			    Permissao = "Sim",
+			    CALCULATE (
+			        SUMX (
+			            'fApontamento_Extrato',
+			            [hrs_realizadas_backlog_execucao] * 
+			            [Soma_custo__medio_papel_hora_bloqueado_comite_execucao]
+			        )
+			    ),
+			    "*****"
+			) + 0
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: Tela Comitê Execução
+		lineageTag: 9a1ab86b-199e-49bc-bd34-489b77dc6e44
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Rentabilidade_Bloqueado = ```
+			
+			VAR UsuarioLogado = USERPRINCIPALNAME()
+			VAR Permissao = 
+			    LOOKUPVALUE(
+			        Permissoes[PodeVerValor],
+			        Permissoes[Usuario],
+			        UsuarioLogado
+			    )
+			VAR Resultado = 
+			    CALCULATE(
+			    AVERAGE(tbl_entregas_jira[Rentabilidade])) + 0
+			RETURN
+			IF(
+			    Permissao = "Sim",
+			    FORMAT(Resultado, "R$ #,##0.00"),   -- sempre texto
+			    "Bloqueado"
+			)
+			```
+		displayFolder: Tela Comitê Produto
+		lineageTag: 69f19d22-855b-4ad4-ad60-ff88b9bd601d
+
+	column Usuario
+		lineageTag: f76ba674-df6d-41d1-8e19-faa1eeb056ad
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Usuario]
+
+		annotation SummarizationSetBy = Automatic
+
+	column PodeVerValor
+		lineageTag: 5b2866ea-f420-4944-9666-9f21d929a2cf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [PodeVerValor]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Permissoes = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Usuario", STRING,
+				    "PodeVerValor", STRING,
+				    {
+				        {"tiago.melo@sabium.com.br", "Sim"},
+				        {"tarso.vieira@sabium.com.br", "Sim"},
+				        {"andre.moura@sabium.com.br", "Sim"},
+				        {"luiz.paschoalin@sabium.com.br", "Sim"},
+				        {"romualdo@sabium.com.br", "Sim"},
+				        {"delmiro@sabium.com.br", "Sim"},
+				        {"ednaldo@sabium.com.br", "Sim"},
+				        {"ronaldo@sabium.com.br", "Sim"},
+				        {"magli@sabium.com.br", "Sim"},
+				        {"ednaldo.leme@sabium.com.br", "Sim"}
+				    }
+				)
+
+	annotation PBI_Id = 1003aa140c2b4c9faaf22af74812370e
+

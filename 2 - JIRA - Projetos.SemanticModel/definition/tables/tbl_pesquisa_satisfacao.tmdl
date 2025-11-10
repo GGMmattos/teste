@@ -1,0 +1,323 @@
+table tbl_pesquisa_satisfacao
+	lineageTag: a4be0031-a287-49ba-a7f8-a30ccc45c32a
+
+	measure Qtd_nps_respondido_atendimento =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_pesquisa_satisfacao[ticket]),
+			    tbl_pesquisa_satisfacao[avaliacaoExecutor] <> 0) + 0
+		formatString: 0
+		displayFolder: NPS Atendimento
+		lineageTag: 958e11a1-e48b-43fd-9dea-206bf4168a10
+
+	measure Qtd_nps_nao_respondido_atendimento =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_pesquisa_satisfacao[ticket]),
+			    tbl_pesquisa_satisfacao[avaliacaoExecutor] = 0) + 0
+		formatString: 0
+		displayFolder: NPS Atendimento
+		lineageTag: d9269188-f99f-40a7-b5e5-3518edeb895f
+
+	measure Media_atendimento_Respondido =
+			
+			CALCULATE (
+			    AVERAGE ( tbl_pesquisa_satisfacao[avaliacaoExecutor] ),
+			    tbl_pesquisa_satisfacao[Status_respostas_pesquisa] = "Respondido"
+			) + 0
+		formatString: 0
+		displayFolder: NPS Atendimento
+		lineageTag: 14a114a7-bd9f-4031-9983-441e6ee0dc22
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Media_solucao_Respondido =
+			
+			CALCULATE (
+			    AVERAGE ( tbl_pesquisa_satisfacao[avaliacaoSolucao] ),
+			    tbl_pesquisa_satisfacao[Status_respostas_pesquisa] = "Respondido"
+			) + 0
+		displayFolder: NPS Solução
+		lineageTag: 694844a4-84a2-4b8e-b23e-b080a6d715ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Qtd_nps_promotor_solucao = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT(tbl_pesquisa_satisfacao[ticket]),
+			        tbl_pesquisa_satisfacao[Classificacao_nps_solucao] = "Promotor") + 0
+			```
+		formatString: 0
+		displayFolder: NPS Solução
+		lineageTag: 353d614b-b7ed-4c95-8780-10228a57d67b
+
+	measure Qtd_nps_detrator_solucao = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT(tbl_pesquisa_satisfacao[ticket]),
+			        tbl_pesquisa_satisfacao[Classificacao_nps_solucao] = "Detrator",
+			        tbl_pesquisa_satisfacao[avaliacaoSolucao] <> 0) + 0
+			```
+		formatString: 0
+		displayFolder: NPS Solução
+		lineageTag: 6a7b1b85-3428-478f-bf43-5e8d5326b3ae
+
+	measure %_media_nps_solucao = [%_media_promotor_solucao] - [%_media_detrator_solucao]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: NPS Solução
+		lineageTag: 464e4f8e-48cf-4672-8fca-391718563689
+
+	measure %_media_detrator_solucao = DIVIDE([Qtd_nps_detrator_solucao], [Qtd_nps_respondido_solucao]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: NPS Solução
+		lineageTag: da457df2-7e1a-4faa-adf5-c5f7daeadf62
+
+	measure Qtd_nps_respondido_solucao =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(tbl_pesquisa_satisfacao[ticket]),
+			    tbl_pesquisa_satisfacao[avaliacaoSolucao] <> 0) + 0
+		formatString: 0
+		displayFolder: NPS Solução
+		lineageTag: f2d002e5-7746-4eb1-9808-00884c2dc17f
+
+	measure %_media_promotor_solucao = DIVIDE([Qtd_nps_promotor_solucao], [Qtd_nps_respondido_solucao]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: NPS Solução
+		lineageTag: 049b397e-a446-4799-9faa-306cb0525ca0
+
+	measure Qtd_pesquisa =
+			
+			CALCULATE(
+			DISTINCTCOUNT(tbl_pesquisa_satisfacao[ticket]),
+			 tbl_pesquisa_satisfacao[dataConclusao] <> BLANK()) + 0
+		formatString: 0
+		lineageTag: 2c3cdd28-d495-4046-9ba5-7d3aa8f75d6d
+
+	measure Qtd_pesquisa_nao_respondida = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT(tbl_pesquisa_satisfacao[ticket]),
+			        tbl_pesquisa_satisfacao[avaliacaoExecutor] = 0,
+			        tbl_pesquisa_satisfacao[dataConclusao] <> BLANK()) + 0
+			```
+		formatString: 0
+		lineageTag: 674b75a9-6afc-45a5-a507-19b6c4e2a8ae
+
+	measure %_adesao_pesquisa = DIVIDE([Qtd_nps_respondido_atendimento], [Qtd_pesquisa])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e0b79a0d-881f-4761-99b6-603356865bc3
+
+	measure %_pesquisa_nao_respondida = DIVIDE([Qtd_pesquisa_nao_respondida], [Qtd_pesquisa]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 511b815c-ac64-44b7-9b60-50122f2bdbc1
+
+	measure %_total_pesquisa = DIVIDE([Qtd_pesquisa], [Qtd_pesquisa]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3be910ad-1d11-4025-9e5a-f44046e2de62
+
+	measure %_Media_avaliacao_atendimento = ```
+			
+			CALCULATE (
+			    AVERAGE ( tbl_pesquisa_satisfacao[avaliacaoExecutor] ),
+			    tbl_pesquisa_satisfacao[avaliacaoExecutor] > 0
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: NPS Atendimento
+		lineageTag: 0624a0ca-a154-41d1-b5ec-e10e1e18a4b5
+
+	measure 'Média de Média de avaliacaoExecutor por ticket' =
+			
+			AVERAGEX(
+				KEEPFILTERS(VALUES('tbl_pesquisa_satisfacao'[ticket])),
+				CALCULATE(AVERAGE('tbl_pesquisa_satisfacao'[avaliacaoExecutor]))
+			)
+		formatString: 0
+		lineageTag: d289a811-d59f-4923-b697-6bab8275595c
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "AveragePerCategory"
+				}
+
+		changedProperty = FormatString
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ecb52b2-c644-421a-8657-e59063108e20
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column idSolicitacaoInclusao
+		dataType: int64
+		formatString: 0
+		lineageTag: defc3bcf-f2c2-43b7-8cd8-8f3ce82e3fb8
+		summarizeBy: sum
+		sourceColumn: idSolicitacaoInclusao
+
+		annotation SummarizationSetBy = Automatic
+
+	column ticket
+		dataType: string
+		lineageTag: 74d59767-d5f5-4d0c-b2a5-a13379fdbf64
+		summarizeBy: none
+		sourceColumn: ticket
+
+		annotation SummarizationSetBy = Automatic
+
+	column idUsuarioResposta
+		dataType: int64
+		formatString: 0
+		lineageTag: 514ba42b-a2d2-4cd4-a744-31664f9a33ab
+		summarizeBy: sum
+		sourceColumn: idUsuarioResposta
+
+		annotation SummarizationSetBy = Automatic
+
+	column nomeUsuarioResposta
+		dataType: string
+		lineageTag: 26804f9f-27a1-4f14-950f-a5ac6a1de067
+		summarizeBy: none
+		sourceColumn: nomeUsuarioResposta
+
+		annotation SummarizationSetBy = Automatic
+
+	column dataInicio
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7e28fbf4-c8d1-4b3d-93a8-f172bee2cdbc
+		summarizeBy: none
+		sourceColumn: dataInicio
+
+		variation Variation
+			isDefault
+			relationship: 022b6293-eec2-480d-8306-ad532892045b
+			defaultHierarchy: LocalDateTable_78b4ca8b-ec2e-4b26-a40e-6d96bd98b3b3.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dataConclusao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6aa91b34-d260-4ff7-9e3b-c7afd240f282
+		summarizeBy: none
+		sourceColumn: dataConclusao
+
+		variation Variation
+			isDefault
+			relationship: 38ff7df1-b7ef-4ed7-98b0-7f7d94a7e250
+			defaultHierarchy: LocalDateTable_06d7f769-d80a-403e-ab9b-8e6986f64c40.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column avaliacaoExecutor
+		dataType: int64
+		formatString: 0
+		lineageTag: 489cea8c-2b3a-4fd5-af76-fa2f9a2ad3e6
+		summarizeBy: sum
+		sourceColumn: avaliacaoExecutor
+
+		annotation SummarizationSetBy = Automatic
+
+	column avaliacaoExecutorComentario
+		dataType: string
+		lineageTag: a11cf613-2f7a-4d6a-94f3-725e99187cc9
+		summarizeBy: none
+		sourceColumn: avaliacaoExecutorComentario
+
+		annotation SummarizationSetBy = Automatic
+
+	column avaliacaoSolucao
+		dataType: int64
+		formatString: 0
+		lineageTag: be9c02ab-0461-49ee-8b08-699531bff944
+		summarizeBy: sum
+		sourceColumn: avaliacaoSolucao
+
+		annotation SummarizationSetBy = Automatic
+
+	column avaliacaoSolucaoComentario
+		dataType: string
+		lineageTag: 5219c6f8-537d-481b-8394-9be27f16038c
+		summarizeBy: none
+		sourceColumn: avaliacaoSolucaoComentario
+
+		annotation SummarizationSetBy = Automatic
+
+	column clienteInterno
+		dataType: string
+		lineageTag: 790ba384-f2a4-4ba8-96a6-656a34111d8c
+		summarizeBy: none
+		sourceColumn: clienteInterno
+
+		annotation SummarizationSetBy = Automatic
+
+	column nomeCliente
+		dataType: string
+		lineageTag: 4c4f7b2d-ecd8-4222-a529-21fee74e8f40
+		summarizeBy: none
+		sourceColumn: nomeCliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipoSolicitacao
+		dataType: string
+		lineageTag: 6f0424e1-df16-43fc-9d0d-213d19b55093
+		summarizeBy: none
+		sourceColumn: tipoSolicitacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Classificacao_nps_solucao =
+			
+			SWITCH(
+			    TRUE(),
+			    tbl_pesquisa_satisfacao[avaliacaoSolucao] >= 9, "Promotor",
+			    tbl_pesquisa_satisfacao[avaliacaoSolucao] >= 7, "Neutro",
+			    tbl_pesquisa_satisfacao[avaliacaoSolucao] = 0, "Sem Resposta",
+			    "Detrator"
+			)
+		displayFolder: NPS Solução
+		lineageTag: 03cffffa-419b-413b-8639-c0ca660c7337
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_respostas_pesquisa = ```
+			
+			    SWITCH(
+			        TRUE(),
+			        tbl_pesquisa_satisfacao[idUsuarioResposta] > 0, "Respondido", "Não respondido")
+			```
+		lineageTag: d9589fb4-030f-466c-8c73-a8bbdbf8fd7b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_pesquisa_satisfacao = m
+		mode: import
+		source =
+				let
+				    Fonte = Json.Document(Web.Contents("https://service.sabium.com.br/api_controlehoras/controle-publico/solicitacao/pesquisa/buscaLista")),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Column1 Expandido" = Table.ExpandRecordColumn(#"Convertido para Tabela", "Column1", {"id", "idSolicitacaoInclusao", "ticket", "idUsuarioResposta", "nomeUsuarioResposta", "dataInicio", "dataConclusao", "avaliacaoExecutor", "avaliacaoExecutorComentario", "avaliacaoSolucao", "avaliacaoSolucaoComentario", "clienteInterno", "nomeCliente", "tipoSolicitacao"}, {"id", "idSolicitacaoInclusao", "ticket", "idUsuarioResposta", "nomeUsuarioResposta", "dataInicio", "dataConclusao", "avaliacaoExecutor", "avaliacaoExecutorComentario", "avaliacaoSolucao", "avaliacaoSolucaoComentario", "clienteInterno", "nomeCliente", "tipoSolicitacao"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Column1 Expandido",{{"id", Int64.Type}, {"idSolicitacaoInclusao", Int64.Type}, {"ticket", type text}, {"idUsuarioResposta", Int64.Type}, {"nomeUsuarioResposta", type text}, {"dataInicio", type date}, {"dataConclusao", type date}, {"avaliacaoExecutor", Int64.Type}, {"avaliacaoExecutorComentario", type text}, {"avaliacaoSolucao", Int64.Type}, {"avaliacaoSolucaoComentario", type text}, {"clienteInterno", type text}, {"nomeCliente", type text}, {"tipoSolicitacao", type any}}),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Tipo Alterado",{{"nomeCliente", Text.Proper, type text}})
+				in
+				    #"Colocar Cada Palavra Em Maiúscula"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

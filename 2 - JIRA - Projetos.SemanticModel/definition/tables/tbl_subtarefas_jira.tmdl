@@ -1,0 +1,468 @@
+table tbl_subtarefas_jira
+	lineageTag: a6756fb8-0ded-4aff-bec7-83270fd6ec9a
+
+	measure Qtd_subtarefas = ```
+			
+			// Quantidade de subtarefas do Jira. 
+			DISTINCTCOUNT(tbl_subtarefas_jira[Chave]) + 0
+			```
+		formatString: #,0
+		lineageTag: 6e8a70bc-3814-404e-b5ca-d9233a1123c9
+
+	measure Qtd_subtarefas_concluidas_e_canceladas = ```
+			
+			        CALCULATE(
+			            DISTINCTCOUNT(tbl_subtarefas_jira[Chave]),
+			            tbl_subtarefas_jira[Situacao] IN {"Concluído", "Cancelada"}) + 0
+			```
+		formatString: #,0
+		lineageTag: cef62579-2194-4494-8cac-c3ed2d5aaa88
+
+	measure %_entrega_subtarefa = DIVIDE('tbl_subtarefas_jira'[Qtd_subtarefas_concluidas_e_canceladas], tbl_subtarefas_jira[Qtd_subtarefas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a51b644c-a150-4c14-8a85-481ed23dede7
+
+	measure %_subtarefa_concluida = DIVIDE('tbl_subtarefas_jira'[Qtd_subtarefas_concluidas_e_canceladas], 'tbl_subtarefas_jira'[Qtd_subtarefas]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0ef5f694-b70f-45dc-99d9-f322bf644ed0
+
+		changedProperty = IsHidden
+
+	measure Qtd_tarefas_e_subtarefas_em_aberto = (tbl_tarefas_jira[Qtd_tarefas_e_subtarefas] - tbl_tarefas_jira[Qtd_tarefas_e_subtarefas_concluidos]) + 0
+		formatString: 0
+		lineageTag: feec204e-c68e-4aa0-9afb-9327a2d0e4b7
+
+	measure Soma_despesa_custo = ```
+			
+			        SUM(tbl_subtarefas_jira[Custo (R$)]) + 0
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 7cd671b4-cb2f-4bb7-b8c7-e0995f684b4e
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure %_uso_do_sistema =
+			
+			AVERAGEX (
+			    VALUES ( 'tbl_subtarefas_jira'[Chave] ),
+			    CALCULATE ( AVERAGE ( 'tbl_subtarefas_jira'[% de Uso dos Sistemas Sabium] ) ) / 100
+			) + 0
+		formatString: 0%;-0%;0%
+		lineageTag: 074efbbd-3097-47ba-a92b-87291ae0bf55
+
+	column Chave
+		dataType: string
+		lineageTag: 7af80654-327e-4985-a7c7-66234407a5bc
+		summarizeBy: none
+		sourceColumn: Chave
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prioridade
+		dataType: string
+		lineageTag: 6b6be209-ca5a-4336-9f98-8341a394ceb3
+		summarizeBy: none
+		sourceColumn: Prioridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de item'
+		dataType: string
+		lineageTag: b576a3cf-46c8-467c-8017-ac45f9bfb7a1
+		summarizeBy: none
+		sourceColumn: Tipo de item
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue ID'
+		dataType: double
+		lineageTag: c6e7a3ab-6668-4235-883d-e999a0c3d2bd
+		summarizeBy: count
+		sourceColumn: Issue ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CNPJ Cliente (Contr_ Horas)'
+		dataType: string
+		lineageTag: 4c16b930-15c2-4654-ac18-2fb4db4e3db0
+		summarizeBy: none
+		sourceColumn: CNPJ Cliente (Contr_ Horas)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Motivo do Cancelamento'
+		dataType: string
+		lineageTag: 6ad8167b-1302-4d36-813e-dd6b9f5bc119
+		summarizeBy: none
+		sourceColumn: Motivo do Cancelamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nível prioridade'
+		dataType: string
+		lineageTag: 28e20e6b-27e1-46f3-8102-daacaf2f020d
+		summarizeBy: none
+		sourceColumn: Nível prioridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome Cliente (Contr_ Horas)'
+		dataType: string
+		lineageTag: 1d33ac59-90d1-43d2-87b5-e3d4484e14a6
+		summarizeBy: none
+		sourceColumn: Nome Cliente (Contr_ Horas)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pós Implantação'
+		dataType: string
+		lineageTag: bb645f00-b8ed-49e2-aa22-ddc29c455d6d
+		summarizeBy: none
+		sourceColumn: Pós Implantação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Solução
+		dataType: string
+		lineageTag: d8ab8c3b-eb32-475d-ba4a-0112d733c35c
+		summarizeBy: none
+		sourceColumn: Solução
+
+		annotation SummarizationSetBy = Automatic
+
+	column Team
+		dataType: string
+		lineageTag: 7c500f7c-0617-42cc-b1fe-8864828db517
+		summarizeBy: none
+		sourceColumn: Team
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Versão Atual'
+		dataType: string
+		lineageTag: c6b12b9b-a0f5-4aa9-9c08-f883cd883950
+		summarizeBy: none
+		sourceColumn: Versão Atual
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Versão Atualização'
+		dataType: string
+		lineageTag: 202ff183-638b-4e7e-9eda-0ffb8e5c453b
+		summarizeBy: none
+		sourceColumn: Versão Atualização
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Versão Homologação'
+		dataType: string
+		lineageTag: 29b5d53d-277d-4af7-a7c1-19fbbc403eea
+		summarizeBy: none
+		sourceColumn: Versão Homologação
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Versão Planejada'
+		dataType: string
+		lineageTag: 0261f2d6-b4fa-46fa-875c-71c981ddf694
+		summarizeBy: none
+		sourceColumn: Versão Planejada
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 23e903f7-fe41-4d7a-8c58-6ad348873061
+		summarizeBy: none
+		sourceColumn: Start date
+
+		variation Variation
+			isDefault
+			relationship: d716c772-f5a5-4cf4-b958-aacb78751f3d
+			defaultHierarchy: LocalDateTable_3adeafa9-f93d-40d6-81f6-5d5ad0f5fdd9.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data solução'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b03615d1-a632-44b2-a832-d46939829c1f
+		summarizeBy: none
+		sourceColumn: Data solução
+
+		variation Variation
+			isDefault
+			relationship: a1e932c8-5e9d-435f-aac6-5a7bb800db4d
+			defaultHierarchy: LocalDateTable_b92d1702-a0f2-4b80-9aff-fd4c25d9497b.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data Lançamento (virada)'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 29fbb06c-0c98-4280-ae8f-64f64d718495
+		summarizeBy: none
+		sourceColumn: Data Lançamento (virada)
+
+		variation Variation
+			isDefault
+			relationship: 7e992798-c534-4140-badb-1e7d0b6178d4
+			defaultHierarchy: LocalDateTable_8b67b8fd-29de-4bad-9755-5523a7bc58f5.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Atualizado(a)
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 48760492-e76b-4353-b911-b886d09ab9c9
+		summarizeBy: none
+		sourceColumn: Atualizado(a)
+
+		variation Variation
+			isDefault
+			relationship: 85ffa216-92c9-483f-a1d9-c9011e431e85
+			defaultHierarchy: LocalDateTable_c8d0019a-c42c-476a-95eb-8bd9a4232275.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data limite'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 182915fb-e59f-47d8-b447-9578d152447c
+		summarizeBy: none
+		sourceColumn: Data limite
+
+		variation Variation
+			isDefault
+			relationship: 33936007-ab4e-485e-9fdb-3a723942a330
+			defaultHierarchy: LocalDateTable_8f7d1737-ec78-418a-9096-d5203f001bd4.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Parent Issue Key'
+		dataType: string
+		lineageTag: 15b4a018-226d-4871-b488-90c6f5ee7e35
+		summarizeBy: none
+		sourceColumn: Parent Issue Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Priority'
+		dataType: string
+		lineageTag: 9b260d94-fc71-4197-82c5-3a23256b1d5c
+		summarizeBy: none
+		sourceColumn: Parent Issue Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Status'
+		dataType: string
+		lineageTag: c747919b-8ff8-4fa9-95cc-ff6b01af025e
+		summarizeBy: none
+		sourceColumn: Parent Issue Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Status Category'
+		dataType: string
+		lineageTag: 91c0be52-e10d-463c-bf39-8f13dbf10cb4
+		summarizeBy: none
+		sourceColumn: Parent Issue Status Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Summary'
+		dataType: string
+		lineageTag: 7c4dbe8b-b262-4f18-a602-b725c4ac9d4b
+		summarizeBy: none
+		sourceColumn: Parent Issue Summary
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Issue Type'
+		dataType: string
+		lineageTag: 5c433aea-7d5f-463a-923f-bbc74635e10b
+		summarizeBy: none
+		sourceColumn: Parent Issue Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criado
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 4d0c8e04-1213-4e4e-a643-662421285044
+		summarizeBy: none
+		sourceColumn: Criado
+
+		variation Variation
+			isDefault
+			relationship: d39ddd61-a062-40bb-8d48-9df11a1ef48b
+			defaultHierarchy: LocalDateTable_02d70998-901c-4819-aaa9-b5ff14a0aeac.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Situacao
+		dataType: string
+		lineageTag: 5b41bf67-ca12-4289-9276-61c665461e70
+		summarizeBy: none
+		sourceColumn: Situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Responsavel
+		dataType: string
+		lineageTag: ff370248-1d55-4454-a2fb-f686cd9cdd60
+		summarizeBy: none
+		sourceColumn: Responsavel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resumo
+		dataType: string
+		lineageTag: 42a436d7-b070-4ad8-a26b-baaa06f1fe12
+		summarizeBy: none
+		sourceColumn: Resumo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Responsável Tecnico:  Name'
+		dataType: string
+		lineageTag: 04eaa1ec-6fea-4e95-ba17-cf18f4fec5f0
+		summarizeBy: none
+		sourceColumn: Responsável Tecnico:  Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Consultor responsável:  Name'
+		dataType: string
+		lineageTag: 1facf0d8-cc2b-4f12-af9a-0eb23b7abdb8
+		summarizeBy: none
+		sourceColumn: Consultor responsável:  Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link_subtarefa_jira_novo =
+			
+			"https://sabium.atlassian.net/browse/" & 'tbl_subtarefas_jira'[Chave]
+		lineageTag: 2c6d25c9-83f1-40dd-ae5e-a7ca33294a77
+		dataCategory: WebUrl
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Key'
+		dataType: string
+		lineageTag: edad76db-e806-4b2e-b200-b64213349a97
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: 187b548e-a93c-4a1a-862e-2ec03cac21d9
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Id'
+		dataType: string
+		lineageTag: eeb6b5d8-b55e-4bf0-933c-e7f43d1b0b3f
+		summarizeBy: none
+		sourceColumn: Project Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Category'
+		dataType: string
+		lineageTag: bc419a13-2a72-4712-992a-fad7ebfd2e80
+		summarizeBy: none
+		sourceColumn: Project Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chave_titulo_parent_subtarefa
+		dataType: string
+		lineageTag: 9e5ce8a2-7924-4f0e-a584-ec93cbf1b4ce
+		summarizeBy: none
+		sourceColumn: Chave_titulo_parent_subtarefa
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% de Uso dos Sistemas Sabium'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1daeb316-1e4b-4240-8f42-aa48af104f46
+		summarizeBy: none
+		sourceColumn: % de Uso dos Sistemas Sabium
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+	column 'Custo (R$)'
+		dataType: decimal
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: ea5ecbf2-c7d1-432e-9b30-d61aea12ad23
+		summarizeBy: sum
+		sourceColumn: Custo (R$)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Tipo de Despesa'
+		dataType: string
+		lineageTag: e0796f35-90b5-4e9b-89a4-c952aadc9898
+		summarizeBy: none
+		sourceColumn: Tipo de Despesa
+
+		annotation SummarizationSetBy = Automatic
+
+	column Chave_e_titulo_subtarefa
+		dataType: string
+		lineageTag: 1510fc8c-242f-45b2-a33a-b1c0c9bde026
+		summarizeBy: none
+		sourceColumn: Chave_e_titulo_subtarefa
+
+		annotation SummarizationSetBy = Automatic
+
+	column Setor
+		dataType: string
+		lineageTag: e5cf9972-8cab-472e-a00e-923afc935db6
+		summarizeBy: none
+		sourceColumn: Setor
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_subtarefas_jira = m
+		mode: import
+		source =
+				let
+				    Fonte = OData.Feed("https://bi-reports.appfire.app/aio-app/rest/aio-cn/1.0/powerbi/export/NjYwYzQxYjYtZGU4Ny00YzdjLWFjZWYtMzNmYWUyMzMx", null, [Implementation="2.0"]),
+				    Issues_table = Fonte{[Name="Issues",Signature="table"]}[Data],
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(Issues_table,{{"Resumo", Text.Proper, type text}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colocar Cada Palavra Em Maiúscula",{{"Criado", type date}, {"Data limite", type date}, {"Data solução", type date}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"Current Assignee:  Name", "Responsavel"}, {"Current Status", "Situacao"}}),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Colunas Renomeadas", "Chave_titulo_parent_subtarefa", each Text.Combine({[Parent Issue Key], [Parent Issue Summary]}, " - "), type text),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Coluna Mesclada Inserida",{{"Custo (R$)", Currency.Type}}),
+				    #"Colocar Cada Palavra Em Maiúscula1" = Table.TransformColumns(#"Tipo Alterado1",{{"Nome Cliente (Contr_ Horas)", Text.Proper, type text}}),
+				    #"Coluna Mesclada Inserida1" = Table.AddColumn(#"Colocar Cada Palavra Em Maiúscula1", "Chave_e_titulo_subtarefa", each Text.Combine({[Chave], [Resumo]}, " - "), type text),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Coluna Mesclada Inserida1",{{"% de Uso dos Sistemas Sabium", Percentage.Type}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

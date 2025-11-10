@@ -1,0 +1,63 @@
+table tbl_start_stop_relacionado_todas_issues
+	lineageTag: d4b0250e-3084-4ff8-9113-f85bfc94d95d
+
+	column Chave
+		lineageTag: b702d07d-e754-4022-a177-b267d732e250
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas Realizadas'
+		lineageTag: e6b943a0-8ab9-452f-93b1-3ed0e261f3cf
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Horas Realizadas]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Data Inicial'
+		formatString: General Date
+		lineageTag: 19775d4c-bd46-434d-8a93-1ed334856096
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Data Inicial]
+
+		variation Variation
+			isDefault
+			relationship: ba2b3f95-192b-4573-bc2f-33991b9f51a3
+			defaultHierarchy: LocalDateTable_27809bd4-e5bf-4b01-9f78-2fe0c8c233d7.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Final'
+		formatString: General Date
+		lineageTag: 8f7da8df-3c52-4c66-9174-8c08ea82aaa1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Data Final]
+
+		variation Variation
+			isDefault
+			relationship: c753327a-da6d-4be8-abe7-7df3f010b8e7
+			defaultHierarchy: LocalDateTable_cc8fd24f-a12a-45e5-9e0a-05570fa290ae.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_start_stop_relacionado_todas_issues = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    fApontamento_Start_Stop,
+				    "Chave", fApontamento_Start_Stop[nomeTarefa],
+				    "Horas Realizadas", fApontamento_Start_Stop[Soma Hrs Realizadas (Start/Stop)],
+				    "Data Inicial", fApontamento_Start_Stop[dataInicial],
+				    "Data Final", fApontamento_Start_Stop[dataFinal]
+				)
+
+	annotation PBI_Id = da6549dc7b484ceebcc902f048f82c1b
+

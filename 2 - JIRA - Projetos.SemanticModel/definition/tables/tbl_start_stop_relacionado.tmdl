@@ -1,0 +1,98 @@
+table tbl_start_stop_relacionado
+	lineageTag: 6d705446-eb3f-4c89-8716-572348fc7494
+
+	column Chave
+		lineageTag: f92527db-33d4-4483-98b0-b980e8b1cf28
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Chave]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas Realizadas'
+		lineageTag: 8b981cf0-1e2c-484f-8ae1-6ddf6e22cd7e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Horas Realizadas]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Data Inicial'
+		formatString: Short Date
+		lineageTag: 6d04a7c2-885d-4442-b7a1-adb4fbc1be57
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Data Inicial]
+
+		variation Variation
+			isDefault
+			relationship: 8d349c49-7182-47b8-8f83-c857bdddc4e1
+			defaultHierarchy: LocalDateTable_28a80a40-5708-43c3-9950-e4d9bd32910a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Data Final'
+		formatString: Short Date
+		lineageTag: 18b83cc0-2282-42a8-a986-b17061403b34
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Data Final]
+
+		variation Variation
+			isDefault
+			relationship: 9c68aeb6-9049-4859-b4db-ed89c8253e55
+			defaultHierarchy: LocalDateTable_12038bf6-7f9f-4e9c-8b2c-226f917e9933.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Tempo_projeto = ```
+			
+			VAR DataInicial =
+			    CALCULATE(
+			        MIN(tbl_start_stop_relacionado[Data Inicial]),
+			        ALLEXCEPT(tbl_start_stop_relacionado, tbl_start_stop_relacionado[Projeto])
+			    )
+			VAR DataFinal =
+			    CALCULATE(
+			        MAX(tbl_start_stop_relacionado[Data Final]),
+			        ALLEXCEPT(tbl_start_stop_relacionado, tbl_start_stop_relacionado[Projeto])
+			    )
+			RETURN
+			DATEDIFF(DataInicial, DataFinal, DAY)
+			
+			```
+		formatString: 0
+		lineageTag: e0f994ff-1360-4b94-ba41-0144abd8281d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Projeto
+		lineageTag: 0cb21533-912b-46ff-a229-89036a735068
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Projeto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tbl_start_stop_relacionado = calculated
+		mode: import
+		source =
+				
+				SELECTCOLUMNS(
+				    fApontamento_Start_Stop,
+				    "Chave", fApontamento_Start_Stop[nomeTarefa],
+				    "Horas Realizadas", fApontamento_Start_Stop[Soma Hrs Realizadas (Start/Stop)],
+				    "Data Inicial", fApontamento_Start_Stop[dataInicial],
+				    "Data Final", fApontamento_Start_Stop[dataFinal],
+				    "Projeto", fApontamento_Start_Stop[nomeProjeto]
+				)
+
+	annotation PBI_Id = 4c520981e4bc4b10bf6caa98a80f76b6
+
